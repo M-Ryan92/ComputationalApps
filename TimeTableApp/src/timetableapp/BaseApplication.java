@@ -1,5 +1,6 @@
 package timetableapp;
 
+import timetableapp.Gui.GuiHelper;
 import controlP5.ControlEvent;
 import processing.core.PApplet;
 
@@ -25,8 +26,8 @@ public class BaseApplication extends PApplet {
     public void draw() {
 
     }
+
     public void controlEvent(ControlEvent evt) {
-    guiHelper.controlEvent(evt);
+        guiHelper.controlEvent(evt);
     }
 }
-

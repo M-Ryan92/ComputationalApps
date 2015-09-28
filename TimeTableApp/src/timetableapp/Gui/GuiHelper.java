@@ -1,4 +1,4 @@
-package timetableapp;
+package timetableapp.Gui;
 
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
@@ -10,6 +10,7 @@ public class GuiHelper {
     private PApplet app;
     private ControlP5 cp5;
     private int btnheight = 18;
+
     public GuiHelper(PApplet app) {
         this.app = app;
         cp5 = new ControlP5(app);
@@ -25,9 +26,10 @@ public class GuiHelper {
 
     public void controlEvent(ControlEvent evt) {
         Controller<?> controller = evt.getController();
-            if ("selectFileBtn".equals(controller.getName())) {
-                app.selectInput("Select a file to process:", "fileSelected");
-            }
+        if ("selectFileBtn".equals(controller.getName())) {
+            app.selectInput("Select a file to process:", "fileSelected");
+        }
+
     }
 
 }
