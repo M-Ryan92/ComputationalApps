@@ -3,8 +3,10 @@ package timetableapp.Gui;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import controlP5.Controller;
-import java.awt.Frame;
-import javax.swing.JOptionPane;
+import javafx.stage.FileChooser;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import processing.core.PApplet;
 import timetableapp.util.AppState;
 
@@ -32,18 +34,24 @@ public class GuiHelper {
 
     public void controlEvent(ControlEvent evt) {
         Controller<?> controller = evt.getController();
-        switch(controller.getName()){
-        case("selectFileBtn"):
-            app.selectInput("Select a file to process:", "fileSelected");
-            break;
-        case("viewData"):
-            if(AppState.FILE_LOADED == 0){
-                new Dialog(null,"No File Selected", Dialog.WARNING_MESSAGE);
-            } else {
-                //showmydataTable(pagina's)
+        switch (controller.getName()) {
+            case ("selectFileBtn"):
+
+                final JFileChooser fc = new JFileChooser();
+                FileFilter filter1 = new FileNameExtensionFilter("data files(txt, ics, csv, tsv, tab)", new String[] { "txt", "ics", "csv", "tsv", "tab" });
+                fc.setFileFilter(filter1);
+                fc.setAcceptAllFileFilterUsed(false);
+                fc.showOpenDialog(null);
                 
-            }
-            break;
+                break;
+            case ("viewData"):
+                if (AppState.FILE_LOADED == 0) {
+                    new Dialog(null, "No File Selected", Dialog.WARNING_MESSAGE);
+                } else {
+                    //showmydataTable(pagina's)
+
+                }
+                break;
         }
 
     }
