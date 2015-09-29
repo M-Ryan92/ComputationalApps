@@ -3,11 +3,14 @@ package timetableapp.util;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.Callable;
+import lombok.Setter;
 import timetableapp.Gui.Dialog;
 
-public class StateObserver implements Observer{
+public class StateObserver implements Observer {
 
-    Callable callable;
+    private Callable callable;
+    private String errorMessage;
+
     public StateObserver(Callable callable) {
         this.callable = callable;
     }
@@ -17,7 +20,8 @@ public class StateObserver implements Observer{
         try {
             callable.call();
         } catch (Exception ex) {
-            new Dialog("could not update application state", Dialog.ERROR_MESSAGE);
+            Dialog dialog = new Dialog();
+            dialog.fatalErrorDialog(ex.getMessage());
         }
     }
 }

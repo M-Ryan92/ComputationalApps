@@ -33,7 +33,7 @@ public class GuiHelper {
                 .setLabel("View Data");
         Callable cal = () -> {
             System.out.println("calling the parser");
-            return null;
+            throw new Exception("could not update application state, application will close now");
         };
         AppState.getInstance().getNewFileSelectedStateObserver().addObserver(new StateObserver(cal));
     }
