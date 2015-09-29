@@ -9,7 +9,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import processing.core.PApplet;
 import timetableapp.util.AppState;
-import timetableapp.util.StateObserver;
+import timetableapp.util.observer.StateObserver;
 
 public class GuiHelper {
 
@@ -32,7 +32,11 @@ public class GuiHelper {
                 .setSize(70, btnheight)
                 .setLabel("View Data");
         Callable cal = () -> {
+            AppState state = AppState.getInstance();
             System.out.println("calling the parser");
+            
+            state.getNewFileSelectedStateObserver().resetValue();
+            state.setLoadingFileState(1);
             throw new Exception("could not update application state, application will close now");
         };
         AppState.getInstance().getNewFileSelectedStateObserver().addObserver(new StateObserver(cal));

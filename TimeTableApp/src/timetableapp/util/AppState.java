@@ -1,5 +1,6 @@
 package timetableapp.util;
 
+import timetableapp.util.observer.ObservableValue;
 import lombok.Getter;
 
 public class AppState {

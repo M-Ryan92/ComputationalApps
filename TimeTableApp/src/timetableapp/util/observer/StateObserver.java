@@ -1,15 +1,13 @@
-package timetableapp.util;
+package timetableapp.util.observer;
 
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.Callable;
-import lombok.Setter;
 import timetableapp.Gui.Dialog;
 
 public class StateObserver implements Observer {
 
     private Callable callable;
-    private String errorMessage;
 
     public StateObserver(Callable callable) {
         this.callable = callable;
