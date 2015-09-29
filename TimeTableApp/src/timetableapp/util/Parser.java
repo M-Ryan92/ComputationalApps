@@ -7,18 +7,18 @@ import timetableapp.Gui.Dialog;
 
 public class Parser {
 
-    private PApplet app;
+    private PApplet app = AppState.getInstance().getApp();
     private File file;
     private String extension;
     private Table table;
 
-    public Parser(File file, PApplet app) {
+    public Parser(File file) {
         this.file = file;
         extension = getExtension(file);
-        this.app = app;
     }
 
     public Table parse() {
+
         table = null;
         if ("txt".equals(extension)) {
             extension = new Dialog().optionDialog(new String[]{"csv", "tsv"}, "is the data cvs or tsv?");

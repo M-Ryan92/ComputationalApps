@@ -1,11 +1,22 @@
 package timetableapp.util;
 
+import java.io.File;
 import timetableapp.util.observer.ObservableValue;
 import lombok.Getter;
+import lombok.Setter;
+import processing.core.PApplet;
 
 public class AppState {
 
     private static AppState instance = new AppState();
+
+    @Getter
+    @Setter
+    private File selectedFile;
+    
+    @Getter
+    @Setter
+    private PApplet app;
 
     @Getter
     private ObservableValue<Integer> fileSelectedStateObserver = new ObservableValue(0);

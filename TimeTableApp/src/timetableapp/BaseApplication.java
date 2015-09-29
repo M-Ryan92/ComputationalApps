@@ -3,6 +3,7 @@ package timetableapp;
 import timetableapp.Gui.GuiHelper;
 import controlP5.ControlEvent;
 import processing.core.PApplet;
+import timetableapp.util.AppState;
 
 public class BaseApplication extends PApplet {
 
@@ -17,8 +18,9 @@ public class BaseApplication extends PApplet {
 
     @Override
     public void setup() {
+        AppState.getInstance().setApp(this);
         frameRate(60);
-        guiHelper = new GuiHelper(this);
+        guiHelper = new GuiHelper();
         guiHelper.setup();
     }
 
