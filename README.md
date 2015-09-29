@@ -1,2 +1,2 @@
-# ComputationalDolstrm001
+# ComputationalApps
 school mini-project
