@@ -3,7 +3,6 @@ package timetableapp.Gui;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import controlP5.Controller;
-import java.io.File;
 import java.util.concurrent.Callable;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
@@ -11,6 +10,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import processing.core.PApplet;
 import processing.data.Table;
 import timetableapp.util.AppState;
+import timetableapp.util.Parser;
 import timetableapp.util.observer.StateObserver;
 
 public class GuiHelper {
@@ -21,39 +21,30 @@ public class GuiHelper {
     private JFileChooser fc;
     private int fcResult = -1;
     private AppState state = AppState.getInstance();
-    private File file;
-            
+    private Parser parser;
+    private Table loadTable;
+
     private Callable newFileSelectedHandler = () -> {
         try {
             if (fcResult == JFileChooser.APPROVE_OPTION) {
-                System.out.println("calling the parser");
+                Parser parser = new Parser(fc.getSelectedFile(), app);
+
                 fcResult = -1;
-                file = fc.getSelectedFile();
-                
-                Table loadTable = app.loadTable(file.getAbsolutePath(), "header, tsv");
+                state.getNewFileSelectedStateObserver().resetValue();
+                state.setLoadingFileState(1);
+
+                loadTable = parser.parse();
                 
                 for (String column : loadTable.getColumnTitles()) {
                     System.out.println(column);
                 }
-
+                return null;
             }
-
-            state.getNewFileSelectedStateObserver().resetValue();
-            state.setLoadingFileState(1);
-            return null;
+            throw new Exception("invalid file, application will close now");
         } catch (Exception e) {
-            throw new Exception("could not load in file properly, application will close now");
+            throw new Exception("could not load file properly, application will close now");
         }
     };
-
-    public String getExtension(File file) {
-        String extension = "";
-        int i = file.getAbsolutePath().lastIndexOf('.');
-        if (i > 0) {
-            extension = file.getAbsolutePath().substring(i + 1);
-        }
-        return extension;
-    }
 
     public GuiHelper(PApplet app) {
         this.app = app;

@@ -2,7 +2,6 @@ package timetableapp.Gui;
 
 import java.awt.Frame;
 import javax.swing.JOptionPane;
-import lombok.Getter;
 
 public class Dialog {
 
@@ -12,7 +11,7 @@ public class Dialog {
 
     public Dialog(String message, int type) {
         JOptionPane.showMessageDialog(new Frame(), message, null, type);
-        
+
     }
 
     public Dialog(String title, String message, int type) {
@@ -22,7 +21,12 @@ public class Dialog {
     public Dialog() {
     }
 
-    public void fatalErrorDialog(String message){
+    public String optionDialog(String[] options, String message) {
+        int n = JOptionPane.showOptionDialog(new Frame(), message, null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, this);
+        return options[n];
+    }
+
+    public void fatalErrorDialog(String message) {
         JOptionPane.showMessageDialog(new Frame(), message, null, Dialog.ERROR_MESSAGE);
         System.exit(0);
     }
