@@ -26,7 +26,7 @@ public class GuiHelper {
     private ControlP5 cp5;
     private JFileChooser fc;
 
-    private int btnheight = 18;
+    private int btnheight = 24;
 
     public GuiHelper() {
         cp5 = new ControlP5(state.getApp());
