@@ -1,5 +1,6 @@
 package timetableapp.util;
 
+import java.awt.Color;
 import java.io.File;
 import timetableapp.util.observer.ObservableValue;
 import lombok.Getter;
@@ -13,10 +14,14 @@ public class AppState {
     @Getter
     @Setter
     private File selectedFile;
-    
+
     @Getter
     @Setter
     private PApplet app;
+
+    @Getter
+    @Setter
+    private int backgroundcolor = Color.decode("#98A59A").getRGB();
 
     @Getter
     private ObservableValue<Integer> fileSelectedStateObserver = new ObservableValue(0);

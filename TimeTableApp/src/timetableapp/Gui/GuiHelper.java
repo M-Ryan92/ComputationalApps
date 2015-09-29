@@ -4,6 +4,7 @@ import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import static controlP5.ControlP5.s;
 import controlP5.Controller;
+import controlP5.ControllerInterface;
 import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.util.concurrent.Callable;
@@ -47,6 +48,10 @@ public class GuiHelper {
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
     }
 
+    public void reset(){
+        cp5.getAll().stream().forEach(ci -> ci.hide());
+        state.getApp().background(state.getBackgroundcolor());
+    }
     public void controlEvent(ControlEvent evt) {
         Controller<?> controller = evt.getController();
         switch (controller.getName()) {
@@ -68,6 +73,7 @@ public class GuiHelper {
                     new Dialog(null, "No File Selected", Dialog.WARNING_MESSAGE);
                 } else {
                     System.out.println("showmydataTable(pages)");
+                    reset();
                 }
                 break;
         }

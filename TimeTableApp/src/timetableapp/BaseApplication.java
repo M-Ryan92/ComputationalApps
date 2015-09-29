@@ -22,6 +22,8 @@ public class BaseApplication extends PApplet {
         frameRate(60);
         guiHelper = new GuiHelper();
         guiHelper.setup();
+        
+        background(AppState.getInstance().getBackgroundcolor());
     }
 
     @Override
