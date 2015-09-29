@@ -3,9 +3,7 @@ package timetableapp.Gui;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import controlP5.Controller;
-import java.util.Observable;
 import java.util.concurrent.Callable;
-import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -33,7 +31,7 @@ public class GuiHelper {
                 .setPosition(10, app.height - (btnheight * 2) - 20)
                 .setSize(70, btnheight)
                 .setLabel("View Data");
-        Callable cal = ()->{
+        Callable cal = () -> {
             System.out.println("calling the parser");
             return null;
         };
@@ -56,7 +54,7 @@ public class GuiHelper {
                 if (AppState.getInstance().getFileLoadedState() == 0) {
                     new Dialog(null, "No File Selected", Dialog.WARNING_MESSAGE);
                 } else {
-                    //showmydataTable(pagina's)
+                    System.out.println("showmydataTable(pages)");
                 }
                 break;
         }

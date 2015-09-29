@@ -4,16 +4,16 @@ import lombok.Getter;
 
 public class AppState {
 
-    @Getter
-    private ObservableValue<Integer> fileSelectedStateObserver = new ObservableValue(0);
-    @Getter
-    private ObservableValue<Integer> newFileSelectedStateObserver = new ObservableValue(0);
-    @Getter
-    private ObservableValue<Integer> loadingFileStateObserver = new ObservableValue(0);
-    @Getter
-    private ObservableValue<Integer> fileLoadedStateObserver = new ObservableValue(0);
-    @Getter
-    private ObservableValue<Integer> selectedViewStateObserver = new ObservableValue(0);
+    private @Getter
+    ObservableValue<Integer> fileSelectedStateObserver = new ObservableValue(0);
+    private @Getter
+    ObservableValue<Integer> newFileSelectedStateObserver = new ObservableValue(0);
+    private @Getter
+    ObservableValue<Integer> loadingFileStateObserver = new ObservableValue(0);
+    private @Getter
+    ObservableValue<Integer> fileLoadedStateObserver = new ObservableValue(0);
+    private @Getter
+    ObservableValue<Integer> selectedViewStateObserver = new ObservableValue(0);
 
     private static AppState instance = new AppState();
 
