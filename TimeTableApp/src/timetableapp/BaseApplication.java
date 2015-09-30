@@ -2,6 +2,7 @@ package timetableapp;
 
 import timetableapp.Gui.GuiHelper;
 import controlP5.ControlEvent;
+import controlP5.ControlP5;
 import processing.core.PApplet;
 import timetableapp.util.AppState;
 
@@ -19,6 +20,7 @@ public class BaseApplication extends PApplet {
     @Override
     public void setup() {
         AppState.getInstance().setApp(this);
+        AppState.getInstance().setCp5(new ControlP5(this));
         AppState.getInstance().setFont();
         frameRate(60);
         guiHelper = new GuiHelper();
@@ -27,7 +29,7 @@ public class BaseApplication extends PApplet {
 
     @Override
     public void draw() {
-        //guiHelper.draw();
+        guiHelper.draw();
         //text("some nice OpenSans text", 150, 150);
     }
 

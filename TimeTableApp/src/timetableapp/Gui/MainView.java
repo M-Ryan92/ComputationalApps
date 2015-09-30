@@ -1,5 +1,6 @@
 package timetableapp.Gui;
 
+import controlP5.Button;
 import java.util.Map;
 import timetableapp.eventhandlers.NewFileSelectedHandler;
 import timetableapp.util.observer.StateObserver;
@@ -12,17 +13,19 @@ public final class MainView extends BaseView {
         super(properties);
         btnheight = (Integer) properties.get("btnheight");
 
-        cp5.addButton(cp5, "selectFileBtn")
-                .setPosition(10, app.height - btnheight - 10)
+        getControllers().add(cp5
+                .addButton(cp5, "selectFileBtn")
+                .setPosition(20, app.height - btnheight - 20)
                 .setSize(70, btnheight)
-                .setLabel("Select File");
+                .setLabel("Select File"));
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
-
-        cp5.addButton(cp5, "viewData")
-                .setPosition(10, app.height - (btnheight * 2) - 20)
+        
+        getControllers().add(cp5
+                .addButton(cp5, "viewData")
+                .setPosition(20, app.height - (btnheight * 2) - 30)
                 .setSize(70, btnheight)
-                .setLabel("View Data");
+                .setLabel("View Data"));
     }
 
     @Override

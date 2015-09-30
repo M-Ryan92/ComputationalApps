@@ -13,7 +13,6 @@ import timetableapp.util.ViewStates;
 public class GuiHelper {
 
     private AppState state = AppState.getInstance();
-    private ControlP5 cp5;
     private JFileChooser fc;
     private int btnheight = 24;
 
@@ -25,7 +24,6 @@ public class GuiHelper {
         Map<String, Object> properties = new HashMap<>();
         properties.put("btnheight", (Object) btnheight);
 
-        cp5 = new ControlP5(state.getApp());
         mv = new MainView(properties);
         dv = new DataView(properties);
     }
@@ -33,9 +31,11 @@ public class GuiHelper {
     public void draw() {
         switch (state.getSelectedViewState()) {
             case (ViewStates.MainView):
+                state.getApp().background(state.getBackgroundcolor());
                 mv.draw();
                 break;
             case (ViewStates.DataView):
+                state.getApp().background(state.getBackgroundcolor());
                 dv.draw();
                 break;
         }
@@ -46,7 +46,7 @@ public class GuiHelper {
         Controller<?> controller = evt.getController();
         switch (controller.getName()) {
             case ("selectFileBtn"):
-                
+
                 fc = new JFileChooser();
                 fc.setFileFilter(new FileNameExtensionFilter("data files(txt, ics, csv, tsv, tab)",
                         new String[]{"txt", "ics", "csv", "tsv", "tab"}));
@@ -58,17 +58,29 @@ public class GuiHelper {
                     state.setSelectedFile(fc.getSelectedFile());
                     state.setNewFileSelectedState(1);
                 }
-                
+
                 break;
             case ("viewData"):
-                
+
                 if (state.getFileLoadedState() == 0) {
                     new Dialog(null, "No File Selected", Dialog.WARNING_MESSAGE);
                 } else {
+                    state.setSelectedViewState(ViewStates.DataView);
                     mv.hide();
                     dv.show();
                 }
-                
+
+                break;
+            case ("BackToMainView"):
+                state.setSelectedViewState(ViewStates.MainView);
+                mv.show();
+                dv.hide();
+                break;
+            case ("NextPage"):
+                dv.pagePlus();
+                break;
+            case ("PreviousPage"):
+                dv.pageMinus();
                 break;
         }
 

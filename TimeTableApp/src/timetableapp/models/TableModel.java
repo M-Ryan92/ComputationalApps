@@ -18,19 +18,21 @@ public class TableModel {
     private List rows;
 
     @Getter
-    private Map<Integer, List> pages = new HashMap<>();
-    private int itemsEaPage = 10;
+    private Map<Integer, List<TableRow>> pages;
+    private int itemsEaPage = 1;
 
     public TableModel(Table table) {
+        pages = new HashMap<>();
         data = table;
         columns = Arrays.asList(data.getColumnTitles());
         rows = Arrays.asList(data.rows());
 
-        List temp = new ArrayList();
-        for (TableRow row : table.rows()) {
+        List<TableRow> temp = new ArrayList();
+        for (TableRow row : data.rows()) {
             if (temp.size() < itemsEaPage) {
                 temp.add(row);
-            } else {
+            }
+            if (temp.size() >= itemsEaPage) {
                 pages.put(pages.size(), temp);
                 temp = new ArrayList();
             }

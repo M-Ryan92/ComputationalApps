@@ -1,5 +1,6 @@
 package timetableapp.util;
 
+import controlP5.ControlP5;
 import java.awt.Color;
 import java.io.File;
 import java.net.URL;
@@ -21,6 +22,10 @@ public class AppState {
     @Setter
     private PApplet app;
 
+    @Getter
+    @Setter
+    private ControlP5 cp5;    
+    
     @Getter
     @Setter
     private int backgroundcolor = Color.decode("#98A59A").getRGB();
