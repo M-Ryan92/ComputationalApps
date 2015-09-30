@@ -1,5 +1,6 @@
 package timetableapp.Gui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +10,10 @@ import timetableapp.models.DataManager;
 
 public class DataView extends BaseView {
 
-    private int btnheight;
     private DataManager dm = DataManager.getInstance();
+    private List<Integer> columnsWidth;
+    private int page = 0;
+    private int btnheight;
 
     public DataView(Map<String, ?> properties) {
         super(properties);
@@ -25,48 +28,61 @@ public class DataView extends BaseView {
         }
     }
 
-    private int page = 5;
+    private int maxWidth = app.width - 40;
+    private int currentWidth = 0;
 
     @Override
     public void draw() {
         if (ishidden == false) {
+            int colNr = 0;
 
             app.translate(20, 20);
-            int offset = 20;
             app.rect(0, 0, app.width - 40, app.height - 170);
-
             app.textAlign(PApplet.CENTER);
+            initializeColumnsWidth();
 
-            dm.getTm().getColumns().forEach(s -> {
-                String txt = (String) s;
-                int width = (int) app.textWidth(txt) + 10;
+            for (String column : (List<String>) dm.getTm().getColumns()) {
+                int width = columnsWidth.get(colNr);
                 int rowheight = btnheight - 7;
-                for (TableRow row : (List<TableRow>) dm.getTm().getPages().get(page)) {
-                    if (row.getString(txt) != null) {
-                        int nw = (int) app.textWidth(row.getString(txt)) + 10;
-                        if (nw > width) {
-                            width = nw;
-                        }
+                currentWidth += width;
+                if (currentWidth < maxWidth) {
+                    for (TableRow row : (List<TableRow>) dm.getTm().getPages().get(page)) {
+                        int lineheight = rowheight + 7;
+
+                        app.fill(0);
+                        rowheight += btnheight;
+                        app.text(row.getString(column) != null ? row.getString(column) : "",
+                                width - (width / 2), rowheight);
+
+                        app.line(0, lineheight, width, lineheight);
+                        app.fill(255);
                     }
+
+                    app.rect(0, 0, width, btnheight);
+                    app.line(width, 20, width, app.height - 170);
                     app.fill(0);
-                    rowheight += btnheight;
-
-                    String colValue = row.getString(txt) != null ? row.getString(txt) : "";
-                    app.text(colValue, width - (width / 2), rowheight);
-                    int lineheight = rowheight + 7;
-                    app.line(0, lineheight, app.width - 20, lineheight);
-                    
+                    app.text(column, width - (width / 2), btnheight - 7);
                     app.fill(255);
+                    app.translate(width, 0);
+                    colNr++;
                 }
+            }
+        }
+    }
 
-                app.rect(0, 0, width, btnheight);
-                app.line(width, 20, width, app.height - 170);
-                app.fill(0);
-                app.text(txt, width - (width / 2), btnheight - 7);
-                app.fill(255);
-                app.translate(width, 0);
-            });
-
+    private void initializeColumnsWidth() {
+        columnsWidth = new ArrayList<>();
+        for (String column : (List<String>) dm.getTm().getColumns()) {
+            int width = (int) app.textWidth(column) + 10;;
+            for (TableRow row : (List<TableRow>) dm.getTm().getPages().get(page)) {
+                if (row.getString(column) != null) {
+                    int nw = (int) app.textWidth(row.getString(column)) + 10;
+                    if (nw > width) {
+                        width = nw;
+                    }
+                }
+            }
+            columnsWidth.add(width);
         }
     }
 }
