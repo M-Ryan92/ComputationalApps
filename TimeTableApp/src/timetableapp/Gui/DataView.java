@@ -1,22 +1,16 @@
 package timetableapp.Gui;
 
-import controlP5.ControlP5;
 import java.util.Map;
-import processing.core.PApplet;
-import timetableapp.util.AppState;
 
-public class DataView {
+public class DataView extends BaseView {
 
-    private boolean ishidden;
-    private AppState state = AppState.getInstance();
-    private ControlP5 cp5;
-    private PApplet app = state.getApp();
     private int btnheight;
+    private boolean ishidden;
 
     public DataView(Map<String, ?> properties) {
+        super(properties);
         btnheight = (Integer) properties.get("btnheight");
         ishidden = true;
-        cp5 = new ControlP5(app);
     }
 
     public void hide() {
@@ -35,6 +29,13 @@ public class DataView {
     private void draw() {
         if (ishidden == false) {
             app.rect(20, 50, app.width - 40, app.height - 200);
+        }
+    }
+
+    @Override
+    protected void checkProperties() {
+        if (!properties.containsKey("btnheight")) {
+            new Dialog().fatalErrorDialog("could not render application view, closing application");
         }
     }
 }

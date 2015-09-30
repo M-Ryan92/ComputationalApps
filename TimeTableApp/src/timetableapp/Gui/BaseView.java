@@ -3,9 +3,7 @@ package timetableapp.Gui;
 import controlP5.ControlP5;
 import java.util.Map;
 import processing.core.PApplet;
-import timetableapp.eventhandlers.NewFileSelectedHandler;
 import timetableapp.util.AppState;
-import timetableapp.util.observer.StateObserver;
 
 public abstract class BaseView {
 
@@ -18,7 +16,7 @@ public abstract class BaseView {
         this.properties = properties;
         checkProperties();
         cp5 = new ControlP5(app);
-        
+
     }
 
     public void hide() {
@@ -30,6 +28,6 @@ public abstract class BaseView {
         cp5.getAll().stream().forEach(ci -> ci.show());
         app.background(state.getBackgroundcolor());
     }
-    
+
     protected abstract void checkProperties();
 }
