@@ -2,10 +2,12 @@ package timetableapp.util;
 
 import java.awt.Color;
 import java.io.File;
+import java.net.URL;
 import timetableapp.util.observer.ObservableValue;
 import lombok.Getter;
 import lombok.Setter;
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class AppState {
 
@@ -40,6 +42,12 @@ public class AppState {
 
     private AppState() {
 
+    }
+
+    public void setFont() {
+        URL resource = this.getClass().getResource("ttf/OpenSans-Regular.ttf");
+        PFont f = app.createFont(resource.getFile(), 42);
+        app.textFont(f);
     }
 
     public void setFileSelectedState(int value) {

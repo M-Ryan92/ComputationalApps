@@ -19,16 +19,16 @@ public class BaseApplication extends PApplet {
     @Override
     public void setup() {
         AppState.getInstance().setApp(this);
+        AppState.getInstance().setFont();
         frameRate(60);
         guiHelper = new GuiHelper();
         guiHelper.setup();
-        
         background(AppState.getInstance().getBackgroundcolor());
     }
 
     @Override
     public void draw() {
-
+        text("some nice OpenSans text", 150, 150);
     }
 
     public void controlEvent(ControlEvent evt) {
