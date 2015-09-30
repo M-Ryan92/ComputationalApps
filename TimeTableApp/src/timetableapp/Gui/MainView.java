@@ -32,4 +32,11 @@ public final class MainView extends BaseView {
         }
     }
 
+    @Override
+    protected void draw() {
+        if (ishidden == false) {
+            app.rect(20, 20, app.width - 40, app.height - 170);
+        }
+    }
+
 }

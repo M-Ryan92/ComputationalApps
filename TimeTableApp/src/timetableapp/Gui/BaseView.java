@@ -11,6 +11,7 @@ public abstract class BaseView {
     protected ControlP5 cp5;
     protected PApplet app = state.getApp();
     protected Map<String, ?> properties;
+    protected boolean ishidden;
 
     public BaseView(Map<String, ?> properties) {
         this.properties = properties;
@@ -20,14 +21,19 @@ public abstract class BaseView {
     }
 
     public void hide() {
+        ishidden = true;
         cp5.getAll().stream().forEach(ci -> ci.hide());
         app.background(state.getBackgroundcolor());
     }
 
     public void show() {
-        cp5.getAll().stream().forEach(ci -> ci.show());
+        ishidden = false;
         app.background(state.getBackgroundcolor());
+        cp5.getAll().stream().forEach(ci -> ci.show());
+        state.setSelectedViewState(1);
+        draw();
     }
 
     protected abstract void checkProperties();
+    protected abstract void draw();
 }

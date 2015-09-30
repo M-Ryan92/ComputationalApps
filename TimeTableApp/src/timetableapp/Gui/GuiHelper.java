@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import timetableapp.util.AppState;
+import timetableapp.util.ViewStates;
 
 public class GuiHelper {
 
@@ -15,7 +16,7 @@ public class GuiHelper {
     private ControlP5 cp5;
     private JFileChooser fc;
     private int btnheight = 24;
-    
+
     private MainView mv;
     private DataView dv;
 
@@ -29,10 +30,23 @@ public class GuiHelper {
         dv = new DataView(properties);
     }
 
+    public void draw() {
+        switch (state.getSelectedViewState()) {
+            case (ViewStates.MainView):
+                mv.draw();
+                break;
+            case (ViewStates.DataView):
+                dv.draw();
+                break;
+        }
+
+    }
+
     public void controlEvent(ControlEvent evt) {
         Controller<?> controller = evt.getController();
         switch (controller.getName()) {
             case ("selectFileBtn"):
+                
                 fc = new JFileChooser();
                 fc.setFileFilter(new FileNameExtensionFilter("data files(txt, ics, csv, tsv, tab)",
                         new String[]{"txt", "ics", "csv", "tsv", "tab"}));
@@ -44,15 +58,17 @@ public class GuiHelper {
                     state.setSelectedFile(fc.getSelectedFile());
                     state.setNewFileSelectedState(1);
                 }
+                
                 break;
             case ("viewData"):
+                
                 if (state.getFileLoadedState() == 0) {
                     new Dialog(null, "No File Selected", Dialog.WARNING_MESSAGE);
                 } else {
-                    System.out.println("showmydataTable(pages)");
                     mv.hide();
                     dv.show();
                 }
+                
                 break;
         }
 

@@ -12,7 +12,7 @@ import processing.core.PFont;
 public class AppState {
 
     private static AppState instance = new AppState();
-
+    
     @Getter
     @Setter
     private File selectedFile;
@@ -46,7 +46,7 @@ public class AppState {
 
     public void setFont() {
         URL resource = this.getClass().getResource("ttf/OpenSans-Regular.ttf");
-        PFont f = app.createFont(resource.getFile(), 42);
+        PFont f = app.createFont(resource.getFile(), 12);
         app.textFont(f);
     }
 

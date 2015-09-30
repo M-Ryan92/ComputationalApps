@@ -27,7 +27,8 @@ public class BaseApplication extends PApplet {
 
     @Override
     public void draw() {
-        text("some nice OpenSans text", 150, 150);
+        //guiHelper.draw();
+        //text("some nice OpenSans text", 150, 150);
     }
 
     public void controlEvent(ControlEvent evt) {
