@@ -22,7 +22,6 @@ public class BaseApplication extends PApplet {
         AppState.getInstance().setFont();
         frameRate(60);
         guiHelper = new GuiHelper();
-        guiHelper.setup();
         background(AppState.getInstance().getBackgroundcolor());
     }
 
