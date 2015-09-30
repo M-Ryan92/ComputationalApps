@@ -1,7 +1,6 @@
 package timetableapp.Gui;
 
 import controlP5.ControlEvent;
-import controlP5.ControlP5;
 import controlP5.Controller;
 import java.util.HashMap;
 import java.util.Map;

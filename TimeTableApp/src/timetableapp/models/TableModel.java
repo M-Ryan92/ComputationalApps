@@ -17,9 +17,16 @@ public class TableModel {
     @Getter
     private List rows;
 
-    @Getter
-    private Map<Integer, List<TableRow>> pages;
-    private int itemsEaPage = 1;
+    private Map<Integer, List<DataRow>> pages;
+    
+    public List<DataRow> getPage(int i){
+        if(i >= pages.size()){
+            return null;
+        }
+        return pages.get(i);
+    }
+    
+    private int itemsEaPage = 10;
 
     public TableModel(Table table) {
         pages = new HashMap<>();
@@ -27,10 +34,10 @@ public class TableModel {
         columns = Arrays.asList(data.getColumnTitles());
         rows = Arrays.asList(data.rows());
 
-        List<TableRow> temp = new ArrayList();
+        List<DataRow> temp = new ArrayList();
         for (TableRow row : data.rows()) {
             if (temp.size() < itemsEaPage) {
-                temp.add(row);
+                temp.add(new DataRow(row));
             }
             if (temp.size() >= itemsEaPage) {
                 pages.put(pages.size(), temp);

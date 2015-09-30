@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import processing.core.PApplet;
-import processing.data.TableRow;
 import timetableapp.models.DataManager;
+import timetableapp.models.DataRow;
 
 public class DataView extends BaseView {
 
@@ -17,17 +17,24 @@ public class DataView extends BaseView {
 
     public void pagePlus() {
         page += 1;
-        if (page < dm.getTm().getPages().size()) {
+        List<DataRow> p = dm.getTm().getPage(page);
+        if (p==null){
+        page -= 1;
+        } else {
             app.rect(20, 20, app.width - 40, app.height - 170);
-            //draw();
+            System.out.println("page:"+page);
+            System.out.println(p.get(0).getString("Activity"));
         }
     }
 
     public void pageMinus() {
+        
         if (page > 0) {
             page -= 1;
+            List<DataRow> p = dm.getTm().getPage(page);
             app.rect(20, 20, app.width - 40, app.height - 170);
-            //draw();
+            System.out.println("page:"+page);
+            System.out.println(p.get(0).getString("Activity"));
         }
     }
 
@@ -96,7 +103,7 @@ public class DataView extends BaseView {
                 int rowheight = btnheight - 7;
                 currentWidth += width;
                 if (currentWidth < maxWidth) {
-                    for (TableRow row : dm.getTm().getPages().get(page)) {
+                    for (DataRow row : dm.getTm().getPage(page)) {
                         int lineheight = rowheight + 7;
 
                         app.fill(0);
@@ -125,7 +132,8 @@ public class DataView extends BaseView {
         columnsWidth = new ArrayList<>();
         for (String column : (List<String>) dm.getTm().getColumns()) {
             int width = (int) app.textWidth(column) + 10;
-            for (TableRow row : dm.getTm().getPages().get(page)) {
+            for (DataRow row : dm.getTm().getPage(page)) {
+                
                 if (row.getString(column) != null) {
                     int nw = (int) app.textWidth(row.getString(column)) + 10;
                     if (nw > width) {

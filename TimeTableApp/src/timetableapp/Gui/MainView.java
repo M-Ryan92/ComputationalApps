@@ -1,6 +1,5 @@
 package timetableapp.Gui;
 
-import controlP5.Button;
 import java.util.Map;
 import timetableapp.eventhandlers.NewFileSelectedHandler;
 import timetableapp.util.observer.StateObserver;
