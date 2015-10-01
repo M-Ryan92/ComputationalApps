@@ -2,10 +2,12 @@ package timetableapp.Gui;
 
 import controlP5.ControlEvent;
 import controlP5.Controller;
+import java.awt.TextField;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import processing.event.KeyEvent;
 import timetableapp.util.AppState;
 import timetableapp.util.ViewStates;
 
@@ -41,6 +43,17 @@ public class GuiHelper {
 
     }
 
+    public void keyPressed(KeyEvent evt) {
+        int key = evt.getKeyCode();
+        switch (state.getSelectedViewState()) {
+            case (ViewStates.DataView):
+                if(key == 10){
+                    dv.handleEnter();
+                }
+                break;
+        }
+    }
+
     public void controlEvent(ControlEvent evt) {
         Controller<?> controller = evt.getController();
         switch (controller.getName()) {
@@ -67,12 +80,14 @@ public class GuiHelper {
                     state.setSelectedViewState(ViewStates.DataView);
                     mv.hide();
                     dv.show();
+                    dv.setBtnState();
                 }
 
                 break;
             case ("BackToMainView"):
                 state.setSelectedViewState(ViewStates.MainView);
                 mv.show();
+                dv.setPage(0);
                 dv.hide();
                 break;
             case ("NextPage"):

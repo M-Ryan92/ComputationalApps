@@ -4,6 +4,7 @@ import timetableapp.Gui.GuiHelper;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import processing.core.PApplet;
+import processing.event.KeyEvent;
 import timetableapp.util.AppState;
 
 public class BaseApplication extends PApplet {
@@ -33,6 +34,10 @@ public class BaseApplication extends PApplet {
         //text("some nice OpenSans text", 150, 150);
     }
 
+    @Override
+    public void keyPressed(KeyEvent evt) {
+        guiHelper.keyPressed(evt);
+    }
     public void controlEvent(ControlEvent evt) {
         guiHelper.controlEvent(evt);
     }

@@ -17,15 +17,19 @@ public class TableModel {
     @Getter
     private List rows;
 
+    @Getter
     private Map<Integer, List<DataRow>> pages;
-    
-    public List<DataRow> getPage(int i){
-        if(i >= pages.size()){
+
+    @Getter
+    private int pageCount;
+
+    public List<DataRow> getPage(int i) {
+        if (i >= pages.size()) {
             return null;
         }
         return pages.get(i);
     }
-    
+
     private int itemsEaPage = 10;
 
     public TableModel(Table table) {
@@ -44,6 +48,7 @@ public class TableModel {
                 temp = new ArrayList();
             }
         }
+        pageCount = pages.size() - 1;
     }
 
 }

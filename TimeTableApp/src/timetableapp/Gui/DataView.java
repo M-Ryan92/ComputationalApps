@@ -1,8 +1,12 @@
 package timetableapp.Gui;
 
+import controlP5.ControllerInterface;
+import controlP5.Textfield;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 import processing.core.PApplet;
 import timetableapp.models.DataManager;
 import timetableapp.models.DataRow;
@@ -11,30 +15,42 @@ public class DataView extends BaseView {
 
     private DataManager dm = DataManager.getInstance();
     private List<Integer> columnsWidth;
+
+    @Getter
     private int page = 0;
     private int btnheight;
     private int btnWidth = 80;
+    private int maxWidth = app.width - 40;
 
     public void pagePlus() {
-        page += 1;
-        List<DataRow> p = dm.getTm().getPage(page);
-        if (p==null){
-        page -= 1;
-        } else {
-            app.rect(20, 20, app.width - 40, app.height - 170);
-            System.out.println("page:"+page);
-            System.out.println(p.get(0).getString("Activity"));
+        if (page < dm.getTm().getPageCount()) {
+            page += 1;
+            setBtnState();
+            setPageNrToField(page);
+            draw();
         }
     }
 
     public void pageMinus() {
-        
         if (page > 0) {
             page -= 1;
-            List<DataRow> p = dm.getTm().getPage(page);
-            app.rect(20, 20, app.width - 40, app.height - 170);
-            System.out.println("page:"+page);
-            System.out.println(p.get(0).getString("Activity"));
+            setBtnState();
+            setPageNrToField(page);
+            draw();
+        }
+    }
+
+    public void handleEnter() {
+        int maxPages = dm.getTm().getPageCount();
+        int selectedPage = getPageNrFromField();
+
+        if (page != selectedPage
+                && selectedPage >= 0
+                && selectedPage <= maxPages) {
+            page = selectedPage;
+            setBtnState();
+        } else {
+            setPageNrToField(page);
         }
     }
 
@@ -65,17 +81,26 @@ public class DataView extends BaseView {
                 .hide());
 
         getControllers().add(cp5
+                .addButton(cp5, "PreviousPage")
+                .setPosition((app.width / 2) - (btnWidth / 2) - btnWidth - 10, app.height - 130)
+                .setSize(btnWidth, btnheight)
+                .setLabel("Previous Page")
+                .hide());
+
+        getControllers().add(cp5
                 .addButton(cp5, "NextPage")
-                .setPosition((app.width / 2) - (btnWidth * 2) + 20, app.height - 130)
+                .setPosition((app.width / 2) - (btnWidth / 2) + btnWidth + 10, app.height - 130)
                 .setSize(btnWidth, btnheight)
                 .setLabel("Next Page")
                 .hide());
 
         getControllers().add(cp5
-                .addButton(cp5, "PreviousPage")
-                .setPosition((app.width / 2) + (btnWidth * 2) - 20, app.height - 130)
-                .setSize(btnWidth, btnheight)
-                .setLabel("Previous Page")
+                .addTextfield("PageNr")
+                .setValue("1")
+                .setPosition((app.width / 2) - 30, app.height - 130)
+                .setSize(60, btnheight)
+                .setFont(app.createFont("arial", 20))
+                .setAutoClear(false)
                 .hide());
     }
 
@@ -85,8 +110,6 @@ public class DataView extends BaseView {
             new Dialog().fatalErrorDialog("could not render application view, closing application");
         }
     }
-
-    private int maxWidth = app.width - 40;
 
     @Override
     public void draw() {
@@ -133,7 +156,7 @@ public class DataView extends BaseView {
         for (String column : (List<String>) dm.getTm().getColumns()) {
             int width = (int) app.textWidth(column) + 10;
             for (DataRow row : dm.getTm().getPage(page)) {
-                
+
                 if (row.getString(column) != null) {
                     int nw = (int) app.textWidth(row.getString(column)) + 10;
                     if (nw > width) {
@@ -144,4 +167,31 @@ public class DataView extends BaseView {
             columnsWidth.add(width);
         }
     }
+
+    public void setPage(int p) {
+        page = p;
+        setPageNrToField(p);
+    }
+
+    public void setBtnState() {
+        if (page >= dm.getTm().getPageCount()) {
+            getcontrollerByName("NextPage").hide();
+        } else {
+            getcontrollerByName("NextPage").show();
+        }
+        if (page == 0) {
+            getcontrollerByName("PreviousPage").hide();
+        } else {
+            getcontrollerByName("PreviousPage").show();
+        }
+    }
+
+    public void setPageNrToField(int p) {
+        ((Textfield) getcontrollerByName("PageNr")).setText(String.valueOf(p + 1));
+    }
+
+    public int getPageNrFromField() {
+        return Integer.valueOf(((Textfield) getcontrollerByName("PageNr")).getText()) - 1;
+    }
+
 }

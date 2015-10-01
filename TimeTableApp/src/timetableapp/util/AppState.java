@@ -31,6 +31,9 @@ public class AppState {
     private int backgroundcolor = Color.decode("#98A59A").getRGB();
 
     @Getter
+    PFont font;
+    
+    @Getter
     private ObservableValue<Integer> fileSelectedStateObserver = new ObservableValue(0);
     @Getter
     private ObservableValue<Integer> newFileSelectedStateObserver = new ObservableValue(0);
@@ -51,8 +54,8 @@ public class AppState {
 
     public void setFont() {
         URL resource = this.getClass().getResource("ttf/OpenSans-Regular.ttf");
-        PFont f = app.createFont(resource.getFile(), 12);
-        app.textFont(f);
+        font = app.createFont(resource.getFile(), 11);
+        app.textFont(font);
     }
 
     public void setFileSelectedState(int value) {
