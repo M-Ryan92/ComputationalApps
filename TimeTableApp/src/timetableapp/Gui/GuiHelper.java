@@ -2,7 +2,6 @@ package timetableapp.Gui;
 
 import controlP5.ControlEvent;
 import controlP5.Controller;
-import java.awt.TextField;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFileChooser;
@@ -19,6 +18,7 @@ public class GuiHelper {
 
     private MainView mv;
     private DataView dv;
+    private LoadView lv;
 
     public GuiHelper() {
         //maybe work away in the AppState ????
@@ -27,17 +27,21 @@ public class GuiHelper {
 
         mv = new MainView(properties);
         dv = new DataView(properties);
+        lv = new LoadView(properties);
     }
 
     public void draw() {
         switch (state.getSelectedViewState()) {
             case (ViewStates.MainView):
-                state.getApp().background(state.getBackgroundcolor());
+                state.getApp().background(AppState.backgroundColor);
                 mv.draw();
                 break;
             case (ViewStates.DataView):
-                state.getApp().background(state.getBackgroundcolor());
+                state.getApp().background(AppState.backgroundColor);
                 dv.draw();
+                break;
+            case (ViewStates.LoadView):
+                lv.draw();
                 break;
         }
 

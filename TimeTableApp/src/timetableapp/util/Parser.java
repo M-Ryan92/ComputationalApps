@@ -1,11 +1,12 @@
 package timetableapp.util;
 
 import java.io.File;
+import java.util.concurrent.Callable;
 import processing.core.PApplet;
 import processing.data.Table;
 import timetableapp.Gui.Dialog;
 
-public class Parser {
+public class Parser implements Callable<Table> {
 
     private PApplet app = AppState.getInstance().getApp();
     private File file;
@@ -18,7 +19,6 @@ public class Parser {
     }
 
     public Table parse() {
-
         table = null;
         if ("txt".equals(extension)) {
             extension = new Dialog().optionDialog(new String[]{"csv", "tsv"}, "is the data cvs or tsv?");
@@ -35,7 +35,6 @@ public class Parser {
             case ("ics"):
                 handleUnimplementedExtension(extension);
         }
-
         return table;
     }
 
@@ -50,5 +49,10 @@ public class Parser {
     public void handleUnimplementedExtension(String extension) {
         new Dialog("not implemented yet for " + extension, Dialog.WARNING_MESSAGE);
         AppState.getInstance().getFileLoadedStateObserver().resetValue();
+    }
+
+    @Override
+    public Table call() throws Exception {
+        return parse();
     }
 }

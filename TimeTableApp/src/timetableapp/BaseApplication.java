@@ -25,19 +25,22 @@ public class BaseApplication extends PApplet {
         AppState.getInstance().setFont();
         frameRate(60);
         guiHelper = new GuiHelper();
-        background(AppState.getInstance().getBackgroundcolor());
+        background(AppState.backgroundColor);
     }
+
+    int start = 0;
 
     @Override
     public void draw() {
+        stroke(AppState.strokeColor);
         guiHelper.draw();
-        //text("some nice OpenSans text", 150, 150);
     }
 
     @Override
     public void keyPressed(KeyEvent evt) {
         guiHelper.keyPressed(evt);
     }
+
     public void controlEvent(ControlEvent evt) {
         guiHelper.controlEvent(evt);
     }

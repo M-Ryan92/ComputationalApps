@@ -1,12 +1,10 @@
 package timetableapp.Gui;
 
-import controlP5.ControllerInterface;
 import controlP5.Textfield;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lombok.Getter;
-import lombok.Setter;
 import processing.core.PApplet;
 import timetableapp.models.DataManager;
 import timetableapp.models.DataRow;
@@ -133,11 +131,9 @@ public class DataView extends BaseView {
                         rowheight += btnheight;
                         app.text(row.getString(column) != null ? row.getString(column) : "",
                                 widthOffset + (width - (width / 2)), rowheight);
-
                         app.line(widthOffset, lineheight, widthOffset + width, lineheight);
                         app.fill(255);
                     }
-
                     app.rect(widthOffset, 0, width, btnheight);
                     app.line(widthOffset + width, 0, widthOffset + width, app.height - 170);
                     app.fill(0);

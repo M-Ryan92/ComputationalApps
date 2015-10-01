@@ -11,25 +11,33 @@ import processing.core.PApplet;
 import processing.core.PFont;
 
 public class AppState {
-
+    
     private static AppState instance = new AppState();
     
     @Getter
     @Setter
     private File selectedFile;
-
+    
     @Getter
     @Setter
     private PApplet app;
-
+    
     @Getter
     @Setter
     private ControlP5 cp5;    
     
-    @Getter
-    @Setter
-    private int backgroundcolor = Color.decode("#98A59A").getRGB();
-
+    public static final int backgroundColor = Color.decode("#1C4B5F").getRGB();
+    public static final int displayColor = Color.decode("#748993").getRGB();
+    public static final int buttonColor = Color.decode("#010D13").getRGB();
+    
+    public static final int specialColor = Color.decode("#3F5B68").getRGB();
+    public static final int specialActiveColor = Color.decode("#0C2631").getRGB();
+    
+    public static final int strokeColor = Color.decode("#010D13").getRGB();
+    public static final int textColor = 255;
+    
+    
+    
     @Getter
     PFont font;
     
@@ -43,57 +51,61 @@ public class AppState {
     private ObservableValue<Integer> fileLoadedStateObserver = new ObservableValue(0);
     @Getter
     private ObservableValue<Integer> selectedViewStateObserver = new ObservableValue(0);
-
+    
     public static AppState getInstance() {
         return instance;
     }
-
+    
     private AppState() {
-
+        
+    }
+    
+    public void setFont(int size) {
+        URL resource = this.getClass().getResource("ttf/OpenSans-Regular.ttf");
+        font = app.createFont(resource.getFile(), size);
+        app.textFont(font);        
     }
 
     public void setFont() {
-        URL resource = this.getClass().getResource("ttf/OpenSans-Regular.ttf");
-        font = app.createFont(resource.getFile(), 11);
-        app.textFont(font);
+        setFont(11);
     }
-
+    
     public void setFileSelectedState(int value) {
         fileSelectedStateObserver.setValue(value);
     }
-
+    
     public void setNewFileSelectedState(int value) {
         newFileSelectedStateObserver.setValue(value);
     }
-
+    
     public void setLoadingFileState(int value) {
         loadingFileStateObserver.setValue(value);
     }
-
+    
     public void setFileLoadedState(int value) {
         fileLoadedStateObserver.setValue(value);
     }
-
+    
     public void setSelectedViewState(int value) {
         selectedViewStateObserver.setValue(value);
     }
-
+    
     public int getFileSelectedState() {
         return fileSelectedStateObserver.getValue();
     }
-
+    
     public int getNewFileSelectedState() {
         return newFileSelectedStateObserver.getValue();
     }
-
+    
     public int getLoadingFileState() {
         return loadingFileStateObserver.getValue();
     }
-
+    
     public int getFileLoadedState() {
         return fileLoadedStateObserver.getValue();
     }
-
+    
     public int getSelectedViewState() {
         return selectedViewStateObserver.getValue();
     }

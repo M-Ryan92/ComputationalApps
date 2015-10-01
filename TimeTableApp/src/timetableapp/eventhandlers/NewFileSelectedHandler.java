@@ -1,7 +1,10 @@
 package timetableapp.eventhandlers;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import processing.data.Table;
+import timetableapp.Gui.Dialog;
 import timetableapp.models.DataManager;
 import timetableapp.models.TableModel;
 import timetableapp.util.AppState;
@@ -13,21 +16,21 @@ public class NewFileSelectedHandler implements Callable {
 
     @Override
     public Object call() throws Exception {
-        try {
-            state.getNewFileSelectedStateObserver().resetValue();
-            state.setLoadingFileState(1);
-
-            Table data = new Parser(state.getSelectedFile()).parse();
-            DataManager dm = DataManager.getInstance();
-            dm.setTm(new TableModel(data));
-
-            state.getLoadingFileStateObserver().resetValue();
-            state.setFileLoadedState(1);
-
-            return null;
-        } catch (Exception e) {
-            throw new Exception("could not load file properly, application will close now");
-        }
+        ExecutorService tp = Executors.newFixedThreadPool(1);
+        tp.submit(() -> {
+            try {
+                state.getNewFileSelectedStateObserver().resetValue();
+                state.setLoadingFileState(1);
+                Table data = new Parser(state.getSelectedFile()).parse();
+                DataManager dm = DataManager.getInstance();
+                dm.setTm(new TableModel(data));
+                state.getLoadingFileStateObserver().resetValue();
+                state.setFileLoadedState(1);
+            } catch (Exception e) {
+                new Dialog().fatalErrorDialog("could not load file properly, application will close now");
+            }
+        });
+        return null;
     }
 
 }

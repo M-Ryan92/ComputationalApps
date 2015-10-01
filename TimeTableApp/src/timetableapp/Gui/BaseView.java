@@ -38,12 +38,12 @@ public abstract class BaseView {
     public void hide() {
         ishidden = true;
         controllers.stream().forEach(ci -> ci.hide());
-        app.background(state.getBackgroundcolor());
+        app.background(AppState.backgroundColor);
     }
 
     public void show() {
         ishidden = false;
-        app.background(state.getBackgroundcolor());
+        app.background(AppState.backgroundColor);
         controllers.stream().forEach(ci -> {
             ci.show();
         });
