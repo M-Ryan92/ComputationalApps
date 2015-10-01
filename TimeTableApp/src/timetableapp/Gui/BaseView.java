@@ -5,10 +5,10 @@ import controlP5.ControllerInterface;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 import lombok.Getter;
 import processing.core.PApplet;
 import timetableapp.util.AppState;
+import timetableapp.util.ViewStates;
 
 public abstract class BaseView {
 
@@ -47,7 +47,7 @@ public abstract class BaseView {
         controllers.stream().forEach(ci -> {
             ci.show();
         });
-        state.setSelectedViewState(1);
+        state.setSelectedViewState(ViewStates.DataView);
         draw();
     }
 

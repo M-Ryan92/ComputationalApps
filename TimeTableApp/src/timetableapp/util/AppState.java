@@ -49,7 +49,7 @@ public class AppState {
     @Getter
     private ObservableValue<Integer> fileLoadedStateObserver = new ObservableValue(0);
     @Getter
-    private ObservableValue<Integer> selectedViewStateObserver = new ObservableValue(0);
+    private ObservableValue<Integer> selectedViewStateObserver = new ObservableValue(ViewStates.MainView);
 
     public static AppState getInstance() {
         return instance;

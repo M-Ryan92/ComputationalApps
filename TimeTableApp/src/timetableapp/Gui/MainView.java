@@ -4,6 +4,7 @@ import java.util.Map;
 import processing.core.PApplet;
 import timetableapp.eventhandlers.NewFileSelectedHandler;
 import timetableapp.util.AppState;
+import timetableapp.util.ViewStates;
 import timetableapp.util.observer.StateObserver;
 
 public final class MainView extends BaseView {
@@ -25,13 +26,13 @@ public final class MainView extends BaseView {
 
         state.getLoadingFileStateObserver().addObserver(new StateObserver(() -> {
             if (state.getLoadingFileState() == 1) {
-                state.setSelectedViewState(-1);
+                state.setSelectedViewState(ViewStates.LoadView);
             }
             return null;
         }));
 
         state.getFileLoadedStateObserver().addObserver(new StateObserver(() -> {
-            state.setSelectedViewState(0);
+            state.setSelectedViewState(ViewStates.MainView);
             return null;
         }));
 
