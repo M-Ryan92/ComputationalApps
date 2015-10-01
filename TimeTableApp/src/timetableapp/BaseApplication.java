@@ -1,15 +1,15 @@
 package timetableapp;
 
-import timetableapp.Gui.GuiHelper;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
+import timetableapp.Gui.GuiHelper;
 import timetableapp.util.AppState;
 
 public class BaseApplication extends PApplet {
 
-    GuiHelper guiHelper;
+    private GuiHelper guiHelper;
 
     @Override
     public void settings() {
@@ -20,9 +20,12 @@ public class BaseApplication extends PApplet {
 
     @Override
     public void setup() {
-        AppState.getInstance().setApp(this);
-        AppState.getInstance().setCp5(new ControlP5(this));
-        AppState.getInstance().setFont();
+        AppState state = AppState.getInstance();
+        
+        state.setApp(this);
+        state.setCp5(new ControlP5(this));
+        state.setFont();
+        
         frameRate(60);
         guiHelper = new GuiHelper();
         background(AppState.backgroundColor);
