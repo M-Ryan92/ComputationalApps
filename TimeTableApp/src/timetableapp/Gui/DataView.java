@@ -8,6 +8,7 @@ import lombok.Getter;
 import processing.core.PApplet;
 import timetableapp.models.DataManager;
 import timetableapp.models.DataRow;
+import timetableapp.util.AppState;
 
 public class DataView extends BaseView {
 
@@ -59,6 +60,7 @@ public class DataView extends BaseView {
 
         getControllers().add(cp5
                 .addButton(cp5, "showPreviousColumns")
+                .setColorBackground(AppState.buttonColor)
                 .setPosition(app.width - (btnWidth * 2) - 30, app.height - 130)
                 .setSize(btnWidth, btnheight)
                 .setLabel("Previous Columns")
@@ -66,6 +68,7 @@ public class DataView extends BaseView {
 
         getControllers().add(cp5
                 .addButton(cp5, "showNextColumns")
+                .setColorBackground(AppState.buttonColor)
                 .setPosition(app.width - btnWidth - 20, app.height - 130)
                 .setSize(btnWidth, btnheight)
                 .setLabel("Next Columns")
@@ -73,6 +76,7 @@ public class DataView extends BaseView {
 
         getControllers().add(cp5
                 .addButton(cp5, "BackToMainView")
+                .setColorBackground(AppState.buttonColor)
                 .setPosition(20, app.height - 130)
                 .setSize(btnWidth, btnheight)
                 .setLabel("Back")
@@ -80,6 +84,7 @@ public class DataView extends BaseView {
 
         getControllers().add(cp5
                 .addButton(cp5, "PreviousPage")
+                .setColorBackground(AppState.buttonColor)
                 .setPosition((app.width / 2) - (btnWidth / 2) - btnWidth - 10, app.height - 130)
                 .setSize(btnWidth, btnheight)
                 .setLabel("Previous Page")
@@ -87,6 +92,7 @@ public class DataView extends BaseView {
 
         getControllers().add(cp5
                 .addButton(cp5, "NextPage")
+                .setColorBackground(AppState.buttonColor)
                 .setPosition((app.width / 2) - (btnWidth / 2) + btnWidth + 10, app.height - 130)
                 .setSize(btnWidth, btnheight)
                 .setLabel("Next Page")
@@ -94,12 +100,16 @@ public class DataView extends BaseView {
 
         getControllers().add(cp5
                 .addTextfield("PageNr")
+                .setColorBackground(AppState.buttonColor)
                 .setValue("1")
                 .setPosition((app.width / 2) - 30, app.height - 130)
                 .setSize(60, btnheight)
                 .setFont(app.createFont("arial", 20))
                 .setAutoClear(false)
                 .hide());
+        ((Textfield) getcontrollerByName("PageNr")).getCaptionLabel().alignX(PApplet.CENTER);
+        //((Textfield) getcontrollerByName("PageNr")).getValueLabel().alignX(PApplet.CENTER);
+        //((Textfield) getcontrollerByName("PageNr")).updateAbsolutePosition();
     }
 
     @Override
@@ -187,7 +197,11 @@ public class DataView extends BaseView {
     }
 
     public int getPageNrFromField() {
-        return Integer.valueOf(((Textfield) getcontrollerByName("PageNr")).getText()) - 1;
+        try {
+            return Integer.valueOf(((Textfield) getcontrollerByName("PageNr")).getText()) - 1;
+        } catch (Exception e) {
+            return page;
+        }
     }
 
 }

@@ -17,9 +17,9 @@ public final class MainView extends BaseView {
 
         getControllers().add(cp5
                 .addButton(cp5, "selectFileBtn")
+                .setColorBackground(AppState.buttonColor)
                 .setPosition(20, app.height - btnheight - 20)
                 .setSize(70, btnheight)
-                .setColorBackground(AppState.buttonColor)
                 .setLabel("Select File"));
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
@@ -38,10 +38,17 @@ public final class MainView extends BaseView {
 
         getControllers().add(cp5
                 .addButton(cp5, "viewData")
+                .setColorBackground(AppState.buttonColor)
                 .setPosition(20, app.height - (btnheight * 2) - 30)
                 .setSize(70, btnheight)
-                .setColorBackground(AppState.buttonColor)
-                .setLabel("View Data"));
+                .setLabel("View Data")
+                .hide());
+        state.getFileLoadedStateObserver().addObserver(new StateObserver(() -> {
+            if (state.getFileLoadedState() == 1) {
+                getcontrollerByName("viewData").show();
+            }
+            return null;
+        }));
     }
 
     @Override
