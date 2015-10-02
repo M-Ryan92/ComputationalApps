@@ -2,8 +2,6 @@ package timetableapp.Gui;
 
 import controlP5.ControlEvent;
 import controlP5.Controller;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import processing.event.KeyEvent;
@@ -21,13 +19,9 @@ public class GuiHelper {
     private LoadView lv;
 
     public GuiHelper() {
-        //maybe work away in the AppState ????
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("btnheight", (Object) btnheight);
-
-        mv = new MainView(properties);
-        dv = new DataView(properties);
-        lv = new LoadView(properties);
+        mv = new MainView();
+        dv = new DataView();
+        lv = new LoadView();
     }
 
     public void draw() {

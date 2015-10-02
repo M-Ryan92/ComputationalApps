@@ -1,6 +1,5 @@
 package timetableapp.Gui;
 
-import java.util.Map;
 import processing.core.PApplet;
 import timetableapp.eventhandlers.NewFileSelectedHandler;
 import timetableapp.util.AppState;
@@ -9,17 +8,14 @@ import timetableapp.util.observer.StateObserver;
 
 public final class MainView extends BaseView {
 
-    private int btnheight;
-
-    public MainView(Map<String, ?> properties) {
-        super(properties);
-        btnheight = (Integer) properties.get("btnheight");
+    public MainView() {
+        super();
 
         getControllers().add(cp5
                 .addButton(cp5, "selectFileBtn")
                 .setColorBackground(AppState.buttonColor)
-                .setPosition(20, app.height - btnheight - 20)
-                .setSize(70, btnheight)
+                .setPosition(20, app.height - state.getButtonHeight() - 20)
+                .setSize(70, state.getButtonHeight())
                 .setLabel("Select File"));
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
@@ -39,8 +35,8 @@ public final class MainView extends BaseView {
         getControllers().add(cp5
                 .addButton(cp5, "viewData")
                 .setColorBackground(AppState.buttonColor)
-                .setPosition(20, app.height - (btnheight * 2) - 30)
-                .setSize(70, btnheight)
+                .setPosition(20, app.height - (state.getButtonHeight() * 2) - 30)
+                .setSize(70, state.getButtonHeight())
                 .setLabel("View Data")
                 .hide());
         state.getFileLoadedStateObserver().addObserver(new StateObserver(() -> {
@@ -52,26 +48,16 @@ public final class MainView extends BaseView {
     }
 
     @Override
-    protected void checkProperties() {
-        if (!properties.containsKey("btnheight")) {
-            new Dialog().fatalErrorDialog("could not render application view, closing application");
-        }
-    }
-
-    @Override
     protected void draw() {
-        int w = app.width - 40;
-        int h = app.height - 120;
-
         if (ishidden == false) {
             app.fill(AppState.displayColor);
-            app.rect(20, 20, w, h);
+            app.rect(state.displayPanelXOffset, state.displayPanelYOffset, state.getDisplayPanelWidth(), state.getDisplayPanelHeight());
             app.fill(AppState.textColor);
 
             if (state.getFileLoadedState() != 1) {
                 state.setFont(26);
                 app.textAlign(PApplet.CENTER);
-                app.text("no file selected", w / 2, (h / 2) - 70);
+                app.text("no file selected", state.getDisplayPanelWidth() / 2, (state.getDisplayPanelHeight() / 2) - 70);
                 state.setFont();
             }
         }

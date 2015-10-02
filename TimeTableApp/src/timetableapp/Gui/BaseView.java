@@ -4,18 +4,15 @@ import controlP5.ControlP5;
 import controlP5.ControllerInterface;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import lombok.Getter;
 import processing.core.PApplet;
 import timetableapp.util.AppState;
-import timetableapp.util.ViewStates;
 
 public abstract class BaseView {
 
     protected AppState state = AppState.getInstance();
     protected ControlP5 cp5 = state.getCp5();
     protected PApplet app = state.getApp();
-    protected Map<String, ?> properties;
     protected boolean ishidden;
     @Getter
     private List<ControllerInterface> controllers;
@@ -24,15 +21,13 @@ public abstract class BaseView {
         for (ControllerInterface c : controllers) {
             if(c.getName().equals(name)){
                 return c;
-            };
+            }
         }
         return null;
     }
 
-    public BaseView(Map<String, ?> properties) {
-        this.properties = properties;
+    public BaseView() {
         controllers = new ArrayList<>();
-        checkProperties();
     }
 
     public void hide() {
@@ -47,11 +42,8 @@ public abstract class BaseView {
         controllers.stream().forEach(ci -> {
             ci.show();
         });
-        state.setSelectedViewState(ViewStates.DataView);
         draw();
     }
-
-    protected abstract void checkProperties();
 
     protected abstract void draw();
 }

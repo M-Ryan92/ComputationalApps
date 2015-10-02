@@ -20,7 +20,6 @@ public class AppState {
     private File selectedFile;
 
     @Getter
-    @Setter
     private PApplet app;
 
     @Getter
@@ -37,6 +36,16 @@ public class AppState {
     public static final int strokeColor = Color.decode("#010D13").getRGB();
     public static final int textColor = 255;
 
+    public final int displayPanelXOffset = 20;
+    public final int displayPanelYOffset = 20;
+    
+    @Getter
+    private int displayPanelWidth;
+    @Getter
+    private int displayPanelHeight;
+    @Getter
+    private int buttonHeight = 24;
+    
     @Getter
     PFont font;
 
@@ -50,6 +59,13 @@ public class AppState {
     private ObservableValue<Integer> fileLoadedStateObserver = new ObservableValue(0);
     @Getter
     private ObservableValue<Integer> selectedViewStateObserver = new ObservableValue(ViewStates.MainView);
+
+    public void setApp(PApplet app) {
+        this.app = app;
+        displayPanelWidth = app.width - (displayPanelXOffset * 2);
+        displayPanelHeight = app.height - (displayPanelYOffset * 2) - 120;
+        displayPanelHeight = displayPanelHeight -(displayPanelHeight % 24);
+    }
 
     public static AppState getInstance() {
         return instance;

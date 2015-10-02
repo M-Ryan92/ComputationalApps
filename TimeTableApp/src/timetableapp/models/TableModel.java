@@ -31,7 +31,7 @@ public class TableModel {
         return pages.get(i);
     }
 
-    private int itemsEaPage = Math.round((AppState.getInstance().getApp().height - 20 - 120 - (24 * 2)) / 24);
+    private int itemsEaPage = Math.round((AppState.getInstance().getApp().height - 20 - 120 - 24) / 24);
 
     public TableModel(Table table) {
         pages = new HashMap<>();
