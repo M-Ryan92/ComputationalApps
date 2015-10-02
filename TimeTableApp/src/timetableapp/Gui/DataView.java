@@ -1,8 +1,8 @@
 package timetableapp.Gui;
 
 import controlP5.Textfield;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import processing.core.PApplet;
 import timetableapp.models.DataManager;
@@ -12,12 +12,11 @@ import timetableapp.util.AppState;
 public class DataView extends BaseView {
 
     private DataManager dm = DataManager.getInstance();
-    private List<Integer> columnsWidth;
+    private Map<String, Integer> columnsWidth;
 
     @Getter
     private int page = 0;
     private int btnWidth = 80;
-    private int maxWidth = app.width - 40;
 
     public void pagePlus() {
         if (page < dm.getTm().getPageCount()) {
@@ -113,24 +112,50 @@ public class DataView extends BaseView {
     public void draw() {
         if (ishidden == false) {
             int currentWidth = 0;
-            int colNr = 0;
             int widthOffset = 0;
             app.rect(state.displayPanelXOffset, state.displayPanelYOffset, state.getDisplayPanelWidth(), state.getDisplayPanelHeight());
             app.textAlign(PApplet.CENTER);
-            initializeColumnsWidth();
+            columnsWidth = dm.getTm().getColumnsWidth();
             app.translate(20, 20);
             for (String column : (List<String>) dm.getTm().getColumns()) {
-                int width = columnsWidth.get(colNr);
+                int width = columnsWidth.get(column);
                 int rowheight = state.getButtonHeight() - 7;
                 currentWidth += width;
-                if (currentWidth < maxWidth) {
+                if (currentWidth < state.getDisplayPanelWidth()) {
+                    List columns = dm.getTm().getColumns();
+                    int nextColWidth = columnsWidth.get(columns.get(columns.indexOf(column) + 1).toString());
+
+                    if (currentWidth + nextColWidth > state.getDisplayPanelWidth()) {
+                        currentWidth -= width;
+                        width = state.getDisplayPanelWidth() - currentWidth;
+                        currentWidth += width;
+                    }
+
                     for (DataRow row : dm.getTm().getPage(page)) {
                         int lineheight = rowheight + 7;
 
                         app.fill(0);
                         rowheight += state.getButtonHeight();
-                        app.text(row.getString(column) != null ? row.getString(column) : "",
-                                widthOffset + (width - (width / 2)), rowheight);
+
+                        String text = row.getString(column) != null ? row.getString(column) : "";
+
+                        if (app.textWidth(text) <= dm.getTm().getMaxColSize()) {
+                            app.text(text,
+                                    widthOffset + (width - (width / 2)), rowheight);
+                        } else {
+                            String concatedtext = "";
+                            for (char c : text.toCharArray()) {
+                                if (app.textWidth(concatedtext + c) < dm.getTm().getMaxColSize() - app.textWidth("...")) {
+                                    concatedtext += c;
+                                } else {
+                                    concatedtext += "...";
+                                    break;
+                                }
+                            }
+                            app.text(concatedtext,
+                                    widthOffset + (width - (width / 2)), rowheight);
+                        }
+
                         app.line(widthOffset, lineheight, widthOffset + width, lineheight);
                         app.fill(255);
                     }
@@ -140,27 +165,9 @@ public class DataView extends BaseView {
                     app.text(column, widthOffset + (width - (width / 2)), state.getButtonHeight() - 7);
                     app.fill(255);
                     widthOffset += width;
-                    colNr++;
                 }
             }
             app.translate(-20, -20);
-        }
-    }
-
-    private void initializeColumnsWidth() {
-        columnsWidth = new ArrayList<>();
-        for (String column : (List<String>) dm.getTm().getColumns()) {
-            int width = (int) app.textWidth(column) + 10;
-            for (DataRow row : dm.getTm().getPage(page)) {
-
-                if (row.getString(column) != null) {
-                    int nw = (int) app.textWidth(row.getString(column)) + 10;
-                    if (nw > width) {
-                        width = nw;
-                    }
-                }
-            }
-            columnsWidth.add(width);
         }
     }
 

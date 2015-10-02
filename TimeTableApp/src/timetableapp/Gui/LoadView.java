@@ -34,7 +34,7 @@ public class LoadView extends BaseView {
         app.text("loading file please wait", state.getDisplayPanelWidth() / 2, (state.getDisplayPanelHeight() / 2) - 70);
         AppState.getInstance().setFont();
 
-        app.translate(width / 2, height / 2);
+        app.translate((state.getDisplayPanelWidth() / 2) + 10, (state.getDisplayPanelHeight() / 2) + 50);
         while (x < 360) {
             app.fill(AppState.specialColor);
             if (x == start) {
@@ -55,7 +55,7 @@ public class LoadView extends BaseView {
         }
 
         app.fill(255);
-        app.translate(-(width / 2), -(height / 2));
+        app.translate(-(state.getDisplayPanelWidth() + 10), -(state.getDisplayPanelHeight() + 50));
     }
 
 }
