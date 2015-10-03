@@ -1,4 +1,4 @@
-package timetableapp.Gui;
+package timetableapp.gui;
 
 import processing.core.PApplet;
 import timetableapp.eventhandlers.NewFileSelectedHandler;

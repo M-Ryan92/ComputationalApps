@@ -4,7 +4,7 @@ import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
-import timetableapp.Gui.GuiHelper;
+import timetableapp.gui.GuiHelper;
 import timetableapp.util.AppState;
 
 public class BaseApplication extends PApplet {

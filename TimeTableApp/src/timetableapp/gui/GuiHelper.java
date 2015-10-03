@@ -1,4 +1,4 @@
-package timetableapp.Gui;
+package timetableapp.gui;
 
 import controlP5.ControlEvent;
 import controlP5.Controller;
@@ -86,7 +86,7 @@ public class GuiHelper {
             case ("BackToMainView"):
                 state.setSelectedViewState(ViewStates.MainView);
                 mv.show();
-                dv.setPage(0);
+                dv.resetTable();
                 dv.hide();
                 break;
             case ("NextPage"):

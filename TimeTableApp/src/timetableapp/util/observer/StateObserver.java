@@ -3,7 +3,7 @@ package timetableapp.util.observer;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.Callable;
-import timetableapp.Gui.Dialog;
+import timetableapp.gui.Dialog;
 
 public class StateObserver implements Observer {
 

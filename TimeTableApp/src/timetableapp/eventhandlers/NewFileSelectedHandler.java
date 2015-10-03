@@ -4,7 +4,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import processing.data.Table;
-import timetableapp.Gui.Dialog;
+import timetableapp.gui.Dialog;
 import timetableapp.models.DataManager;
 import timetableapp.models.TableModel;
 import timetableapp.util.AppState;

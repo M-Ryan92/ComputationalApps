@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.concurrent.Callable;
 import processing.core.PApplet;
 import processing.data.Table;
-import timetableapp.Gui.Dialog;
+import timetableapp.gui.Dialog;
 
 public class Parser implements Callable<Table> {
 

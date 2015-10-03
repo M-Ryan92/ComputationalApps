@@ -1,4 +1,4 @@
-package timetableapp.Gui;
+package timetableapp.gui;
 
 import controlP5.ControlP5;
 import controlP5.ControllerInterface;

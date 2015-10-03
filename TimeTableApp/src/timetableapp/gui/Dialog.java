@@ -1,4 +1,4 @@
-package timetableapp.Gui;
+package timetableapp.gui;
 
 import java.awt.Frame;
 import javax.swing.JOptionPane;
