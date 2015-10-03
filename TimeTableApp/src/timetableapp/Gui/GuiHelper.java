@@ -78,7 +78,8 @@ public class GuiHelper {
                     state.setSelectedViewState(ViewStates.DataView);
                     mv.hide();
                     dv.show();
-                    dv.setBtnState();
+                    dv.setPageBtnState();
+                    dv.setColPageBtnState();
                 }
 
                 break;
@@ -93,6 +94,12 @@ public class GuiHelper {
                 break;
             case ("PreviousPage"):
                 dv.pageMinus();
+                break;
+            case ("showNextColumns"):
+                dv.colPagePlus();
+                break;
+            case ("showPreviousColumns"):
+                dv.colPageMinus();
                 break;
         }
 

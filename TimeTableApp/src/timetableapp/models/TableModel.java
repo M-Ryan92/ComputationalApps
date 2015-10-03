@@ -14,7 +14,7 @@ public class TableModel {
 
     private Table data;
     @Getter
-    private List columns;
+    private List<String> columns;
 
     @Getter
     private Map<String, Integer> columnsWidth;
