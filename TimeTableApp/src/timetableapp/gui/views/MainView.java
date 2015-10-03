@@ -1,7 +1,9 @@
-package timetableapp.gui;
+package timetableapp.gui.views;
 
 import processing.core.PApplet;
 import timetableapp.eventhandlers.NewFileSelectedHandler;
+import timetableapp.gui.BaseView;
+import timetableapp.gui.drawHelper.Draw;
 import timetableapp.util.AppState;
 import timetableapp.util.ViewStates;
 import timetableapp.util.observer.StateObserver;
@@ -48,11 +50,9 @@ public final class MainView extends BaseView {
     }
 
     @Override
-    protected void draw() {
+    public void draw() {
         if (ishidden == false) {
-            app.fill(AppState.displayColor);
-            app.rect(state.displayPanelXOffset, state.displayPanelYOffset, state.getDisplayPanelWidth(), state.getDisplayPanelHeight());
-            app.fill(AppState.textColor);
+            Draw.drawDisplay();
 
             if (state.getFileLoadedState() != 1) {
                 state.setFont(26);

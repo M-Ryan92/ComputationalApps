@@ -1,4 +1,4 @@
-package timetableapp.gui;
+package timetableapp.gui.views;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -7,6 +7,8 @@ import static processing.core.PApplet.cos;
 import static processing.core.PApplet.radians;
 import static processing.core.PApplet.sin;
 import timetableapp.BaseApplication;
+import timetableapp.gui.BaseView;
+import timetableapp.gui.drawHelper.Draw;
 import timetableapp.util.AppState;
 
 public class LoadView extends BaseView {
@@ -20,15 +22,13 @@ public class LoadView extends BaseView {
     }
 
     @Override
-    protected void draw() {
+    public void draw() {
         int x = 0;
         int r = 70;
         int s = 20;
-        app.noStroke();
-        app.fill(AppState.displayColor);
-        app.rect(state.displayPanelXOffset, state.displayPanelYOffset, state.getDisplayPanelWidth(), state.getDisplayPanelHeight());
 
-        app.fill(255);
+        Draw.drawDisplay();
+        
         AppState.getInstance().setFont(26);
         app.textAlign(PApplet.CENTER);
         app.text("loading file please wait", state.getDisplayPanelWidth() / 2, (state.getDisplayPanelHeight() / 2) - 70);

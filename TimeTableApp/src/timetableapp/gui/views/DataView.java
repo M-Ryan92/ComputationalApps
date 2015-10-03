@@ -1,7 +1,9 @@
-package timetableapp.gui;
+package timetableapp.gui.views;
 
 import controlP5.Textfield;
 import processing.core.PApplet;
+import timetableapp.gui.BaseView;
+import timetableapp.gui.drawHelper.Draw;
 import timetableapp.gui.drawHelper.DrawTable;
 import timetableapp.models.DataManager;
 import timetableapp.util.AppState;
@@ -96,10 +98,7 @@ public class DataView extends BaseView {
     @Override
     public void draw() {
         if (ishidden == false) {
-            app.fill(AppState.displayColor);
-            app.rect(state.displayPanelXOffset, state.displayPanelYOffset, state.getDisplayPanelWidth(), state.getDisplayPanelHeight());
-            app.fill(255);
-
+            Draw.drawDisplay();
             tableDrawer.draw();
         }
     }

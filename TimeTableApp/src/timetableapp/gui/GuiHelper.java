@@ -1,5 +1,8 @@
 package timetableapp.gui;
 
+import timetableapp.gui.views.MainView;
+import timetableapp.gui.views.LoadView;
+import timetableapp.gui.views.DataView;
 import controlP5.ControlEvent;
 import controlP5.Controller;
 import javax.swing.JFileChooser;
