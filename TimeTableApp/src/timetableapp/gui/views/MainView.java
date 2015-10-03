@@ -1,6 +1,5 @@
 package timetableapp.gui.views;
 
-import processing.core.PApplet;
 import timetableapp.eventhandlers.NewFileSelectedHandler;
 import timetableapp.gui.BaseView;
 import timetableapp.gui.drawHelper.Draw;
@@ -16,7 +15,7 @@ public final class MainView extends BaseView {
         getControllers().add(cp5
                 .addButton(cp5, "selectFileBtn")
                 .setColorBackground(AppState.buttonColor)
-                .setPosition(20, app.height - state.getButtonHeight()- 20)
+                .setPosition(20, app.height - state.getButtonHeight() - 20)
                 .setSize(70, state.getButtonHeight())
                 .setLabel("Select File"));
 
@@ -55,10 +54,7 @@ public final class MainView extends BaseView {
             Draw.drawDisplay();
 
             if (state.getFileLoadedState() != 1) {
-                state.setFont(26);
-                app.textAlign(PApplet.CENTER);
-                app.text("no file selected", state.getDisplayPanelWidth()/ 2, (state.getDisplayPanelHeight() / 2) - 70);
-                state.setFont();
+                Draw.drawDisplayMessage("no file selected");
             }
         }
     }

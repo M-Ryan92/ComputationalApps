@@ -2,7 +2,6 @@ package timetableapp.gui.views;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import processing.core.PApplet;
 import static processing.core.PApplet.cos;
 import static processing.core.PApplet.radians;
 import static processing.core.PApplet.sin;
@@ -28,13 +27,12 @@ public class LoadView extends BaseView {
         int s = 20;
 
         Draw.drawDisplay();
-        
-        AppState.getInstance().setFont(26);
-        app.textAlign(PApplet.CENTER);
-        app.text("loading file please wait", state.getDisplayPanelWidth() / 2, (state.getDisplayPanelHeight() / 2) - 70);
-        AppState.getInstance().setFont();
 
-        app.translate((state.getDisplayPanelWidth() / 2) + 10, (state.getDisplayPanelHeight() / 2) + 50);
+        Draw.drawDisplayMessage("processing file please wait");
+        
+        app.translate((state.getDisplayPanelWidth() / 2), (state.getDisplayPanelHeight() / 2) + 50);
+        app.noStroke();
+        
         while (x < 360) {
             app.fill(AppState.specialColor);
             if (x == start) {
@@ -44,6 +42,8 @@ public class LoadView extends BaseView {
             app.ellipse(sin(-radians(x)) * r, cos(-radians(x)) * r, s, s);
             x += 30;
         }
+        
+        app.stroke(AppState.strokeColor);
         start += 30;
         if (start == 360) {
             start = 0;
@@ -55,7 +55,7 @@ public class LoadView extends BaseView {
         }
 
         app.fill(255);
-        app.translate(-(state.getDisplayPanelWidth() + 10), -(state.getDisplayPanelHeight() + 50));
+        app.translate(-(state.getDisplayPanelWidth()), -(state.getDisplayPanelHeight() + 50));
     }
 
 }

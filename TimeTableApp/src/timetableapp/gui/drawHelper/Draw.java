@@ -13,4 +13,13 @@ public class Draw {
         app.rect(state.displayPanelXOffset, state.displayPanelYOffset, state.getDisplayPanelWidth(), state.getDisplayPanelHeight());
         app.fill(255);
     }
+
+    public static void drawDisplayMessage(String text) {
+        state.setFont(26);
+        app.textAlign(PApplet.CENTER);
+        String txt = "processing file please wait";
+        app.text(txt, (state.getDisplayPanelWidth() / 2), (state.getDisplayPanelHeight() / 2) - 70);
+        state.setFont();
+    }
+
 }
