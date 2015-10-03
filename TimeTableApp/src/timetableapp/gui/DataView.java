@@ -78,7 +78,7 @@ public class DataView extends BaseView {
         if (page != selectedPage
                 && selectedPage >= 0
                 && selectedPage <= maxPages) {
-            page = selectedPage;
+            tableDrawer.setPage(selectedPage);
             setPageBtnState();
         } else {
             setPageNrToField(page);
