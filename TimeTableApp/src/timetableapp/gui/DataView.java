@@ -107,7 +107,7 @@ public class DataView extends BaseView {
     public void resetTable() {
         tableDrawer.setColPage(0);
         tableDrawer.setPage(0);
-        setPageNrToField(1);
+        setPageNrToField(0);
     }
 
     public void colPagePlus() {
@@ -146,7 +146,8 @@ public class DataView extends BaseView {
         int page = tableDrawer.getPage();
 
         if (page < dm.getTm().getPageCount()) {
-            tableDrawer.setPage(page + 1);
+            page+=1;
+            tableDrawer.setPage(page);
             setPageBtnState();
             setPageNrToField(page);
             draw();
@@ -156,7 +157,8 @@ public class DataView extends BaseView {
     public void pageMinus() {
         int page = tableDrawer.getPage();
         if (page > 0) {
-            tableDrawer.setPage(page - 1);
+            page-=1;
+            tableDrawer.setPage(page);
             setPageBtnState();
             setPageNrToField(page);
             draw();
