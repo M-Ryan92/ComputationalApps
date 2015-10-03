@@ -55,8 +55,8 @@ public class DrawTable {
 
         app.translate(-20, -20);
     }
-    
-    public int getColSlidesCount(){
+
+    public int getColSlidesCount() {
         return colslides.size();
     }
 
@@ -187,20 +187,24 @@ public class DrawTable {
             app.text(text,
                     widthOffset + (width - (width / 2)), heightOffset - 7);
         } else {
-            String concatedtext = "";
-            for (char c : text.toCharArray()) {
-                if (app.textWidth(concatedtext + c) < dm.getTm().getMaxColSize() - app.textWidth("...")) {
-                    concatedtext += c;
-                } else {
-                    concatedtext += "...";
-                    break;
-                }
-            }
-            app.text(concatedtext,
+            app.text(concatText(text),
                     widthOffset + (width - (width / 2)), heightOffset - 7);
         }
 
         app.fill(255);
+    }
+
+    private String concatText(String text) {
+        String concatedtext = "";
+        for (char c : text.toCharArray()) {
+            if (app.textWidth(concatedtext + c) < dm.getTm().getMaxColSize() - app.textWidth("...")) {
+                concatedtext += c;
+            } else {
+                concatedtext += "...";
+                break;
+            }
+        }
+        return concatedtext;
     }
 
 }

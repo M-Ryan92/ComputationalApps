@@ -71,16 +71,20 @@ public class TableModel {
                 columnsWidth.put(col, Math.round((AppState.getInstance().getApp().textWidth(col))) + 20);
             } else {
                 if (text != null) {
-                    text = text.trim();
-                    int width = Math.round((AppState.getInstance().getApp().textWidth(text))) + 20;
-                    if (width > columnsWidth.get(col)) {
-                        if (width < maxColSize) {
-                            columnsWidth.put(col, width);
-                        } else {
-                            columnsWidth.put(col, maxColSize + 20);
-                        }
-                    }
+                    reAdjustColWidth(text, col);
                 }
+            }
+        }
+    }
+
+    private void reAdjustColWidth(String text, String col) {
+        text = text.trim();
+        int width = Math.round((AppState.getInstance().getApp().textWidth(text))) + 20;
+        if (width > columnsWidth.get(col)) {
+            if (width < maxColSize) {
+                columnsWidth.put(col, width);
+            } else {
+                columnsWidth.put(col, maxColSize + 20);
             }
         }
     }
