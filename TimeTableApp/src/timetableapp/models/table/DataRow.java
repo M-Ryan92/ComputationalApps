@@ -1,4 +1,4 @@
-package timetableapp.models;
+package timetableapp.models.table;
 
 import java.util.HashMap;
 import java.util.Map;

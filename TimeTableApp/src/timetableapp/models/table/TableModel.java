@@ -1,4 +1,4 @@
-package timetableapp.models;
+package timetableapp.models.table;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.Map;
 import lombok.Getter;
 import processing.data.Table;
 import processing.data.TableRow;
-import timetableapp.util.AppState;
+import timetableapp.util.state.AppState;
 
 public class TableModel {
 

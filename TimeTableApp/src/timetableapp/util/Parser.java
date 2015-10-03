@@ -1,5 +1,6 @@
 package timetableapp.util;
 
+import timetableapp.util.state.AppState;
 import java.io.File;
 import java.util.concurrent.Callable;
 import processing.core.PApplet;

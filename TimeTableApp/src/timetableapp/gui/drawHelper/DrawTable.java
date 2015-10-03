@@ -7,8 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 import processing.core.PApplet;
 import timetableapp.models.DataManager;
-import timetableapp.models.DataRow;
-import timetableapp.util.AppState;
+import timetableapp.models.table.DataRow;
+import timetableapp.util.Properties;
+import timetableapp.util.state.AppState;
 
 public class DrawTable {
 
@@ -114,7 +115,7 @@ public class DrawTable {
     private void drawHeader() {
         currentWidth = 0;
         widthOffset = 0;
-        heightOffset = 2 * state.getButtonHeight();
+        heightOffset = 2 * Properties.buttonHeight;
 
         if (skipCols() > 0) {
             String colName = columns.get(0);
@@ -143,10 +144,10 @@ public class DrawTable {
     }
 
     private void drawHeaderColumns(int width, String colName) {
-        app.rect(widthOffset, 0, width, state.getButtonHeight());
+        app.rect(widthOffset, 0, width, Properties.buttonHeight);
         app.line(widthOffset + width, 0, widthOffset + width, state.getDisplayPanelHeight());
         app.fill(0);
-        app.text(colName, widthOffset + (width - (width / 2)), state.getButtonHeight() - 7);
+        app.text(colName, widthOffset + (width - (width / 2)), Properties.buttonHeight - 7);
         app.fill(255);
     }
 
@@ -175,7 +176,7 @@ public class DrawTable {
                 widthOffset += width;
             }
         }
-        heightOffset += state.getButtonHeight();
+        heightOffset += Properties.buttonHeight;
     }
 
     private void drawRowColumns(int width, String colName) {

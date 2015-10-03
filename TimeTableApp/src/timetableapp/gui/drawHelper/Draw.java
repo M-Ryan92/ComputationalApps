@@ -1,7 +1,8 @@
 package timetableapp.gui.drawHelper;
 
 import processing.core.PApplet;
-import timetableapp.util.AppState;
+import timetableapp.util.Properties;
+import timetableapp.util.state.AppState;
 
 public class Draw {
 
@@ -9,8 +10,8 @@ public class Draw {
     private static final PApplet app = AppState.getInstance().getApp();
 
     public static void drawDisplay() {
-        app.fill(AppState.displayColor);
-        app.rect(state.displayPanelXOffset, state.displayPanelYOffset, state.getDisplayPanelWidth(), state.getDisplayPanelHeight());
+        app.fill(Properties.displayColor);
+        app.rect(Properties.displayPanelXOffset, Properties.displayPanelYOffset, state.getDisplayPanelWidth(), state.getDisplayPanelHeight());
         app.fill(255);
     }
 

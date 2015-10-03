@@ -1,7 +1,7 @@
-package timetableapp.util;
+package timetableapp.util.state;
 
+import timetableapp.util.state.ViewStates;
 import controlP5.ControlP5;
-import java.awt.Color;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import processing.core.PApplet;
 import processing.core.PFont;
+import timetableapp.util.Properties;
 
 public class AppState {
 
@@ -26,26 +27,11 @@ public class AppState {
     @Setter
     private ControlP5 cp5;
 
-    public static final int backgroundColor = Color.decode("#1C4B5F").getRGB();
-    public static final int displayColor = Color.decode("#748993").getRGB();
-    public static final int buttonColor = Color.decode("#031F2D").getRGB();
-
-    public static final int specialColor = Color.decode("#3F5B68").getRGB();
-    public static final int specialActiveColor = Color.decode("#0C2631").getRGB();
-
-    public static final int strokeColor = Color.decode("#010D13").getRGB();
-    public static final int textColor = 255;
-
-    public final int displayPanelXOffset = 20;
-    public final int displayPanelYOffset = 20;
-    
     @Getter
     private int displayPanelWidth;
     @Getter
     private int displayPanelHeight;
-    @Getter
-    private int buttonHeight = 24;
-    
+
     @Getter
     PFont font;
 
@@ -62,9 +48,9 @@ public class AppState {
 
     public void setApp(PApplet app) {
         this.app = app;
-        displayPanelWidth = app.width - (displayPanelXOffset * 2);
-        displayPanelHeight = app.height - (displayPanelYOffset * 2) - 120;
-        displayPanelHeight = displayPanelHeight -(displayPanelHeight % 24);
+        displayPanelWidth = app.width - (Properties.displayPanelXOffset * 2);
+        displayPanelHeight = app.height - (Properties.displayPanelYOffset * 2) - 120;
+        displayPanelHeight = displayPanelHeight - (displayPanelHeight % 24);
     }
 
     public static AppState getInstance() {

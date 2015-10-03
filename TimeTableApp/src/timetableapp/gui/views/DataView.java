@@ -6,7 +6,7 @@ import timetableapp.gui.BaseView;
 import timetableapp.gui.drawHelper.Draw;
 import timetableapp.gui.drawHelper.DrawTable;
 import timetableapp.models.DataManager;
-import timetableapp.util.AppState;
+import timetableapp.util.Properties;
 
 public class DataView extends BaseView {
 
@@ -20,50 +20,50 @@ public class DataView extends BaseView {
 
         getControllers().add(cp5
                 .addButton(cp5, "showPreviousColumns")
-                .setColorBackground(AppState.buttonColor)
+                .setColorBackground(Properties.buttonColor)
                 .setPosition(app.width - (btnWidth * 2) - 30, app.height - 130)
-                .setSize(btnWidth, state.getButtonHeight())
+                .setSize(btnWidth, Properties.buttonHeight)
                 .setLabel("Previous Columns")
                 .hide());
 
         getControllers().add(cp5
                 .addButton(cp5, "showNextColumns")
-                .setColorBackground(AppState.buttonColor)
+                .setColorBackground(Properties.buttonColor)
                 .setPosition(app.width - btnWidth - 20, app.height - 130)
-                .setSize(btnWidth, state.getButtonHeight())
+                .setSize(btnWidth, Properties.buttonHeight)
                 .setLabel("Next Columns")
                 .hide());
 
         getControllers().add(cp5
                 .addButton(cp5, "BackToMainView")
-                .setColorBackground(AppState.buttonColor)
+                .setColorBackground(Properties.buttonColor)
                 .setPosition(20, app.height - 130)
-                .setSize(btnWidth, state.getButtonHeight())
+                .setSize(btnWidth, Properties.buttonHeight)
                 .setLabel("Back")
                 .hide());
 
         getControllers().add(cp5
                 .addButton(cp5, "PreviousPage")
-                .setColorBackground(AppState.buttonColor)
+                .setColorBackground(Properties.buttonColor)
                 .setPosition((app.width / 2) - (btnWidth / 2) - btnWidth - 10, app.height - 130)
-                .setSize(btnWidth, state.getButtonHeight())
+                .setSize(btnWidth, Properties.buttonHeight)
                 .setLabel("Previous Page")
                 .hide());
 
         getControllers().add(cp5
                 .addButton(cp5, "NextPage")
-                .setColorBackground(AppState.buttonColor)
+                .setColorBackground(Properties.buttonColor)
                 .setPosition((app.width / 2) - (btnWidth / 2) + btnWidth + 10, app.height - 130)
-                .setSize(btnWidth, state.getButtonHeight())
+                .setSize(btnWidth, Properties.buttonHeight)
                 .setLabel("Next Page")
                 .hide());
 
         getControllers().add(cp5
                 .addTextfield("PageNr")
-                .setColorBackground(AppState.buttonColor)
+                .setColorBackground(Properties.buttonColor)
                 .setValue("1")
                 .setPosition((app.width / 2) - 30, app.height - 130)
-                .setSize(60, state.getButtonHeight())
+                .setSize(60, Properties.buttonHeight)
                 .setFont(app.createFont("arial", 20))
                 .setAutoClear(false)
                 .hide());

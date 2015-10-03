@@ -1,5 +1,6 @@
 package timetableapp.models;
 
+import timetableapp.models.table.TableModel;
 import lombok.Getter;
 import lombok.Setter;
 

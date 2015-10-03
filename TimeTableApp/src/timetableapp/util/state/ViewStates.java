@@ -1,4 +1,4 @@
-package timetableapp.util;
+package timetableapp.util.state;
 
 public class ViewStates {
     public static final int LoadView = 0;

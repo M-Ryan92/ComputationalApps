@@ -8,7 +8,8 @@ import static processing.core.PApplet.sin;
 import timetableapp.BaseApplication;
 import timetableapp.gui.BaseView;
 import timetableapp.gui.drawHelper.Draw;
-import timetableapp.util.AppState;
+import timetableapp.util.Properties;
+import timetableapp.util.state.AppState;
 
 public class LoadView extends BaseView {
 
@@ -34,16 +35,16 @@ public class LoadView extends BaseView {
         app.noStroke();
         
         while (x < 360) {
-            app.fill(AppState.specialColor);
+            app.fill(Properties.specialColor);
             if (x == start) {
-                app.fill(AppState.specialActiveColor);
+                app.fill(Properties.specialActiveColor);
             }
 
             app.ellipse(sin(-radians(x)) * r, cos(-radians(x)) * r, s, s);
             x += 30;
         }
         
-        app.stroke(AppState.strokeColor);
+        app.stroke(Properties.strokeColor);
         start += 30;
         if (start == 360) {
             start = 0;

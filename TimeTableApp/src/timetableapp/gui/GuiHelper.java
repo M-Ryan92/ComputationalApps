@@ -8,8 +8,9 @@ import controlP5.Controller;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import processing.event.KeyEvent;
-import timetableapp.util.AppState;
-import timetableapp.util.ViewStates;
+import timetableapp.util.Properties;
+import timetableapp.util.state.AppState;
+import timetableapp.util.state.ViewStates;
 
 public class GuiHelper {
 
@@ -30,11 +31,11 @@ public class GuiHelper {
     public void draw() {
         switch (state.getSelectedViewState()) {
             case (ViewStates.MainView):
-                state.getApp().background(AppState.backgroundColor);
+                state.getApp().background(Properties.backgroundColor);
                 mv.draw();
                 break;
             case (ViewStates.DataView):
-                state.getApp().background(AppState.backgroundColor);
+                state.getApp().background(Properties.backgroundColor);
                 dv.draw();
                 break;
             case (ViewStates.LoadView):

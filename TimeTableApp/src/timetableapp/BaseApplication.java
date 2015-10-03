@@ -5,7 +5,8 @@ import controlP5.ControlP5;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 import timetableapp.gui.GuiHelper;
-import timetableapp.util.AppState;
+import timetableapp.util.Properties;
+import timetableapp.util.state.AppState;
 
 public class BaseApplication extends PApplet {
 
@@ -28,14 +29,14 @@ public class BaseApplication extends PApplet {
         
         frameRate(60);
         guiHelper = new GuiHelper();
-        background(AppState.backgroundColor);
+        background(Properties.backgroundColor);
     }
 
     int start = 0;
 
     @Override
     public void draw() {
-        stroke(AppState.strokeColor);
+        stroke(Properties.strokeColor);
         guiHelper.draw();
     }
 
