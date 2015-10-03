@@ -86,6 +86,14 @@ public class DataView extends BaseView {
     }
 
     @Override
+    public void show() {
+        if (tableDrawer == null) {
+            tableDrawer = new DrawTable();
+        }
+        super.show();
+    }
+
+    @Override
     public void draw() {
         if (ishidden == false) {
             app.fill(AppState.displayColor);
@@ -105,7 +113,7 @@ public class DataView extends BaseView {
     public void colPagePlus() {
         int colPage = tableDrawer.getColPage();
         if (colPage + 1 < tableDrawer.getColSlidesCount()) {
-            colPage += 1;
+            tableDrawer.setColPage(colPage + 1);
             setColPageBtnState();
             draw();
         }
@@ -114,7 +122,7 @@ public class DataView extends BaseView {
     public void colPageMinus() {
         int colPage = tableDrawer.getColPage();
         if (colPage > 0) {
-            colPage -= 1;
+            tableDrawer.setColPage(colPage - 1);
             setColPageBtnState();
             draw();
         }
@@ -138,7 +146,7 @@ public class DataView extends BaseView {
         int page = tableDrawer.getPage();
 
         if (page < dm.getTm().getPageCount()) {
-            page += 1;
+            tableDrawer.setPage(page + 1);
             setPageBtnState();
             setPageNrToField(page);
             draw();
@@ -148,7 +156,7 @@ public class DataView extends BaseView {
     public void pageMinus() {
         int page = tableDrawer.getPage();
         if (page > 0) {
-            page -= 1;
+            tableDrawer.setPage(page - 1);
             setPageBtnState();
             setPageNrToField(page);
             draw();
