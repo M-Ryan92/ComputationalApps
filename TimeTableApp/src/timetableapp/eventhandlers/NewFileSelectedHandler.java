@@ -6,7 +6,6 @@ import java.util.concurrent.Executors;
 import processing.data.Table;
 import timetableapp.gui.Dialog;
 import timetableapp.models.DataManager;
-import timetableapp.models.table.TableModel;
 import timetableapp.util.state.AppState;
 import timetableapp.util.Parser;
 
@@ -24,7 +23,10 @@ public class NewFileSelectedHandler implements Callable {
 
                 Table data = new Parser(state.getSelectedFile()).parse();
                 DataManager dm = DataManager.getInstance();
-                dm.setTm(new TableModel(data));
+                
+                dm.createTable(data);
+                dm.createMap(data);
+                
                 state.getLoadingFileStateObserver().resetValue();
                 state.setFileLoadedState(1);
             } catch (Exception e) {

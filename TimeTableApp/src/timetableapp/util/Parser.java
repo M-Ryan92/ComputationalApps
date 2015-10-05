@@ -31,8 +31,6 @@ public class Parser implements Callable<Table> {
                 table = app.loadTable(file.getAbsolutePath(), "header, tsv");
                 break;
             case ("csv"):
-                table = app.loadTable(file.getAbsolutePath(), "header, csv");
-                break;
             case ("ics"):
                 handleUnimplementedExtension(extension);
         }
