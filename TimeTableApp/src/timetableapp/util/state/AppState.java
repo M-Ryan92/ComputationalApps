@@ -87,7 +87,7 @@ public class AppState {
         PFont font;
         if (txtfont == null) {
             try {
-                txtfont = Font.createFont(Font.TRUETYPE_FONT, app.getClass().getResource("../../resources/OpenSans-Regular.ttf").openStream());
+                txtfont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("../../resources/OpenSans-Regular.ttf").openStream());
             } catch (Exception e) {
                 setBaseFont(size);
             }
