@@ -3,15 +3,20 @@ package timetableapp.gui.views;
 import timetableapp.eventhandlers.NewFileSelectedHandler;
 import timetableapp.gui.BaseView;
 import timetableapp.gui.drawHelper.Draw;
+import timetableapp.gui.drawHelper.DrawBuildingVis;
+import timetableapp.models.DataManager;
 import timetableapp.util.Properties;
 import timetableapp.util.state.ViewStates;
 import timetableapp.util.observer.StateObserver;
 
 public final class MainView extends BaseView {
 
+    private DataManager dm = DataManager.getInstance();
+    private DrawBuildingVis dbv;
+    
     public MainView() {
         super();
-
+        dbv = new DrawBuildingVis(app);
         getControllers().add(cp5
                 .addButton(cp5, "selectFileBtn")
                 .setColorBackground(Properties.buttonColor)
@@ -55,6 +60,9 @@ public final class MainView extends BaseView {
 
             if (state.getFileLoadedState() != 1) {
                 Draw.drawDisplayMessage("no file selected");
+            } else {
+                //do some epic drawing magic =D
+                dbv.draw(dm.getBl().get("WBH"));
             }
         }
     }

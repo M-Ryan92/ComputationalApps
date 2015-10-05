@@ -27,7 +27,11 @@ public class Building {
             Map<String, ClassRoom> crl = new HashMap<>();
             crl.put(classRoom.fullLocation(), classRoom);
             floorList.put(classRoom.getFloor(), crl);
-            etageCount = floorList.size();
+
+            if (etageCount < classRoom.getFloor()) {
+                etageCount = classRoom.getFloor();
+            }
+
         }
 
     }

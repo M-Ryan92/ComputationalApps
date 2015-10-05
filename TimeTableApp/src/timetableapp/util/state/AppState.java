@@ -61,7 +61,7 @@ public class AppState {
     public PFont getIconFont() {
         if (iconFont == null) {
             try {
-                iconFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("../../resources/fontawesome-webfont.ttf").openStream());
+                iconFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("../../resources/ttf/fontawesome-webfont.ttf").openStream());
                 iconFont = iconFont.deriveFont(Font.PLAIN, 16F);
             } catch (Exception e) {
                 new Dialog().fatalErrorDialog("error occured app closes now");
@@ -85,7 +85,7 @@ public class AppState {
         PFont font;
         if (txtfont == null) {
             try {
-                txtfont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("../../resources/OpenSans-Regular.ttf").openStream());
+                txtfont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("../../resources/ttf/OpenSans-Regular.ttf").openStream());
             } catch (Exception e) {
                 setBaseFont(size);
             }

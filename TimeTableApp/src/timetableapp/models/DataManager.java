@@ -74,8 +74,8 @@ public class DataManager {
             int capacity = Integer.valueOf(classRoomInfo[classRoomInfo.length - 1].substring(1, classRoomInfo[classRoomInfo.length - 1].length() - 1));
             classRoom = new ClassRoom(floor, letter, number, capacity);
         } else if (Arrays.asList(formatTwo).contains(classRoomInfo[0])) {
-            int floor = Integer.valueOf(classRoomInfo[1].subSequence(0, 2).toString());
-            int number = Integer.valueOf(classRoomInfo[1].subSequence(3, 5).toString());
+            int floor = Integer.valueOf(classRoomInfo[1].subSequence(0, 1).toString());
+            int number = Integer.valueOf(classRoomInfo[1].subSequence(2, 4).toString());
             int capacity = Integer.valueOf(classRoomInfo[classRoomInfo.length - 1].substring(1, classRoomInfo[classRoomInfo.length - 1].length() - 1));            
             classRoom = new ClassRoom(floor, number, capacity);
         }
