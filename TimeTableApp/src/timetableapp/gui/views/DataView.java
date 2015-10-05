@@ -12,8 +12,7 @@ import timetableapp.util.Properties;
 public class DataView extends BaseView {
 
     private DataManager dm = DataManager.getInstance();
-    private int btnWidth = 80;
-    private int colBtnWidth = 20;
+    private int btnWidth = 20;    
     private DrawTable tableDrawer;
 
     public DataView() {
@@ -23,41 +22,41 @@ public class DataView extends BaseView {
         getControllers().add(cp5
                 .addButton(cp5, "showPreviousColumns")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition(app.width - (colBtnWidth * 2) - 30 - 40, app.height - 130)//40 is the text within the 2 buttons
-                .setSize(colBtnWidth, Properties.buttonHeight)
-                .setLabel(Character.toString('\uf060'))//"Previous Columns"
+                .setPosition(app.width - (btnWidth * 3) - 10 - checklableWidth("columns") , app.height - 130)//40 is the text within the 2 buttons
+                .setSize(btnWidth, Properties.buttonHeight)
+                .setLabel(Character.toString('\uf060'))
                 .hide());
 
         getControllers().add(cp5
                 .addButton(cp5, "showNextColumns")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition(app.width - colBtnWidth - 20, app.height - 130)
-                .setSize(colBtnWidth, Properties.buttonHeight)
-                .setLabel(Character.toString('\uf061'))//"Next Columns"
+                .setPosition(app.width - btnWidth - 20, app.height - 130)
+                .setSize(btnWidth, Properties.buttonHeight)
+                .setLabel(Character.toString('\uf061'))
                 .hide());
 
         getControllers().add(cp5
                 .addButton(cp5, "BackToMainView")
                 .setColorBackground(Properties.buttonColor)
                 .setPosition(20, app.height - 130)
-                .setSize(btnWidth, Properties.buttonHeight)
+                .setSize(70, Properties.buttonHeight)
                 .setLabel("Back")
                 .hide());
 
         getControllers().add(cp5
                 .addButton(cp5, "PreviousPage")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition((app.width / 2) - (btnWidth / 2) - btnWidth - 10, app.height - 130)
+                .setPosition((app.width / 2) - btnWidth - 35, app.height - 130)
                 .setSize(btnWidth, Properties.buttonHeight)
-                .setLabel("Previous Page")
+                .setLabel(Character.toString('\uf060'))
                 .hide());
 
         getControllers().add(cp5
                 .addButton(cp5, "NextPage")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition((app.width / 2) - (btnWidth / 2) + btnWidth + 10, app.height - 130)
+                .setPosition((app.width / 2) + 35, app.height - 130)
                 .setSize(btnWidth, Properties.buttonHeight)
-                .setLabel("Next Page")
+                .setLabel(Character.toString('\uf061'))
                 .hide());
 
         getControllers().add(cp5
@@ -70,9 +69,36 @@ public class DataView extends BaseView {
                 .setAutoClear(false)
                 .hide());
         ((Textfield) getcontrollerByName("PageNr")).getCaptionLabel().alignX(PApplet.CENTER);
+        
+        ((Button) getcontrollerByName("PreviousPage")).getCaptionLabel().setFont(state.getIconFont());
+        ((Button) getcontrollerByName("NextPage")).getCaptionLabel().setFont(state.getIconFont());
         ((Button) getcontrollerByName("showNextColumns")).getCaptionLabel().setFont(state.getIconFont());
         ((Button) getcontrollerByName("showPreviousColumns")).getCaptionLabel().setFont(state.getIconFont());
 
+    }
+
+    private int checklableWidth(String text){
+        int width;
+        app.textFont(app.createFont("arial", 10));
+        width = (int) app.textWidth(text) + 30;
+        state.setFont();
+        return width;
+    }
+    private void drawColLable() {
+        if(getcontrollerByName("showNextColumns").isVisible() || getcontrollerByName("showPreviousColumns").isVisible()){
+            app.noStroke();
+            app.fill(Properties.buttonColor);
+            app.rect(app.width - (btnWidth * 2) - checklableWidth("Columns") - 4, app.height - 130, checklableWidth("Columns"), Properties.buttonHeight);
+            
+            app.stroke(Properties.strokeColor);
+            app.fill(Properties.textColor);
+            app.textAlign(PApplet.LEFT);
+            
+            app.textFont(app.createFont("arial", 10));
+            app.text("Columns", app.width - (btnWidth * 2) - checklableWidth("Columns"), app.height - 113);
+            state.setFont();
+            app.fill(255);
+        }
     }
 
     public void handleEnter() {
@@ -102,6 +128,7 @@ public class DataView extends BaseView {
     public void draw() {
         if (ishidden == false) {
             Draw.drawDisplay();
+            drawColLable();
             tableDrawer.draw();
         }
     }
