@@ -16,11 +16,10 @@ public class Draw {
     }
 
     public static void drawDisplayMessage(String text) {
-        state.setFont(26);
+        app.textSize(26);
         app.textAlign(PApplet.CENTER);
-        String txt = "processing file please wait";
-        app.text(txt, (state.getDisplayPanelWidth() / 2), (state.getDisplayPanelHeight() / 2) - 70);
-        state.setFont();
+        app.text(text, (state.getDisplayPanelWidth() / 2), (state.getDisplayPanelHeight() / 2) - 70);
+        app.textSize(11);
     }
 
 }

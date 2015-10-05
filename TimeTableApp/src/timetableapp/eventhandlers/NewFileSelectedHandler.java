@@ -21,7 +21,7 @@ public class NewFileSelectedHandler implements Callable {
             try {
                 state.getNewFileSelectedStateObserver().resetValue();
                 state.setLoadingFileState(1);
-                state.setFont();
+
                 Table data = new Parser(state.getSelectedFile()).parse();
                 DataManager dm = DataManager.getInstance();
                 dm.setTm(new TableModel(data));

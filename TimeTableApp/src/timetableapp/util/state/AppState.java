@@ -1,15 +1,15 @@
 package timetableapp.util.state;
 
-import timetableapp.util.state.ViewStates;
 import controlP5.ControlP5;
+import java.awt.Font;
 import java.io.File;
 import java.util.Arrays;
-import java.util.List;
 import timetableapp.util.observer.ObservableValue;
 import lombok.Getter;
 import lombok.Setter;
 import processing.core.PApplet;
 import processing.core.PFont;
+import timetableapp.gui.Dialog;
 import timetableapp.util.Properties;
 
 public class AppState {
@@ -31,9 +31,6 @@ public class AppState {
     private int displayPanelWidth;
     @Getter
     private int displayPanelHeight;
-
-    @Getter
-    PFont font;
 
     @Getter
     private ObservableValue<Integer> fileSelectedStateObserver = new ObservableValue(0);
@@ -61,23 +58,35 @@ public class AppState {
 
     }
 
-    public void setFont(int size) {
-        List<String> fonts = Arrays.asList(PFont.list());
-        List<String> style = Arrays.asList(new String[]{"Arial", "Calibri"});
+    public PFont getIconFont() throws Exception {
+        Font f = Font.createFont(Font.TRUETYPE_FONT, app.getClass().getResource("../../resources/fontawesome-webfont.ttf").openStream());
+        f = f.deriveFont(Font.PLAIN, 16.0F);
+        return new PFont(f, true);
+    }
 
-        String name = style.stream().filter(s -> fonts.contains(s) == true).findFirst().get();
-        if (name == null) {
-            name = fonts.get(0);
+    public void setIconFont() {
+        try {
+            app.textFont(getIconFont(), 11);
+        } catch (Exception e) {
+            new Dialog().fatalErrorDialog("icons font could not be loaded, application closes now");
         }
+    }
 
-        font = app.createFont(name, size);
-        app.textFont(font);
+    private void setBaseFont(int size) {
+        PFont font = app.createFont(Arrays.asList(PFont.list()).get(0), size);
+        app.textFont(font, size);
     }
 
     public void setFont() {
-        setFont(11);
-    }
-
+        try {
+            Font f = Font.createFont(Font.TRUETYPE_FONT, app.getClass().getResource("../../resources/OpenSans-Regular.ttf").openStream());
+            PFont font = new PFont(f, true);
+            app.textFont(font, 11);
+        } catch (Exception e) {
+            setBaseFont(11);
+        }
+    }    
+    
     public void setFileSelectedState(int value) {
         fileSelectedStateObserver.setValue(value);
     }
