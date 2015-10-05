@@ -33,8 +33,6 @@ public class AppState {
     private int displayPanelHeight;
 
     @Getter
-    private ObservableValue<Integer> fileSelectedStateObserver = new ObservableValue(0);
-    @Getter
     private ObservableValue<Integer> newFileSelectedStateObserver = new ObservableValue(0);
     @Getter
     private ObservableValue<Integer> loadingFileStateObserver = new ObservableValue(0);
@@ -97,10 +95,6 @@ public class AppState {
 
     }
 
-    public void setFileSelectedState(int value) {
-        fileSelectedStateObserver.setValue(value);
-    }
-
     public void setNewFileSelectedState(int value) {
         newFileSelectedStateObserver.setValue(value);
     }
@@ -115,10 +109,6 @@ public class AppState {
 
     public void setSelectedViewState(int value) {
         selectedViewStateObserver.setValue(value);
-    }
-
-    public int getFileSelectedState() {
-        return fileSelectedStateObserver.getValue();
     }
 
     public int getNewFileSelectedState() {
