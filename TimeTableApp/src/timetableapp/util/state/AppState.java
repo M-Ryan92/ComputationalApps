@@ -58,18 +58,18 @@ public class AppState {
 
     }
 
-    public PFont getIconFont() throws Exception {
-        Font f = Font.createFont(Font.TRUETYPE_FONT, app.getClass().getResource("../../resources/fontawesome-webfont.ttf").openStream());
-        f = f.deriveFont(Font.PLAIN, 16.0F);
-        return new PFont(f, true);
-    }
+    private Font iconFont;
 
-    public void setIconFont() {
-        try {
-            app.textFont(getIconFont(), 11);
-        } catch (Exception e) {
-            new Dialog().fatalErrorDialog("icons font could not be loaded, application closes now");
+    public PFont getIconFont() {
+        if (iconFont == null) {
+            try {
+                iconFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("../../resources/fontawesome-webfont.ttf").openStream());
+                iconFont = iconFont.deriveFont(Font.PLAIN, 16F);
+            } catch (Exception e) {
+                new Dialog().fatalErrorDialog("error occured app closes now");
+            }
         }
+        return new PFont(iconFont, true);
     }
 
     private void setBaseFont(int size) {
@@ -77,16 +77,26 @@ public class AppState {
         app.textFont(font, size);
     }
 
+    private Font txtfont;
+
     public void setFont() {
-        try {
-            Font f = Font.createFont(Font.TRUETYPE_FONT, app.getClass().getResource("../../resources/OpenSans-Regular.ttf").openStream());
-            PFont font = new PFont(f, true);
-            app.textFont(font, 11);
-        } catch (Exception e) {
-            setBaseFont(11);
+        setFont(14);
+    }
+
+    public void setFont(int size) {
+        PFont font;
+        if (txtfont == null) {
+            try {
+                txtfont = Font.createFont(Font.TRUETYPE_FONT, app.getClass().getResource("../../resources/OpenSans-Regular.ttf").openStream());
+            } catch (Exception e) {
+                setBaseFont(size);
+            }
         }
-    }    
-    
+        font = new PFont(txtfont, true);
+        app.textFont(font, size);
+
+    }
+
     public void setFileSelectedState(int value) {
         fileSelectedStateObserver.setValue(value);
     }

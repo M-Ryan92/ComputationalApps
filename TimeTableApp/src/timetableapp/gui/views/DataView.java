@@ -1,5 +1,6 @@
 package timetableapp.gui.views;
 
+import controlP5.Button;
 import controlP5.Textfield;
 import processing.core.PApplet;
 import timetableapp.gui.BaseView;
@@ -12,6 +13,7 @@ public class DataView extends BaseView {
 
     private DataManager dm = DataManager.getInstance();
     private int btnWidth = 80;
+    private int colBtnWidth = 20;
     private DrawTable tableDrawer;
 
     public DataView() {
@@ -21,17 +23,17 @@ public class DataView extends BaseView {
         getControllers().add(cp5
                 .addButton(cp5, "showPreviousColumns")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition(app.width - (btnWidth * 2) - 30, app.height - 130)
-                .setSize(btnWidth, Properties.buttonHeight)
-                .setLabel("Previous Columns")
+                .setPosition(app.width - (colBtnWidth * 2) - 30 - 40, app.height - 130)//40 is the text within the 2 buttons
+                .setSize(colBtnWidth, Properties.buttonHeight)
+                .setLabel(Character.toString('\uf060'))//"Previous Columns"
                 .hide());
 
         getControllers().add(cp5
                 .addButton(cp5, "showNextColumns")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition(app.width - btnWidth - 20, app.height - 130)
-                .setSize(btnWidth, Properties.buttonHeight)
-                .setLabel("Next Columns")
+                .setPosition(app.width - colBtnWidth - 20, app.height - 130)
+                .setSize(colBtnWidth, Properties.buttonHeight)
+                .setLabel(Character.toString('\uf061'))//"Next Columns"
                 .hide());
 
         getControllers().add(cp5
@@ -68,8 +70,9 @@ public class DataView extends BaseView {
                 .setAutoClear(false)
                 .hide());
         ((Textfield) getcontrollerByName("PageNr")).getCaptionLabel().alignX(PApplet.CENTER);
-        //((Textfield) getcontrollerByName("PageNr")).getValueLabel().alignX(PApplet.CENTER);
-        //((Textfield) getcontrollerByName("PageNr")).updateAbsolutePosition();
+        ((Button) getcontrollerByName("showNextColumns")).getCaptionLabel().setFont(state.getIconFont());
+        ((Button) getcontrollerByName("showPreviousColumns")).getCaptionLabel().setFont(state.getIconFont());
+
     }
 
     public void handleEnter() {
@@ -145,7 +148,7 @@ public class DataView extends BaseView {
         int page = tableDrawer.getPage();
 
         if (page < dm.getTm().getPageCount()) {
-            page+=1;
+            page += 1;
             tableDrawer.setPage(page);
             setPageBtnState();
             setPageNrToField(page);
@@ -156,7 +159,7 @@ public class DataView extends BaseView {
     public void pageMinus() {
         int page = tableDrawer.getPage();
         if (page > 0) {
-            page-=1;
+            page -= 1;
             tableDrawer.setPage(page);
             setPageBtnState();
             setPageNrToField(page);
