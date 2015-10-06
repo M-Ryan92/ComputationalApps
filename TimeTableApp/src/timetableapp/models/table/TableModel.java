@@ -8,6 +8,7 @@ import java.util.Map;
 import lombok.Getter;
 import processing.data.Table;
 import processing.data.TableRow;
+import timetableapp.util.Properties;
 import timetableapp.util.state.AppState;
 
 public class TableModel {
@@ -26,7 +27,7 @@ public class TableModel {
     @Getter
     private int pageCount;
 
-    private int itemsEaPage = Math.round((AppState.getInstance().getApp().height - 20 - 120 - 24) / 24);
+    private int itemsEaPage = Math.round((AppState.getInstance().getDisplayPanelHeight() - Properties.displayPanelYOffset) / 24);
 
     public List<DataRow> getPage(int i) {
         if (i >= pages.size()) {

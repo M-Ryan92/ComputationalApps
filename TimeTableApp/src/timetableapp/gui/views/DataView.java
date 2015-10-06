@@ -14,15 +14,15 @@ public class DataView extends BaseView {
     private DataManager dm = DataManager.getInstance();
     private int btnWidth = 20;    
     private DrawTable tableDrawer;
-
+    private int yPos;
     public DataView() {
         super();
         ishidden = true;
-
+        yPos = state.getDisplayPanelHeight() + Properties.buttonHeight;
         getControllers().add(cp5
                 .addButton(cp5, "showPreviousColumns")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition(app.width - (btnWidth * 3) - 10 - checklableWidth("columns") , app.height - 130)//40 is the text within the 2 buttons
+                .setPosition(app.width - (btnWidth * 3) - 10 - checklableWidth("columns") , yPos)//40 is the text within the 2 buttons
                 .setSize(btnWidth, Properties.buttonHeight)
                 .setLabel(Character.toString('\uf060'))
                 .hide());
@@ -30,7 +30,7 @@ public class DataView extends BaseView {
         getControllers().add(cp5
                 .addButton(cp5, "showNextColumns")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition(app.width - btnWidth - 20, app.height - 130)
+                .setPosition(app.width - btnWidth - 20, yPos)
                 .setSize(btnWidth, Properties.buttonHeight)
                 .setLabel(Character.toString('\uf061'))
                 .hide());
@@ -38,7 +38,7 @@ public class DataView extends BaseView {
         getControllers().add(cp5
                 .addButton(cp5, "BackToMainView")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition(20, app.height - 130)
+                .setPosition(20, yPos)
                 .setSize(70, Properties.buttonHeight)
                 .setLabel("Back")
                 .hide());
@@ -46,7 +46,7 @@ public class DataView extends BaseView {
         getControllers().add(cp5
                 .addButton(cp5, "PreviousPage")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition((app.width / 2) - btnWidth - 35, app.height - 130)
+                .setPosition((app.width / 2) - btnWidth - 35, yPos)
                 .setSize(btnWidth, Properties.buttonHeight)
                 .setLabel(Character.toString('\uf060'))
                 .hide());
@@ -54,7 +54,7 @@ public class DataView extends BaseView {
         getControllers().add(cp5
                 .addButton(cp5, "NextPage")
                 .setColorBackground(Properties.buttonColor)
-                .setPosition((app.width / 2) + 35, app.height - 130)
+                .setPosition((app.width / 2) + 35, yPos)
                 .setSize(btnWidth, Properties.buttonHeight)
                 .setLabel(Character.toString('\uf061'))
                 .hide());
@@ -63,7 +63,7 @@ public class DataView extends BaseView {
                 .addTextfield("PageNr")
                 .setColorBackground(Properties.buttonColor)
                 .setValue("1")
-                .setPosition((app.width / 2) - 30, app.height - 130)
+                .setPosition((app.width / 2) - 30, yPos)
                 .setSize(60, Properties.buttonHeight)
                 .setFont(app.createFont("arial", 20))
                 .setAutoClear(false)
@@ -88,14 +88,14 @@ public class DataView extends BaseView {
         if(getcontrollerByName("showNextColumns").isVisible() || getcontrollerByName("showPreviousColumns").isVisible()){
             app.noStroke();
             app.fill(Properties.buttonColor);
-            app.rect(app.width - (btnWidth * 2) - checklableWidth("Columns") - 4, app.height - 130, checklableWidth("Columns"), Properties.buttonHeight);
+            app.rect(app.width - (btnWidth * 2) - checklableWidth("Columns") - 4, yPos, checklableWidth("Columns"), Properties.buttonHeight);
             
             app.stroke(Properties.strokeColor);
             app.fill(Properties.textColor);
             app.textAlign(PApplet.LEFT);
             
             app.textFont(app.createFont("arial", 10));
-            app.text("Columns", app.width - (btnWidth * 2) - checklableWidth("Columns"), app.height - 113);
+            app.text("Columns", app.width - (btnWidth * 2) - checklableWidth("Columns"), yPos + Properties.displayPanelYOffset - 3);
             state.setFont();
             app.fill(255);
         }
