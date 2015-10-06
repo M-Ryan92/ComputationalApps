@@ -153,7 +153,7 @@ public class DrawBuildingVis {
 
     private void testdrawRooms(int floor){
         int h = 50 + 5;
-        //left side
+        
         for (int i = 0; i < 3; i++) {
             makeClassRoomNode(- 50 - spacing, -(y + (i * h) + (floorYHeight * floor)), 0);
             makeClassRoomNode(-100 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
@@ -202,6 +202,12 @@ public class DrawBuildingVis {
 
             }
         }
+
+        if(nArr.length < building.getFloorList().size()){
+            Node n = (Node) nArr[nArr.length -1];
+            drawConector(n, new Node(n.x, -(boundaryY2 - 1), 44, 44));
+        }
+        
         //draw all the nodes on screen and clear node list
         nodes.stream().forEach(n -> drawNode(n));
         nodes = new ArrayList<>();
