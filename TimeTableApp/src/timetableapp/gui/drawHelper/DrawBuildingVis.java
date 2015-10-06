@@ -115,7 +115,7 @@ public class DrawBuildingVis {
     private void initCoreBuilding(Building building) {
         //create enterance and elevator nodes
 
-        makeEnteranceNode(-60, -(y - 50));
+        makeEnteranceNode(0, -(y - 60));
         floorYHeight = ((boundaryY2) / building.getEtageCount()) + 115;
         for (int etage : building.getFloorList().keySet()) {
             if (boundaryY2 - (floorYHeight * etage) - y > boundaryX1) {
