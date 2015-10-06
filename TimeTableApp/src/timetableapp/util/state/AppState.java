@@ -44,7 +44,7 @@ public class AppState {
     public void setApp(PApplet app) {
         this.app = app;
         displayPanelWidth = app.width - (Properties.displayPanelXOffset * 2);
-        displayPanelHeight = app.height - (Properties.displayPanelYOffset * 2) - 120;
+        displayPanelHeight = app.height - (Properties.displayPanelYOffset * 2) - 80;
         displayPanelHeight = displayPanelHeight - (displayPanelHeight % 24);
     }
 
