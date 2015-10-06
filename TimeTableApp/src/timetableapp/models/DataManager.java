@@ -1,7 +1,11 @@
 package timetableapp.models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import timetableapp.models.table.TableModel;
 import lombok.Getter;
@@ -9,6 +13,15 @@ import processing.data.Table;
 import processing.data.TableRow;
 
 public class DataManager {
+
+    @Getter
+    private TableModel tm;
+
+    @Getter
+    private Map<String, Building> bl;
+
+    @Getter
+    private List<Activity> activities;
 
     private static DataManager instance = new DataManager();
 
@@ -22,6 +35,18 @@ public class DataManager {
     public void createTable(Table data) {
         if (tm == null) {
             tm = new TableModel(data);
+        }
+    }
+
+    public void createActivities(Table data) throws ParseException {
+        if (activities == null) {
+            activities = new ArrayList<>();
+            SimpleDateFormat dp = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            for (TableRow tr : data.rows()) {
+                activities.add(new Activity(tr.getString("Activity"),tr.getString("Course"),
+                        dp.parse(tr.getString("Start date") + " " + tr.getString("Start time")),
+                        dp.parse(tr.getString("End date") + " " + tr.getString("End time"))));
+            }
         }
     }
 
@@ -76,18 +101,12 @@ public class DataManager {
         } else if (Arrays.asList(formatTwo).contains(classRoomInfo[0])) {
             int floor = Integer.valueOf(classRoomInfo[1].subSequence(0, 1).toString());
             int number = Integer.valueOf(classRoomInfo[1].subSequence(2, 4).toString());
-            int capacity = Integer.valueOf(classRoomInfo[classRoomInfo.length - 1].substring(1, classRoomInfo[classRoomInfo.length - 1].length() - 1));            
+            int capacity = Integer.valueOf(classRoomInfo[classRoomInfo.length - 1].substring(1, classRoomInfo[classRoomInfo.length - 1].length() - 1));
             classRoom = new ClassRoom(floor, number, capacity);
         }
         //KMH 2.20
 
         return classRoom;
     }
-
-    @Getter
-    private TableModel tm;
-
-    @Getter
-    private Map<String, Building> bl;
 
 }

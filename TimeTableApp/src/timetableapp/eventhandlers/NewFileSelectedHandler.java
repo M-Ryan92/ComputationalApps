@@ -15,18 +15,19 @@ public class NewFileSelectedHandler implements Callable {
 
     @Override
     public Object call() throws Exception {
-        ExecutorService tp = Executors.newFixedThreadPool(1);
-        tp.submit(() -> {
+        ExecutorService etp = Executors.newFixedThreadPool(1);
+        etp.submit(() -> {
             try {
                 state.getNewFileSelectedStateObserver().resetValue();
                 state.setLoadingFileState(1);
 
                 Table data = new Parser(state.getSelectedFile()).parse();
                 DataManager dm = DataManager.getInstance();
-                
+
                 dm.createTable(data);
                 dm.createMap(data);
-                
+                dm.createActivities(data);
+
                 state.getLoadingFileStateObserver().resetValue();
                 state.setFileLoadedState(1);
             } catch (Exception e) {
