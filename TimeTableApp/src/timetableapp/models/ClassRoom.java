@@ -36,11 +36,9 @@ public class ClassRoom {
         this.capacity = capacity;
         isAvailable = true;
     }
-    
-    
 
-    public String fullLocation() {
-        return String.format("%02d", floor) + letter + String.format("%02d", number);
+    public String floorLocation() {
+        return letter + String.format("%02d", number);
     }
 
 }

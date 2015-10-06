@@ -2,6 +2,7 @@ package timetableapp.models;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import lombok.Getter;
 
 public class Building {
@@ -21,11 +22,12 @@ public class Building {
     }
 
     public void addClassRoom(ClassRoom classRoom) {
-        if (floorList.containsKey(classRoom.getFloor()) && !floorList.get(classRoom.getFloor()).containsKey(classRoom.fullLocation())) {
-            floorList.get(classRoom.getFloor()).put(classRoom.fullLocation(), classRoom);
+        if (floorList.containsKey(classRoom.getFloor()) && !floorList.get(classRoom.getFloor()).containsKey(classRoom.floorLocation())) {
+            floorList.get(classRoom.getFloor()).put(classRoom.floorLocation(), classRoom);
+
         } else if (!floorList.containsKey(classRoom.getFloor())) {
-            Map<String, ClassRoom> crl = new HashMap<>();
-            crl.put(classRoom.fullLocation(), classRoom);
+            Map<String, ClassRoom> crl = new TreeMap<>();
+            crl.put(classRoom.floorLocation(), classRoom);
             floorList.put(classRoom.getFloor(), crl);
 
             if (etageCount < classRoom.getFloor()) {
