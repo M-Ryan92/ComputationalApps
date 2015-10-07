@@ -3,9 +3,11 @@ package timetableapp.gui.drawHelper;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import processing.core.PApplet;
 import processing.core.PImage;
 import timetableapp.gui.Dialog;
@@ -18,7 +20,7 @@ public class DrawBuildingVis {
 
     private PApplet app;
     private PImage enteranceIcon, elevatorIcon, classRoomIcon;
-    private int scale = 6;
+    private int scale = 7;
     private List<Node> nodes;
     private int boundaryX1, boundaryX2, boundaryY1, boundaryY2;
     private int width, height;
@@ -33,17 +35,24 @@ public class DrawBuildingVis {
         boundaryY1 = Properties.displayPanelYOffset + 20;
         boundaryX2 = width - boundaryX1;
         boundaryY2 = height - boundaryY1;
-        
+
         try {
-            elevatorIcon = app.loadImage(getClass().getResource("images/elevatoricon.png").openConnection().getURL().toString(), "png");
-            enteranceIcon = app.loadImage(getClass().getResource("images/deuricon.png").openConnection().getURL().toString(), "png");
-            classRoomIcon = app.loadImage(getClass().getResource("images/klasicon.png").openConnection().getURL().toString(), "png");
+            elevatorIcon = loadIcon("images/elevatoricon.png");
+            enteranceIcon = loadIcon("images/deuricon.png");
+            classRoomIcon = loadIcon("images/klasicon.png");
         } catch (IOException ex) {
             new Dialog().fatalErrorDialog("error occured app closes now =C");
         }
-        
-        
+
         nodes = new ArrayList<>();
+    }
+
+    private PImage loadIcon(String path) throws IOException {
+        PImage img = app.loadImage(getClass().getResource(path).getFile());
+        if (img == null) {
+            img = app.loadImage(getClass().getResource(path).openConnection().getURL().toString());
+        }
+        return img;
     }
 
     private void makeEnteranceNode(int x, int y) {
@@ -62,9 +71,10 @@ public class DrawBuildingVis {
         nodes.add(n);
     }
 
-    private void makeClassRoomNode(int x, int y, int floor) {
+    private void makeClassRoomNode(int x, int y, int floor, ClassRoom cr) {
         Node n = new Node(x, y, classRoomIcon.width / scale, classRoomIcon.height / scale);
         centerDrawing(n);
+        n.cr = cr;
         n.type = "classroom";
         n.floor = floor;
         nodes.add(n);
@@ -83,11 +93,19 @@ public class DrawBuildingVis {
                 break;
             case "elevator":
                 app.image(elevatorIcon, n.x, n.y, n.width, n.height);
-                String text = "etage  " + n.floor;
-                app.text(text, n.x + (app.textWidth(text) / 5), n.y);
+                String text = "etage " + n.floor;
+                
+                app.noStroke();
+                app.fill(Properties.displayColor);
+                app.rect(n.x ,n.y - 22, app.textWidth(text), 19);
+                app.fill(255);
+                app.stroke(Properties.strokeColor);
+                
+                app.text(text, n.x + (app.textWidth(text) / 2), n.y - 10);
                 break;
             case "classroom":
                 app.image(classRoomIcon, n.x, n.y, n.width, n.height);
+                app.text(n.cr.floorLocation(), n.x, n.y);
                 break;
         }
     }
@@ -98,6 +116,7 @@ public class DrawBuildingVis {
         public int width, height;
         public String type;
         public int floor;
+        public ClassRoom cr;
 
         public Node(int x, int y, int width, int height) {
             this.x = x;
@@ -119,6 +138,8 @@ public class DrawBuildingVis {
 
     private int floorYHeight;
     private int y = 25;
+    private int spacing = 15;
+    private Map<Character, List<ClassRoom>> groupedOnLetter;
 
     private void initCoreBuilding(Building building) {
         //create enterance and elevator nodes
@@ -132,71 +153,77 @@ public class DrawBuildingVis {
         }
     }
 
-    private void initBuildingFloorClassRooms(int floor, Map<String, ClassRoom> classrooms) {
-        String partsString = "";
-        for (Iterator<Map.Entry<String, ClassRoom>> iterator = classrooms.entrySet().iterator(); iterator.hasNext();) {
-            String sub = iterator.next().getKey().substring(0, 1);
-            if (!partsString.contains(sub)) {
-                partsString += sub;
+    private void initFloor(Building building, int floor) {
+        Collection<ClassRoom> rooms = building.getFloorList().get(floor).values();
+        Optional<Node> foundElevator = nodes.stream().filter(n -> n.floor == floor && "elevator".equals(n.type)).findFirst();
+
+        groupedOnLetter = rooms.stream().collect(Collectors.groupingBy(s -> s.getLetter()));
+        Character[] keys = groupedOnLetter.keySet().toArray(new Character[groupedOnLetter.size()]);
+
+        int letter = 0;
+        for (Character c : keys) {
+            if (letter < 2) {
+                drawRooms(c, floor, foundElevator, true);
+                drawConector(nodes.get(nodes.size() - 1), foundElevator.orElse(nodes.get(0)));
+                letter++;
             }
         }
-        char[] tochars = partsString.toCharArray();
+    }
 
-        int x = -120;
-        int y = this.y;
-        for (char c : tochars) {
-            //filter the map and parse these in the view
-            for (ClassRoom cr : classrooms.values()) {
-                if (!Character.toString(c).equals(Character.toString(cr.getLetter()))) {
-                    break;
+    private void drawRooms(Character key, int floor, Optional<Node> foundElevator, boolean isLeft) {
+        List<ClassRoom> locations = groupedOnLetter.get(key);
+        if (Character.isLetter(key) && Character.compare(key, 'B') == 0) {
+            isLeft = false;
+        }
+        int height = 50 + 5;
+        int row = 0;
+        int itemsPerRow = (locations.size() / 2);
+        int currentItem = 0;
+        int x, counter;
+        if (isLeft) {
+            x = 70;
+            counter = 70;
+        } else {
+            x = -70;
+            counter = -70;
+        }
+
+        for (ClassRoom cr : locations) {
+            if (currentItem < itemsPerRow) {
+                makeClassRoomNode(-x, -(y + (0 * height) + (floorYHeight * floor)), floor, cr);
+                x += counter;
+            } else {
+                makeClassRoomNode(-x, -(y + (1 * height) + (floorYHeight * floor)), floor, cr);
+                x -= counter;
+            }
+
+            if (currentItem >= 1) {
+                drawConector(nodes.get(nodes.size() - 2), nodes.get(nodes.size() - 1));
+            } else {
+                drawConector(foundElevator.orElse(nodes.get(0)), nodes.get(nodes.size() - 1));
+                if (floor == 0) {
+                    drawConector(nodes.get(0), nodes.get(nodes.size() - 1));
                 }
-//                makeClassRoomNode(x, -y, floor);
-                break;
             }
-            break;
-        }
+            currentItem++;
 
-    }
-    private int spacing = 15;
-
-    private void testdrawRooms(int floor){
-        int h = 50 + 5;
-        
-        for (int i = 0; i < 2; i++) {
-            makeClassRoomNode(- 50 - spacing, -(y + (i * h) + (floorYHeight * floor)), 0);
-            makeClassRoomNode(-100 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(-150 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(-200 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(-250 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(-300 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-//            makeClassRoomNode(-350 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-//            makeClassRoomNode(-400 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-//            makeClassRoomNode(-450 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            spacing = 15;
+            if (x < Properties.displayPanelXOffset) {
+                row++;
+            }
         }
-        for (int i = 0; i < 2; i++) {
-            makeClassRoomNode( 50 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(100 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(150 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(200 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(250 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(300 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-//            makeClassRoomNode(350 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-//            makeClassRoomNode(400 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-//            makeClassRoomNode(450 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            spacing = 15;
-        }    
     }
-    
+
     public void draw(Building building) {
         Draw.drawDisplay();
-        
+
         app.translate((app.width / 2), boundaryY2);
         initCoreBuilding(building);
-        initBuildingFloorClassRooms(0, building.getFloorList().get(0));
-        testdrawRooms(0);
-        testdrawRooms(1);
-        testdrawRooms(2);
+        initFloor(building, 0);
+        initFloor(building, 1);
+        initFloor(building, 2);
+//        testdrawRooms(0);
+//        testdrawRooms(1);
+//        testdrawRooms(2);
         // connect the entrance to the elevator
         drawConector(nodes.get(0), nodes.get(1));
         //draw al the connectors for the elevators
@@ -208,11 +235,11 @@ public class DrawBuildingVis {
             }
         }
 
-        if(nArr.length < building.getFloorList().size()){
-            Node n = (Node) nArr[nArr.length -1];
+        if (nArr.length < building.getFloorList().size()) {
+            Node n = (Node) nArr[nArr.length - 1];
             drawConector(n, new Node(n.x, -(boundaryY2 - 1), 44, 44));
         }
-        
+
         //draw all the nodes on screen and clear node list
         nodes.stream().forEach(n -> drawNode(n));
         nodes = new ArrayList<>();
