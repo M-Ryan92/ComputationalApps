@@ -6,8 +6,8 @@ import timetableapp.gui.drawHelper.Draw;
 import timetableapp.gui.drawHelper.DrawBuildingVis;
 import timetableapp.models.DataManager;
 import timetableapp.util.Properties;
-import timetableapp.util.state.ViewStates;
 import timetableapp.util.observer.StateObserver;
+import timetableapp.util.state.ViewStates;
 
 public final class MainView extends BaseView {
 
@@ -16,7 +16,7 @@ public final class MainView extends BaseView {
     
     public MainView() {
         super();
-        dbv = new DrawBuildingVis(app);
+        //dbv = new DrawBuildingVis(app);
         getControllers().add(cp5
                 .addButton(cp5, "selectFileBtn")
                 .setColorBackground(Properties.buttonColor)
@@ -62,7 +62,7 @@ public final class MainView extends BaseView {
                 Draw.drawDisplayMessage("no file selected");
             } else {
                 //do some epic drawing magic =D
-                dbv.draw(dm.getBl().get("WBH"));
+          //      dbv.draw(dm.getBl().get("WBH"));
             }
         }
     }

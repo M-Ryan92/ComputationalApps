@@ -3,14 +3,13 @@ package timetableapp.util.state;
 import controlP5.ControlP5;
 import java.awt.Font;
 import java.io.File;
-import java.util.Arrays;
-import timetableapp.util.observer.ObservableValue;
 import lombok.Getter;
 import lombok.Setter;
 import processing.core.PApplet;
 import processing.core.PFont;
 import timetableapp.gui.Dialog;
 import timetableapp.util.Properties;
+import timetableapp.util.observer.ObservableValue;
 
 public class AppState {
 
@@ -52,47 +51,33 @@ public class AppState {
         return instance;
     }
 
+    private PFont txtfont, iconFont;
+
+    private Font iFont;
+
     private AppState() {
-
+        Font f;
+        try {
+            f = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("ttf/OpenSans-Regular.ttf").openStream());
+            txtfont = new PFont(f, true);
+            f = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("ttf/fontawesome-webfont.ttf").openStream());
+            f = f.deriveFont(Font.PLAIN, 16F);
+            iconFont = new PFont(f, true);
+        } catch (Exception e) {
+            new Dialog().fatalErrorDialog("error occured app closes now");
+        }
     }
-
-    private Font iconFont;
 
     public PFont getIconFont() {
-        if (iconFont == null) {
-            try {
-                iconFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("../../resources/ttf/fontawesome-webfont.ttf").openStream());
-                iconFont = iconFont.deriveFont(Font.PLAIN, 16F);
-            } catch (Exception e) {
-                new Dialog().fatalErrorDialog("error occured app closes now");
-            }
-        }
-        return new PFont(iconFont, true);
+        return iconFont;
     }
 
-    private void setBaseFont(int size) {
-        PFont font = app.createFont(Arrays.asList(PFont.list()).get(0), size);
-        app.textFont(font, size);
+    public void setFontSize() {
+        AppState.this.setFontSize(14);
     }
 
-    private Font txtfont;
-
-    public void setFont() {
-        setFont(14);
-    }
-
-    public void setFont(int size) {
-        PFont font;
-        if (txtfont == null) {
-            try {
-                txtfont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("../../resources/ttf/OpenSans-Regular.ttf").openStream());
-            } catch (Exception e) {
-                setBaseFont(size);
-            }
-        }
-        font = new PFont(txtfont, true);
-        app.textFont(font, size);
-
+    public void setFontSize(int size) {
+        app.textFont(txtfont, size);
     }
 
     public void setNewFileSelectedState(int value) {

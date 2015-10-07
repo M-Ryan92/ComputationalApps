@@ -68,8 +68,7 @@ public class DataView extends BaseView {
                 .setFont(app.createFont("arial", 20))
                 .setAutoClear(false)
                 .hide());
-        ((Textfield) getcontrollerByName("PageNr")).getCaptionLabel().alignX(PApplet.CENTER);
-        
+        ((Textfield) getcontrollerByName("PageNr")).getCaptionLabel().alignX(PApplet.CENTER);        
         ((Button) getcontrollerByName("PreviousPage")).getCaptionLabel().setFont(state.getIconFont());
         ((Button) getcontrollerByName("NextPage")).getCaptionLabel().setFont(state.getIconFont());
         ((Button) getcontrollerByName("showNextColumns")).getCaptionLabel().setFont(state.getIconFont());
@@ -81,7 +80,7 @@ public class DataView extends BaseView {
         int width;
         app.textFont(app.createFont("arial", 10));
         width = (int) app.textWidth(text) + 30;
-        state.setFont();
+        state.setFontSize();
         return width;
     }
     private void drawColLable() {
@@ -96,7 +95,7 @@ public class DataView extends BaseView {
             
             app.textFont(app.createFont("arial", 10));
             app.text("Columns", app.width - (btnWidth * 2) - checklableWidth("Columns"), yPos + Properties.displayPanelYOffset - 3);
-            state.setFont();
+            state.setFontSize();
             app.fill(255);
         }
     }

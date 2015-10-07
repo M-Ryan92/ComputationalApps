@@ -14,8 +14,8 @@ public class BaseApplication extends PApplet {
 
     @Override
     public void settings() {
-        height = displayHeight - 200;
-        width = displayWidth - 500;
+        height = displayHeight - 100;
+        width = displayWidth - 400;
         size(width, height);
     }
 
@@ -25,7 +25,7 @@ public class BaseApplication extends PApplet {
         
         state.setApp(this);
         state.setCp5(new ControlP5(this));
-        state.setFont();
+        state.setFontSize();
         
         frameRate(60);
         guiHelper = new GuiHelper();

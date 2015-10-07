@@ -16,10 +16,10 @@ public class Draw {
     }
 
     public static void drawDisplayMessage(String text) {
-        state.setFont(30);
+        state.setFontSize(30);
         app.textAlign(PApplet.CENTER);
         app.text(text, (state.getDisplayPanelWidth() / 2), (state.getDisplayPanelHeight() / 2) - 70);
-        state.setFont();
+        state.setFontSize();
     }
 
 }

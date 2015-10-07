@@ -6,8 +6,8 @@ import java.util.concurrent.Executors;
 import processing.data.Table;
 import timetableapp.gui.Dialog;
 import timetableapp.models.DataManager;
-import timetableapp.util.state.AppState;
 import timetableapp.util.Parser;
+import timetableapp.util.state.AppState;
 
 public class NewFileSelectedHandler implements Callable {
 

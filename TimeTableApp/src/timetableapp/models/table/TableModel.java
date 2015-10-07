@@ -19,7 +19,7 @@ public class TableModel {
     @Getter
     private Map<String, Integer> columnsWidth;
     @Getter
-    private int maxColSize = 400;
+    private int maxColSize;
     @Getter
     private List rows;
     @Getter
@@ -37,6 +37,7 @@ public class TableModel {
     }
 
     public TableModel(Table table) {
+        maxColSize = (AppState.getInstance().getDisplayPanelWidth() - Properties.displayPanelXOffset) / 3;
         pages = new HashMap<>();
         data = table;
         columns = Arrays.asList(data.getColumnTitles());
