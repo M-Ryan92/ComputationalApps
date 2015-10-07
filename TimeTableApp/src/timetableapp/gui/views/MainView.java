@@ -13,10 +13,10 @@ public final class MainView extends BaseView {
 
     private DataManager dm = DataManager.getInstance();
     private DrawBuildingVis dbv;
-    
+
     public MainView() {
         super();
-        //dbv = new DrawBuildingVis(app);
+        dbv = new DrawBuildingVis(app);
         getControllers().add(cp5
                 .addButton(cp5, "selectFileBtn")
                 .setColorBackground(Properties.buttonColor)
@@ -62,7 +62,7 @@ public final class MainView extends BaseView {
                 Draw.drawDisplayMessage("no file selected");
             } else {
                 //do some epic drawing magic =D
-          //      dbv.draw(dm.getBl().get("WBH"));
+                dbv.draw(dm.getBl().get("WBH"));
             }
         }
     }

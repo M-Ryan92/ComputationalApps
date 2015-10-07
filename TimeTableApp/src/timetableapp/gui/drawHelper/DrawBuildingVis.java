@@ -1,12 +1,14 @@
 package timetableapp.gui.drawHelper;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import processing.core.PApplet;
 import processing.core.PImage;
+import timetableapp.gui.Dialog;
 import timetableapp.models.Building;
 import timetableapp.models.ClassRoom;
 import timetableapp.util.Properties;
@@ -31,10 +33,16 @@ public class DrawBuildingVis {
         boundaryY1 = Properties.displayPanelYOffset + 20;
         boundaryX2 = width - boundaryX1;
         boundaryY2 = height - boundaryY1;
-
-        elevatorIcon = app.loadImage(getClass().getResource("../../resources/images/elevatoricon.png").getFile());
-        enteranceIcon = app.loadImage(getClass().getResource("../../resources/images/deuricon.png").getFile());
-        classRoomIcon = app.loadImage(getClass().getResource("../../resources/images/klasicon.png").getFile());
+        
+        try {
+            elevatorIcon = app.loadImage(getClass().getResource("images/elevatoricon.png").openConnection().getURL().toString(), "png");
+            enteranceIcon = app.loadImage(getClass().getResource("images/deuricon.png").openConnection().getURL().toString(), "png");
+            classRoomIcon = app.loadImage(getClass().getResource("images/klasicon.png").openConnection().getURL().toString(), "png");
+        } catch (IOException ex) {
+            new Dialog().fatalErrorDialog("error occured app closes now =C");
+        }
+        
+        
         nodes = new ArrayList<>();
     }
 
@@ -154,30 +162,28 @@ public class DrawBuildingVis {
     private void testdrawRooms(int floor){
         int h = 50 + 5;
         
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             makeClassRoomNode(- 50 - spacing, -(y + (i * h) + (floorYHeight * floor)), 0);
             makeClassRoomNode(-100 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             makeClassRoomNode(-150 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             makeClassRoomNode(-200 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             makeClassRoomNode(-250 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             makeClassRoomNode(-300 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(-350 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(-400 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(-450 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(-500 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
+//            makeClassRoomNode(-350 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
+//            makeClassRoomNode(-400 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
+//            makeClassRoomNode(-450 - spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             spacing = 15;
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             makeClassRoomNode( 50 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             makeClassRoomNode(100 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             makeClassRoomNode(150 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             makeClassRoomNode(200 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             makeClassRoomNode(250 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             makeClassRoomNode(300 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(350 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(400 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(450 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
-            makeClassRoomNode(500 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
+//            makeClassRoomNode(350 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
+//            makeClassRoomNode(400 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
+//            makeClassRoomNode(450 + spacing, -(y + (i * h)+ (floorYHeight * floor)), 0);
             spacing = 15;
         }    
     }
@@ -191,7 +197,6 @@ public class DrawBuildingVis {
         testdrawRooms(0);
         testdrawRooms(1);
         testdrawRooms(2);
-        testdrawRooms(3);
         // connect the entrance to the elevator
         drawConector(nodes.get(0), nodes.get(1));
         //draw al the connectors for the elevators
