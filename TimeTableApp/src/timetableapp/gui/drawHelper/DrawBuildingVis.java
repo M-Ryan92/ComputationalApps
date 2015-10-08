@@ -197,7 +197,7 @@ public class DrawBuildingVis {
                 fittingEtage++;
             }
         }
-        if(maxPages == 0){
+        if (maxPages == 0) {
             maxPages = maxEtages / fittingEtage;
         }
         if (currentPage == 0) {
@@ -329,9 +329,13 @@ public class DrawBuildingVis {
             }
         }
 
-        if (nArr.length < building.getFloorList().size()) {
+        if (currentPage != maxPages) {
             Node n = (Node) nArr[nArr.length - 1];
             drawConector(n, new Node(n.x, -(boundaryY2 - 1), 44, 44));
+        }
+        if (currentPage > 0) {
+            Node n = (Node) nArr[0];
+            drawConector(n, new Node(n.x,  boundaryY1 - 5, 44, 44));
         }
 
         //draw all the nodes on screen and clear node list
