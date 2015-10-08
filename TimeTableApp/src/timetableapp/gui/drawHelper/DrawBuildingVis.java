@@ -158,27 +158,63 @@ public class DrawBuildingVis {
     }
 
     private void initFloor(Building building, int floor) {
+        List<List<ClassRoom>> devidedLists;
+
         Collection<ClassRoom> rooms = building.getFloorList().get(floor).values();
         Optional<Node> foundElevator = nodes.stream().filter(n -> n.floor == floor && "elevator".equals(n.type)).findFirst();
-
         groupedOnLetter = rooms.stream().collect(Collectors.groupingBy(s -> s.getLetter()));
         Character[] keys = groupedOnLetter.keySet().toArray(new Character[groupedOnLetter.size()]);
 
-        int letter = 0;
-        for (Character c : keys) {
-            if (letter < 2) {
-                drawRooms(c, floor, foundElevator, true);
-                drawConector(nodes.get(nodes.size() - 1), foundElevator.orElse(nodes.get(0)));
-                letter++;
-            }
+        if (keys.length < 2) {
+            devidedLists = devideLists(keys, groupedOnLetter.get(keys[0]), new ArrayList<>());
+        } else {
+            devidedLists = devideLists(keys, groupedOnLetter.get(keys[0]), groupedOnLetter.get(keys[1]));
         }
+        drawRooms(devidedLists.get(0), floor, foundElevator, true);
+        drawRooms(devidedLists.get(1), floor, foundElevator, false);
+
     }
 
-    private void drawRooms(Character key, int floor, Optional<Node> foundElevator, boolean isLeft) {
-        List<ClassRoom> locations = groupedOnLetter.get(key);
-        if (Character.isLetter(key) && Character.compare(key, 'B') == 0) {
-            isLeft = false;
+    private List<List<ClassRoom>> devideLists(Character[] keys, List<ClassRoom> left, List<ClassRoom> right) {
+        int giveRight, giveLeft, dif;
+        List<ClassRoom> leftover = new ArrayList();
+        List<ClassRoom> subList;
+
+        if (keys.length >= 3) {
+            for (int k = 2; k < keys.length; k++) {
+                leftover.addAll(groupedOnLetter.get(keys[k]));
+            }
         }
+
+        if (left.size() + (leftover.size() / 2) > right.size() + (leftover.size() / 2)) {
+            right.addAll(leftover);
+            dif = left.size() - right.size();
+            subList = left.subList(left.size() - (dif / 2), left.size());
+            right.addAll(subList);
+            subList = left.subList(0, left.size() - (dif / 2));
+            left = subList;
+        } else if (left.size() + (leftover.size() / 2) < (right.size() + (leftover.size() / 2))) {
+            left.addAll(leftover);
+            dif = right.size() - left.size();
+            subList = right.subList(right.size() - (dif / 2), right.size());
+            left.addAll(subList);
+            subList = right.subList(0, right.size() - (dif / 2));
+            right = subList;
+        } else {
+            dif = right.size() - left.size();
+            left.addAll(leftover.subList(0, leftover.size() - (dif / 2)));
+            right.addAll(leftover.subList(leftover.size() - (dif / 2), leftover.size()));
+        }
+
+        List<List<ClassRoom>> results = new ArrayList();
+        results.add(left);
+        results.add(right);
+
+        return results;
+    }
+
+    private void drawRooms(List<ClassRoom> locations, int floor, Optional<Node> foundElevator, boolean isLeft) {
+
         int height = 50 + 5;
         int row = 0;
         int itemsPerRow = (locations.size() / 2);
@@ -193,6 +229,9 @@ public class DrawBuildingVis {
         }
 
         for (ClassRoom cr : locations) {
+            if (currentItem >= locations.size() - 1) {
+                x = counter;
+            }
             if (currentItem < itemsPerRow) {
                 makeClassRoomNode(-x, -(y + (0 * height) + (floorYHeight * floor)), floor, cr);
                 x += counter;
@@ -215,6 +254,12 @@ public class DrawBuildingVis {
                 row++;
             }
         }
+        if (floor != 0) {
+            drawConector(nodes.get(nodes.size() - 1), foundElevator.get());
+        } else {
+            drawConector(nodes.get(nodes.size() - 1), foundElevator.orElse(nodes.get(0)));
+        }
+
     }
 
     public void draw(Building building) {
