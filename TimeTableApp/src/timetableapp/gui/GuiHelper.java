@@ -49,7 +49,7 @@ public class GuiHelper {
         int key = evt.getKeyCode();
         switch (state.getSelectedViewState()) {
             case (ViewStates.DataView):
-                if(key == 10){
+                if (key == 10) {
                     dv.handleEnter();
                 }
                 break;
@@ -104,6 +104,14 @@ public class GuiHelper {
                 break;
             case ("showPreviousColumns"):
                 dv.colPageMinus();
+                break;
+            case ("floorUp"):
+                mv.getDbv().floorsUp();
+                mv.checkState();
+                break;
+            case ("floorDown"):
+                mv.getDbv().floorsDown();
+                mv.checkState();
                 break;
         }
 

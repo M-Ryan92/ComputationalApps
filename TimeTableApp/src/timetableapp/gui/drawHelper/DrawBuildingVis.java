@@ -1,5 +1,6 @@
 package timetableapp.gui.drawHelper;
 
+import controlP5.ControllerInterface;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +25,51 @@ public class DrawBuildingVis {
     private List<Node> nodes;
     private int boundaryX1, boundaryX2, boundaryY1, boundaryY2;
     private int width, height;
+
+    private int floorYHeight;
+    private int y = 25;
+    private int spacing = 15;
+    private Map<Character, List<ClassRoom>> groupedOnLetter;
+
+    private int fittingEtage;
+    private int startetage = 0;
+    private int maxPages = 0;
+    private int currentPage = 0;
+    private int maxEtages = 0;
+
+    public void floorsUp() {
+        currentPage++;
+        startetage = fittingEtage * currentPage;
+
+    }
+
+    public void floorsDown() {
+        if (currentPage != 0) {
+            currentPage--;
+            startetage = fittingEtage * currentPage;
+        }
+    }
+
+    public void checkBtnState(ControllerInterface ctrl1, ControllerInterface ctrl2) {
+        if (currentPage == 0) {
+            ctrl1.hide();
+        } else {
+            ctrl1.show();
+        }
+        if (currentPage >= maxPages) {
+            ctrl2.hide();
+        } else {
+            ctrl2.show();
+        }
+    }
+
+    public String getEtageRange() {
+        int endRange = currentPage > 0 ? startetage + (fittingEtage - 1) : (fittingEtage - 1);
+        if(currentPage == maxPages){
+            endRange = maxEtages;
+        }
+        return startetage + "-" + endRange;
+    }
 
     public DrawBuildingVis(PApplet app) {
         this.app = app;
@@ -136,25 +182,19 @@ public class DrawBuildingVis {
         app.stroke(Properties.strokeColor);
     }
 
-    private int floorYHeight;
-    private int y = 25;
-    private int spacing = 15;
-    private Map<Character, List<ClassRoom>> groupedOnLetter;
-    private int etage;
-
     private void initCoreBuilding(Building building) {
         //create enterance and elevator nodes
-        etage = 0;
-
+        fittingEtage = 0;
+        maxEtages = building.getEtageCount();
         makeEnteranceNode(0, -(y - 60));
-        floorYHeight = ((boundaryY2) / building.getEtageCount()) + 120;
+        floorYHeight = ((boundaryY2) / maxEtages) + 120;
         for (int floor : building.getFloorList().keySet()) {
             if (boundaryY2 - (floorYHeight * (floor + 1)) > (boundaryX1 - y)) {
                 makeElevatorNode(0, -(floorYHeight * floor) - y, floor);
-                etage++;
+                fittingEtage++;
             }
         }
-        System.out.println("");
+        maxPages = maxEtages / fittingEtage;
     }
 
     private void initFloor(Building building, int floor) {
@@ -268,7 +308,7 @@ public class DrawBuildingVis {
         app.translate((app.width / 2), boundaryY2);
         initCoreBuilding(building);
         for (int floor : building.getFloorList().keySet()) {
-            if (floor < etage) {
+            if (floor < fittingEtage) {
                 initFloor(building, floor);
             }
         }
