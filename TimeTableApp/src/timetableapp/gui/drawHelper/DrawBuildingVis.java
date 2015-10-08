@@ -27,7 +27,7 @@ public class DrawBuildingVis {
     private int width, height;
 
     private int floorYHeight;
-    private int y = 25;
+    private int y = 50;
     private int spacing = 15;
     private Map<Character, List<ClassRoom>> groupedOnLetter;
 
@@ -65,7 +65,7 @@ public class DrawBuildingVis {
 
     public String getEtageRange() {
         int endRange = currentPage > 0 ? startetage + (fittingEtage - 1) : (fittingEtage - 1);
-        if(currentPage == maxPages){
+        if (currentPage == maxPages) {
             endRange = maxEtages;
         }
         return startetage + "-" + endRange;
@@ -183,18 +183,23 @@ public class DrawBuildingVis {
     }
 
     private void initCoreBuilding(Building building) {
-        //create enterance and elevator nodes
         fittingEtage = 0;
         maxEtages = building.getEtageCount();
-        makeEnteranceNode(0, -(y - 60));
         floorYHeight = ((boundaryY2) / maxEtages) + 120;
+        if (currentPage == 0) {
+            makeEnteranceNode(0, -(y - 60));
+        }
+
         for (int floor : building.getFloorList().keySet()) {
-            if (boundaryY2 - (floorYHeight * (floor + 1)) > (boundaryX1 - y)) {
-                makeElevatorNode(0, -(floorYHeight * floor) - y, floor);
+            if ((floor - startetage) >= 0 && boundaryY2 - (floorYHeight * (floor - startetage + 1)) > (boundaryX1 - y)) {
+                makeElevatorNode(0, -(floorYHeight * (floor - startetage)) - y, floor);
                 fittingEtage++;
             }
         }
         maxPages = maxEtages / fittingEtage;
+        if (currentPage == 0) {
+            drawConector(nodes.get(0), nodes.get(1));
+        }
     }
 
     private void initFloor(Building building, int floor) {
@@ -273,10 +278,10 @@ public class DrawBuildingVis {
                 x = counter;
             }
             if (currentItem < itemsPerRow) {
-                makeClassRoomNode(-x, -(y + (0 * height) + (floorYHeight * floor)), floor, cr);
+                makeClassRoomNode(-x, -(y + (0 * height) + (floorYHeight * (floor - startetage) )), floor, cr);
                 x += counter;
             } else {
-                makeClassRoomNode(-x, -(y + (1 * height) + (floorYHeight * floor)), floor, cr);
+                makeClassRoomNode(-x, -(y + (1 * height) + (floorYHeight * (floor - startetage))), floor, cr);
                 x -= counter;
             }
 
@@ -308,19 +313,16 @@ public class DrawBuildingVis {
         app.translate((app.width / 2), boundaryY2);
         initCoreBuilding(building);
         for (int floor : building.getFloorList().keySet()) {
-            if (floor < fittingEtage) {
+            if ((floor - startetage) >= 0 && floor < (fittingEtage + startetage)) {
                 initFloor(building, floor);
             }
         }
 
-        // connect the entrance to the elevator
-        drawConector(nodes.get(0), nodes.get(1));
         //draw al the connectors for the elevators
         Object[] nArr = nodes.stream().filter(n -> n.type == "elevator").toArray();
         for (int item = 0; item < nArr.length; item++) {
             if (item + 1 < nArr.length) {
                 drawConector((Node) nArr[item], (Node) nArr[item + 1]);
-
             }
         }
 
