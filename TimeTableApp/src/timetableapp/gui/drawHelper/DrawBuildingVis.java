@@ -38,9 +38,10 @@ public class DrawBuildingVis {
     private int maxEtages = 0;
 
     public void floorsUp() {
-        currentPage++;
-        startetage = fittingEtage * currentPage;
-
+        if (currentPage + 1 <= maxPages) {
+            currentPage++;
+            startetage = fittingEtage * currentPage;
+        }
     }
 
     public void floorsDown() {
@@ -56,7 +57,7 @@ public class DrawBuildingVis {
         } else {
             ctrl1.show();
         }
-        if (currentPage >= maxPages) {
+        if (currentPage == maxPages) {
             ctrl2.hide();
         } else {
             ctrl2.show();
@@ -196,7 +197,9 @@ public class DrawBuildingVis {
                 fittingEtage++;
             }
         }
-        maxPages = maxEtages / fittingEtage;
+        if(maxPages == 0){
+            maxPages = maxEtages / fittingEtage;
+        }
         if (currentPage == 0) {
             drawConector(nodes.get(0), nodes.get(1));
         }
@@ -278,7 +281,7 @@ public class DrawBuildingVis {
                 x = counter;
             }
             if (currentItem < itemsPerRow) {
-                makeClassRoomNode(-x, -(y + (0 * height) + (floorYHeight * (floor - startetage) )), floor, cr);
+                makeClassRoomNode(-x, -(y + (0 * height) + (floorYHeight * (floor - startetage))), floor, cr);
                 x += counter;
             } else {
                 makeClassRoomNode(-x, -(y + (1 * height) + (floorYHeight * (floor - startetage))), floor, cr);
