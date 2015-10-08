@@ -121,13 +121,13 @@ public class DrawBuildingVis {
 
     private void makeClassRoomNode(int x, int y, int floor, ClassRoom cr) {
         Node n;
-        
-        if(cr.isAvailable()){
-        n = new Node(x, y, classRoomIcon.width / scale, classRoomIcon.height / scale);
-        } else{
-        n = new Node(x, y, classRoomUnavailableIcon.width / scale, classRoomUnavailableIcon.height / scale);
+
+        if (cr.isAvailable()) {
+            n = new Node(x, y, classRoomIcon.width / scale, classRoomIcon.height / scale);
+        } else {
+            n = new Node(x, y, classRoomUnavailableIcon.width / scale, classRoomUnavailableIcon.height / scale);
         }
-        
+
         centerDrawing(n);
         n.cr = cr;
         n.type = "classroom";
@@ -153,13 +153,13 @@ public class DrawBuildingVis {
                 app.noStroke();
                 app.fill(Properties.displayColor);
                 app.rect(n.x, n.y - 22, app.textWidth(text), 19);
-                app.fill(255);
                 app.stroke(Properties.strokeColor);
+                app.fill(255);
 
                 app.text(text, n.x + (app.textWidth(text) / 2), n.y - 10);
                 break;
             case "classroom":
-                if(n.cr.isAvailable()){
+                if (n.cr.isAvailable()) {
                     app.image(classRoomIcon, n.x, n.y, n.width, n.height);
                 } else {
                     app.image(classRoomUnavailableIcon, n.x, n.y, n.width, n.height);
@@ -197,7 +197,7 @@ public class DrawBuildingVis {
 
     private void initCoreBuilding(Building building) {
         fittingEtage = 0;
-        maxEtages = building.getEtageCount();
+        maxEtages = building.getFloorCount();
         floorYHeight = ((boundaryY2) / maxEtages) + 120;
         if (currentPage == 0) {
             makeEnteranceNode(0, -(y - 60));
@@ -347,12 +347,23 @@ public class DrawBuildingVis {
         }
         if (currentPage > 0) {
             Node n = (Node) nArr[0];
-            drawConector(n, new Node(n.x,  boundaryY1 - 5, 44, 44));
+            drawConector(n, new Node(n.x, boundaryY1 - 5, 44, 44));
         }
 
         //draw all the nodes on screen and clear node list
         nodes.stream().forEach(n -> drawNode(n));
         nodes = new ArrayList<>();
         app.translate(-(app.width / 2), -boundaryY2);
+
+        app.noStroke();
+        app.fill(Properties.displayColor);
+        app.rect( (app.width / 2) - 8, boundaryY1 + 19 , 16, -30);
+        app.stroke(Properties.strokeColor);
+        app.fill(255);
+        
+        AppState.getInstance().setFontSize(30);
+        
+        app.text(building.getName()+ " " + building.getCode(), app.width / 2, boundaryY1 + 15);
+        AppState.getInstance().setFontSize();        
     }
 }

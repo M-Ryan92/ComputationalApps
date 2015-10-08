@@ -10,14 +10,15 @@ public class Building {
     @Getter
     private String code;
     @Getter
-    private String naam;
+    private String name;
     @Getter
-    private int etageCount;
+    private int floorCount;
     @Getter
     private Map<Integer, Map<String, ClassRoom>> floorList;
 
-    public Building(String code) {
+    public Building(String code, String name) {
         this.code = code;
+        this.name = name;
         floorList = new HashMap<>();
     }
 
@@ -30,8 +31,8 @@ public class Building {
             crl.put(classRoom.floorLocation(), classRoom);
             floorList.put(classRoom.getFloor(), crl);
 
-            if (etageCount < classRoom.getFloor()) {
-                etageCount = classRoom.getFloor();
+            if (floorCount < classRoom.getFloor()) {
+                floorCount = classRoom.getFloor();
             }
 
         }

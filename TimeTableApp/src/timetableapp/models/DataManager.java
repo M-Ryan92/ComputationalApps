@@ -23,6 +23,8 @@ public class DataManager {
     @Getter
     private List<Activity> activities;
 
+    private Map<String,String> names;
+    
     private static DataManager instance = new DataManager();
 
     public static DataManager getInstance() {
@@ -30,6 +32,16 @@ public class DataManager {
     }
 
     private DataManager() {
+            names = new HashMap(){{
+                put("KSH","KOHNSTAMMHUIS");
+                put("STU","STUDIO HVA");
+                put("MLH","MULLER-LULOFSHUIS");
+                put("TTH","THEO THIJSSENHUIS");
+                put("BPH","BENNO PREMSELAHUIS");
+                put("WBH","WIBAUTHUIS");
+                put("KMH","KOETSIER-MONTAIGNEHUIS");
+            }};
+        
     }
 
     public void createTable(Table data) {
@@ -67,7 +79,7 @@ public class DataManager {
             }
         }
     }
-
+    
     private void addLocation(String location) {
         String[] classRoomInfo = location.trim().split(" ");
         String code = classRoomInfo[0];
@@ -78,7 +90,7 @@ public class DataManager {
                 bl.get(code).addClassRoom(c);
             }
         } else {
-            Building b = new Building(code);
+            Building b = new Building(code, names.get(code));
             c = makeClassRoom(classRoomInfo);
             if (c != null) {
                 b.addClassRoom(c);
