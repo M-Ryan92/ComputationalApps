@@ -94,13 +94,13 @@ public class DrawBuildingVis {
             case "elevator":
                 app.image(elevatorIcon, n.x, n.y, n.width, n.height);
                 String text = "etage " + n.floor;
-                
+
                 app.noStroke();
                 app.fill(Properties.displayColor);
-                app.rect(n.x ,n.y - 22, app.textWidth(text), 19);
+                app.rect(n.x, n.y - 22, app.textWidth(text), 19);
                 app.fill(255);
                 app.stroke(Properties.strokeColor);
-                
+
                 app.text(text, n.x + (app.textWidth(text) / 2), n.y - 10);
                 break;
             case "classroom":
@@ -140,17 +140,21 @@ public class DrawBuildingVis {
     private int y = 25;
     private int spacing = 15;
     private Map<Character, List<ClassRoom>> groupedOnLetter;
+    private int etage;
 
     private void initCoreBuilding(Building building) {
         //create enterance and elevator nodes
+        etage = 0;
 
         makeEnteranceNode(0, -(y - 60));
-        floorYHeight = ((boundaryY2) / building.getEtageCount()) + 115;
-        for (int etage : building.getFloorList().keySet()) {
-            if (boundaryY2 - (floorYHeight * etage) - y > boundaryX1) {
-                makeElevatorNode(0, -(floorYHeight * etage) - y, etage);
+        floorYHeight = ((boundaryY2) / building.getEtageCount()) + 120;
+        for (int floor : building.getFloorList().keySet()) {
+            if (boundaryY2 - (floorYHeight * (floor + 1)) > (boundaryX1 - y)) {
+                makeElevatorNode(0, -(floorYHeight * floor) - y, floor);
+                etage++;
             }
         }
+        System.out.println("");
     }
 
     private void initFloor(Building building, int floor) {
@@ -218,12 +222,12 @@ public class DrawBuildingVis {
 
         app.translate((app.width / 2), boundaryY2);
         initCoreBuilding(building);
-        initFloor(building, 0);
-        initFloor(building, 1);
-        initFloor(building, 2);
-//        testdrawRooms(0);
-//        testdrawRooms(1);
-//        testdrawRooms(2);
+        for (int floor : building.getFloorList().keySet()) {
+            if (floor < etage) {
+                initFloor(building, floor);
+            }
+        }
+
         // connect the entrance to the elevator
         drawConector(nodes.get(0), nodes.get(1));
         //draw al the connectors for the elevators
