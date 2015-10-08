@@ -20,7 +20,7 @@ import timetableapp.util.state.AppState;
 public class DrawBuildingVis {
 
     private PApplet app;
-    private PImage enteranceIcon, elevatorIcon, classRoomIcon;
+    private PImage enteranceIcon, elevatorIcon, classRoomIcon, classRoomUnavailableIcon;
     private int scale = 7;
     private List<Node> nodes;
     private int boundaryX1, boundaryX2, boundaryY1, boundaryY2;
@@ -87,6 +87,7 @@ public class DrawBuildingVis {
             elevatorIcon = loadIcon("images/elevatoricon.png");
             enteranceIcon = loadIcon("images/deuricon.png");
             classRoomIcon = loadIcon("images/klasicon.png");
+            classRoomUnavailableIcon = loadIcon("images/klasclosedicon.png");
         } catch (IOException ex) {
             new Dialog().fatalErrorDialog("error occured app closes now =C");
         }
@@ -119,7 +120,14 @@ public class DrawBuildingVis {
     }
 
     private void makeClassRoomNode(int x, int y, int floor, ClassRoom cr) {
-        Node n = new Node(x, y, classRoomIcon.width / scale, classRoomIcon.height / scale);
+        Node n;
+        
+        if(cr.isAvailable()){
+        n = new Node(x, y, classRoomIcon.width / scale, classRoomIcon.height / scale);
+        } else{
+        n = new Node(x, y, classRoomUnavailableIcon.width / scale, classRoomUnavailableIcon.height / scale);
+        }
+        
         centerDrawing(n);
         n.cr = cr;
         n.type = "classroom";
@@ -151,7 +159,11 @@ public class DrawBuildingVis {
                 app.text(text, n.x + (app.textWidth(text) / 2), n.y - 10);
                 break;
             case "classroom":
-                app.image(classRoomIcon, n.x, n.y, n.width, n.height);
+                if(n.cr.isAvailable()){
+                    app.image(classRoomIcon, n.x, n.y, n.width, n.height);
+                } else {
+                    app.image(classRoomUnavailableIcon, n.x, n.y, n.width, n.height);
+                }
                 app.text(n.cr.floorLocation(), n.x, n.y);
                 break;
         }
