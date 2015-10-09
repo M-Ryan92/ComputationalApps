@@ -25,6 +25,10 @@ public final class MainView extends BaseView {
     @Getter
     private DrawBuildingVis dbv;
 
+    private int pickerx = app.width - (app.width / 3) - (app.width / 9) ;
+    private int pickery = state.getDisplayPanelHeight() + 30;
+    private Calendar c = Calendar.getInstance();
+
     public MainView() {
         super();
         dbv = new DrawBuildingVis(app);
@@ -61,10 +65,17 @@ public final class MainView extends BaseView {
                 .hide());
         ((Button) getcontrollerByName("floorDown")).getCaptionLabel().setFont(state.getIconFont());
 
+        getControllers().add(cp5
+                .addLabel("Select Date")
+                .setFont(state.getFont())
+                .setPosition(pickerx + 20, pickery)
+                .hide()
+        );
+
         Calendar cal = Calendar.getInstance();
-        picker("day", app.width - (app.width / 3), state.getDisplayPanelHeight(), 30, cal.get(Calendar.DAY_OF_MONTH));
-        picker("month", app.width - (app.width / 3) + 35, state.getDisplayPanelHeight(), 40, cal.get(Calendar.MONTH)+1);
-        picker("year", app.width - (app.width / 3) + 80, state.getDisplayPanelHeight(), 40, cal.get(Calendar.YEAR));
+        picker("day", pickerx, pickery, 30, cal.get(Calendar.DAY_OF_MONTH));
+        picker("month", pickerx + 35, pickery, 40, cal.get(Calendar.MONTH) + 1);
+        picker("year", pickerx + 80, pickery, 40, cal.get(Calendar.YEAR));
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
@@ -99,13 +110,16 @@ public final class MainView extends BaseView {
                 .setPosition(x, y + (AppProperties.buttonHeight * 1))
                 .setLabel(name + " +")
                 .setSize(width, AppProperties.buttonHeight)
+                .hide()
         );
         getControllers().add(cp5.addTextfield(name + "Val")
                 .setColorBackground(AppProperties.buttonColor)
-                .setPosition(x, state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 2) + 4)
+                .setPosition(x, y + (AppProperties.buttonHeight * 2) + 4)
                 .setSize(width, AppProperties.buttonHeight)
                 .setText(String.valueOf(input))
+                .setLabel("")
                 .lock()
+                .hide()
         );
         ((Textfield) getcontrollerByName(name + "Val")).getValueLabel().alignX(ControlP5.CENTER);
         getControllers().add(cp5.addButton(name + "Minus")
@@ -113,7 +127,14 @@ public final class MainView extends BaseView {
                 .setPosition(x, y + (AppProperties.buttonHeight * 3) + 8)
                 .setLabel(name + " -")
                 .setSize(width, AppProperties.buttonHeight)
+                .hide()
         );
+    }
+
+    private void setDateFields() {
+        ((Textfield) getcontrollerByName("dayVal")).setText(String.valueOf(c.get(Calendar.DAY_OF_MONTH)));
+        ((Textfield) getcontrollerByName("monthVal")).setText(String.valueOf(c.get(Calendar.MONTH) + 1));
+        ((Textfield) getcontrollerByName("yearVal")).setText(String.valueOf(c.get(Calendar.YEAR)));
     }
 
     public void controlEvent(ControlEvent evt) {
@@ -123,12 +144,28 @@ public final class MainView extends BaseView {
         boolean isDigit = true;
         switch (controller.getName()) {
             case ("dayPlus"):
-                ctrl = getcontrollerByName("dayVal");
-                ((Textfield) ctrl).setText("0");
+                c.add(Calendar.DATE, 1);
+                setDateFields();
                 break;
             case ("dayMinus"):
-                ctrl = getcontrollerByName("dayVal");
-                ((Textfield) ctrl).setText("32");
+                c.add(Calendar.DATE, -1);
+                setDateFields();
+                break;
+            case ("monthPlus"):
+                c.add(Calendar.MONTH, 1);
+                setDateFields();
+                break;
+            case ("monthMinus"):
+                c.add(Calendar.MONTH, -1);
+                setDateFields();
+                break;
+            case ("yearPlus"):
+                c.add(Calendar.YEAR, 1);
+                setDateFields();
+                break;
+            case ("yearMinus"):
+                c.add(Calendar.YEAR, -1);
+                setDateFields();
                 break;
             case ("selectFileBtn"):
                 JFileChooser fc = new JFileChooser();
@@ -165,6 +202,11 @@ public final class MainView extends BaseView {
                 //do some epic drawing magic =D
                 dbv.draw(dm.getBl().get("WBH"));
                 dbv.checkBtnState(getcontrollerByName("floorDown"), getcontrollerByName("floorUp"));
+
+                app.fill(AppProperties.displayColor);
+                app.rect(pickerx - 10, pickery - 5, 140, (AppProperties.buttonHeight * 3) + 42);
+                app.fill(255);
+
                 app.text(dbv.getEtageRange(), (app.width / 2), state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 3) - 8);
             }
         }

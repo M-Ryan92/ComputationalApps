@@ -43,7 +43,7 @@ public class AppState {
     public void setApp(PApplet app) {
         this.app = app;
         displayPanelWidth = app.width - (AppProperties.displayPanelXOffset * 2);
-        displayPanelHeight = app.height - (AppProperties.displayPanelYOffset * 2) - 80;
+        displayPanelHeight = app.height - (AppProperties.displayPanelYOffset * 2) - 100;
         displayPanelHeight = displayPanelHeight - (displayPanelHeight % 24);
     }
 
@@ -59,6 +59,7 @@ public class AppState {
         Font f;
         try {
             f = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("ttf/OpenSans-Regular.ttf").openStream());
+            f = f.deriveFont(Font.PLAIN, 14F);
             txtfont = new PFont(f, true);
             f = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("ttf/fontawesome-webfont.ttf").openStream());
             f = f.deriveFont(Font.PLAIN, 16F);
@@ -70,6 +71,10 @@ public class AppState {
 
     public PFont getIconFont() {
         return iconFont;
+    }
+
+    public PFont getFont() {
+        return txtfont;
     }
 
     public void setFontSize() {

@@ -164,7 +164,7 @@ public class DrawBuildingVis {
                 } else {
                     app.image(classRoomUnavailableIcon, n.x, n.y, n.width, n.height);
                 }
-                app.text(n.cr.floorLocation(), n.x + (n.width/2), n.y + (n.height/2) + 3);
+                app.text(n.cr.floorLocation(), n.x + (n.width / 2), n.y + (n.height / 2) + 3);
                 break;
         }
     }
@@ -195,8 +195,12 @@ public class DrawBuildingVis {
         app.stroke(AppProperties.strokeColor);
     }
 
+    boolean isUnKownFitting = true;
+
     private void initCoreBuilding(Building building) {
-        fittingEtage = 0;
+        if (isUnKownFitting) {
+            fittingEtage = 0;
+        }
         maxEtages = building.getFloorCount();
         floorYHeight = ((boundaryY2) / maxEtages) + 120;
         if (currentPage == 0) {
@@ -206,8 +210,13 @@ public class DrawBuildingVis {
         for (int floor : building.getFloorList().keySet()) {
             if ((floor - startetage) >= 0 && boundaryY2 - (floorYHeight * (floor - startetage + 1)) > (boundaryX1 - y)) {
                 makeElevatorNode(0, -(floorYHeight * (floor - startetage)) - y, floor);
-                fittingEtage++;
+                if (isUnKownFitting) {
+                    fittingEtage++;
+                }
             }
+        }
+        if (fittingEtage > 0) {
+            isUnKownFitting = false;
         }
         if (maxPages == 0) {
             maxPages = maxEtages / fittingEtage;
@@ -357,13 +366,13 @@ public class DrawBuildingVis {
 
         app.noStroke();
         app.fill(AppProperties.displayColor);
-        app.rect( (app.width / 2) - 8, boundaryY1 + 19 , 16, -30);
+        app.rect((app.width / 2) - 8, boundaryY1 + 19, 16, -30);
         app.stroke(AppProperties.strokeColor);
         app.fill(255);
-        
+
         AppState.getInstance().setFontSize(30);
-        
-        app.text(building.getName()+ " " + building.getCode(), app.width / 2, boundaryY1 + 15);
-        AppState.getInstance().setFontSize();        
+
+        app.text(building.getName() + " " + building.getCode(), app.width / 2, boundaryY1 + 15);
+        AppState.getInstance().setFontSize();
     }
 }
