@@ -8,7 +8,7 @@ public class TimeTableApp {
         PApplet app = new BaseApplication();
                 
         app.main(new String[]{
-            //"--present", // makes the app appear in fullscreen mode
+            "--present", // makes the app appear in fullscreen mode
             app.getClass().getName()
         });
     }

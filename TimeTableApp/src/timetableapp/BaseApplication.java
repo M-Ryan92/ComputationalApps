@@ -14,8 +14,8 @@ public class BaseApplication extends PApplet {
 
     @Override
     public void settings() {
-        height = displayHeight - 100;
-        width = displayWidth - 400;
+        height = displayHeight;
+        width = displayWidth;
         size(width, height);
     }
 

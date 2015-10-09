@@ -27,7 +27,7 @@ public class DrawBuildingVis {
     private int width, height;
 
     private int floorYHeight;
-    private int y = 50;
+    private int y = 25;
     private int spacing = 15;
     private Map<Character, List<ClassRoom>> groupedOnLetter;
 
@@ -164,7 +164,7 @@ public class DrawBuildingVis {
                 } else {
                     app.image(classRoomUnavailableIcon, n.x, n.y, n.width, n.height);
                 }
-                app.text(n.cr.floorLocation(), n.x, n.y);
+                app.text(n.cr.floorLocation(), n.x + (n.width/2), n.y + (n.height/2) + 3);
                 break;
         }
     }

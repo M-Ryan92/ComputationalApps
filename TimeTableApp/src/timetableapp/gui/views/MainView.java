@@ -1,9 +1,6 @@
 package timetableapp.gui.views;
 
 import controlP5.Button;
-import controlP5.CallbackEvent;
-import controlP5.CallbackListener;
-import controlP5.Range;
 import lombok.Getter;
 import timetableapp.eventhandlers.NewFileSelectedHandler;
 import timetableapp.gui.BaseView;
@@ -55,22 +52,27 @@ public final class MainView extends BaseView {
                 .setLabel(Character.toString('\uf063'))
                 .hide());
         ((Button) getcontrollerByName("floorDown")).getCaptionLabel().setFont(state.getIconFont());
-       
-        getControllers().add(cp5
-                .addRange("rangepicker")
-                .setRange(8, 10)
+
+        getControllers().add(cp5.addTextfield("RTDateField")
                 .setColorBackground(Properties.buttonColor)
                 .setPosition(app.width - (app.width / 3) - 150, state.getDisplayPanelHeight() + (Properties.buttonHeight * 3))
-                .setWidth(300)
-                .setDecimalPrecision(2)
-        );
-        ((Range)getcontrollerByName("rangepicker")).onChange(new CallbackListener() {
+                .hide());
+//        getControllers().add(cp5
+//                .addRange("rangepicker")
+//                .setRange(8, 10)
+//                .setColorBackground(Properties.buttonColor)
+//                .setPosition(app.width - (app.width / 3) - 150, state.getDisplayPanelHeight() + (Properties.buttonHeight * 3))
+//                .setWidth(300)
+//                .setDecimalPrecision(2)
+//        );
+//        ((Range)getcontrollerByName("rangepicker")).onChange(new CallbackListener() {
+//
+//            @Override
+//            public void controlEvent(CallbackEvent ce) {
+//                System.out.println("");
+//            }
+//        });
 
-            @Override
-            public void controlEvent(CallbackEvent ce) {
-                System.out.println("");
-            }
-        });
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
         state.getLoadingFileStateObserver().addObserver(new StateObserver(() -> {
@@ -104,7 +106,7 @@ public final class MainView extends BaseView {
     public void draw() {
         if (ishidden == false) {
             Draw.drawDisplay();
-            
+
             if (state.getFileLoadedState() != 1) {
                 Draw.drawDisplayMessage("no file selected");
             } else {
