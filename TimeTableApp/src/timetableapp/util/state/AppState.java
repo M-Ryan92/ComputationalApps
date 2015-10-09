@@ -8,7 +8,7 @@ import lombok.Setter;
 import processing.core.PApplet;
 import processing.core.PFont;
 import timetableapp.gui.Dialog;
-import timetableapp.util.Properties;
+import timetableapp.util.AppProperties;
 import timetableapp.util.observer.ObservableValue;
 
 public class AppState {
@@ -42,8 +42,8 @@ public class AppState {
 
     public void setApp(PApplet app) {
         this.app = app;
-        displayPanelWidth = app.width - (Properties.displayPanelXOffset * 2);
-        displayPanelHeight = app.height - (Properties.displayPanelYOffset * 2) - 80;
+        displayPanelWidth = app.width - (AppProperties.displayPanelXOffset * 2);
+        displayPanelHeight = app.height - (AppProperties.displayPanelYOffset * 2) - 80;
         displayPanelHeight = displayPanelHeight - (displayPanelHeight % 24);
     }
 

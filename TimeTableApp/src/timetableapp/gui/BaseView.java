@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import processing.core.PApplet;
-import timetableapp.util.Properties;
+import timetableapp.util.AppProperties;
 import timetableapp.util.state.AppState;
 
 public abstract class BaseView {
@@ -34,12 +34,12 @@ public abstract class BaseView {
     public void hide() {
         ishidden = true;
         controllers.stream().forEach(ci -> ci.hide());
-        app.background(Properties.backgroundColor);
+        app.background(AppProperties.backgroundColor);
     }
 
     public void show() {
         ishidden = false;
-        app.background(Properties.backgroundColor);
+        app.background(AppProperties.backgroundColor);
         controllers.stream().forEach(ci -> {
             ci.show();
         });

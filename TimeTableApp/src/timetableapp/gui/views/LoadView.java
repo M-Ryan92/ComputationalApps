@@ -8,8 +8,7 @@ import static processing.core.PApplet.sin;
 import timetableapp.BaseApplication;
 import timetableapp.gui.BaseView;
 import timetableapp.gui.drawHelper.Draw;
-import timetableapp.util.Properties;
-import timetableapp.util.state.AppState;
+import timetableapp.util.AppProperties;
 
 public class LoadView extends BaseView {
 
@@ -28,23 +27,22 @@ public class LoadView extends BaseView {
         int s = 20;
 
         Draw.drawDisplay();
-
         Draw.drawDisplayMessage("processing file please wait");
-        
+        app.pushMatrix();
         app.translate((state.getDisplayPanelWidth() / 2), (state.getDisplayPanelHeight() / 2) + 50);
         app.noStroke();
         
         while (x < 360) {
-            app.fill(Properties.specialColor);
+            app.fill(AppProperties.specialColor);
             if (x == start) {
-                app.fill(Properties.specialActiveColor);
+                app.fill(AppProperties.specialActiveColor);
             }
 
             app.ellipse(sin(-radians(x)) * r, cos(-radians(x)) * r, s, s);
             x += 30;
         }
         
-        app.stroke(Properties.strokeColor);
+        app.stroke(AppProperties.strokeColor);
         start += 30;
         if (start == 360) {
             start = 0;
@@ -57,6 +55,7 @@ public class LoadView extends BaseView {
 
         app.fill(255);
         app.translate(-(state.getDisplayPanelWidth()), -(state.getDisplayPanelHeight() + 50));
+        app.popMatrix();
     }
 
 }

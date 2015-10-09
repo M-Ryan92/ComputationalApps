@@ -1,21 +1,18 @@
 package timetableapp.gui;
 
-import timetableapp.gui.views.MainView;
-import timetableapp.gui.views.LoadView;
-import timetableapp.gui.views.DataView;
 import controlP5.ControlEvent;
 import controlP5.Controller;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import processing.event.KeyEvent;
-import timetableapp.util.Properties;
+import timetableapp.gui.views.DataView;
+import timetableapp.gui.views.LoadView;
+import timetableapp.gui.views.MainView;
+import timetableapp.util.AppProperties;
 import timetableapp.util.state.AppState;
 import timetableapp.util.state.ViewStates;
 
 public class GuiHelper {
 
     private AppState state = AppState.getInstance();
-    private JFileChooser fc;
     private int btnheight = 24;
 
     private MainView mv;
@@ -31,11 +28,11 @@ public class GuiHelper {
     public void draw() {
         switch (state.getSelectedViewState()) {
             case (ViewStates.MainView):
-                state.getApp().background(Properties.backgroundColor);
+                state.getApp().background(AppProperties.backgroundColor);
                 mv.draw();
                 break;
             case (ViewStates.DataView):
-                state.getApp().background(Properties.backgroundColor);
+                state.getApp().background(AppProperties.backgroundColor);
                 dv.draw();
                 break;
             case (ViewStates.LoadView):
@@ -57,23 +54,11 @@ public class GuiHelper {
     }
 
     public void controlEvent(ControlEvent evt) {
+        mv.controlEvent(evt);
+        dv.controlEvent(evt);
         Controller<?> controller = evt.getController();
+        
         switch (controller.getName()) {
-            case ("selectFileBtn"):
-
-                fc = new JFileChooser();
-                fc.setFileFilter(new FileNameExtensionFilter("data files(txt, ics, csv, tsv, tab)",
-                        new String[]{"txt", "ics", "csv", "tsv", "tab"}));
-                fc.setAcceptAllFileFilterUsed(false);
-
-                int fcResult = fc.showOpenDialog(null);
-                if (fcResult == JFileChooser.APPROVE_OPTION) {
-                    fcResult = -1;
-                    state.setSelectedFile(fc.getSelectedFile());
-                    state.setNewFileSelectedState(1);
-                }
-
-                break;
             case ("viewData"):
 
                 if (state.getFileLoadedState() == 0) {
@@ -92,26 +77,6 @@ public class GuiHelper {
                 mv.show();
                 dv.resetTable();
                 dv.hide();
-                break;
-            case ("NextPage"):
-                dv.pagePlus();
-                break;
-            case ("PreviousPage"):
-                dv.pageMinus();
-                break;
-            case ("showNextColumns"):
-                dv.colPagePlus();
-                break;
-            case ("showPreviousColumns"):
-                dv.colPageMinus();
-                break;
-            case ("floorUp"):
-                mv.getDbv().floorsUp();
-                mv.checkState();
-                break;
-            case ("floorDown"):
-                mv.getDbv().floorsDown();
-                mv.checkState();
                 break;
         }
 

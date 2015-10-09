@@ -2,7 +2,7 @@ package timetableapp.util;
 
 import java.awt.Color;
 
-public class Properties {
+public class AppProperties {
 
     public static final int specialActiveColor = Color.decode("#0C2631").getRGB();
     public static final int strokeColor = Color.decode("#010D13").getRGB();

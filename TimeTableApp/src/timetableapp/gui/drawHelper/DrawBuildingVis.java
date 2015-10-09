@@ -14,7 +14,7 @@ import processing.core.PImage;
 import timetableapp.gui.Dialog;
 import timetableapp.models.Building;
 import timetableapp.models.ClassRoom;
-import timetableapp.util.Properties;
+import timetableapp.util.AppProperties;
 import timetableapp.util.state.AppState;
 
 public class DrawBuildingVis {
@@ -78,8 +78,8 @@ public class DrawBuildingVis {
         width = AppState.getInstance().getDisplayPanelWidth();
         height = AppState.getInstance().getDisplayPanelHeight();
 
-        boundaryX1 = Properties.displayPanelXOffset + 20;
-        boundaryY1 = Properties.displayPanelYOffset + 20;
+        boundaryX1 = AppProperties.displayPanelXOffset + 20;
+        boundaryY1 = AppProperties.displayPanelYOffset + 20;
         boundaryX2 = width - boundaryX1;
         boundaryY2 = height - boundaryY1;
 
@@ -151,9 +151,9 @@ public class DrawBuildingVis {
                 String text = "etage " + n.floor;
 
                 app.noStroke();
-                app.fill(Properties.displayColor);
+                app.fill(AppProperties.displayColor);
                 app.rect(n.x, n.y - 22, app.textWidth(text), 19);
-                app.stroke(Properties.strokeColor);
+                app.stroke(AppProperties.strokeColor);
                 app.fill(255);
 
                 app.text(text, n.x + (app.textWidth(text) / 2), n.y - 10);
@@ -192,7 +192,7 @@ public class DrawBuildingVis {
         app.line(one.x + (one.width / 2), one.y + (one.height / 2), two.x + (two.width / 2), two.y + (two.height / 2));
 
         app.strokeWeight(1);
-        app.stroke(Properties.strokeColor);
+        app.stroke(AppProperties.strokeColor);
     }
 
     private void initCoreBuilding(Building building) {
@@ -310,7 +310,7 @@ public class DrawBuildingVis {
             }
             currentItem++;
 
-            if (x < Properties.displayPanelXOffset) {
+            if (x < AppProperties.displayPanelXOffset) {
                 row++;
             }
         }
@@ -356,9 +356,9 @@ public class DrawBuildingVis {
         app.translate(-(app.width / 2), -boundaryY2);
 
         app.noStroke();
-        app.fill(Properties.displayColor);
+        app.fill(AppProperties.displayColor);
         app.rect( (app.width / 2) - 8, boundaryY1 + 19 , 16, -30);
-        app.stroke(Properties.strokeColor);
+        app.stroke(AppProperties.strokeColor);
         app.fill(255);
         
         AppState.getInstance().setFontSize(30);

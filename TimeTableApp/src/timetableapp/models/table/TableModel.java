@@ -8,7 +8,7 @@ import java.util.Map;
 import lombok.Getter;
 import processing.data.Table;
 import processing.data.TableRow;
-import timetableapp.util.Properties;
+import timetableapp.util.AppProperties;
 import timetableapp.util.state.AppState;
 
 public class TableModel {
@@ -27,7 +27,7 @@ public class TableModel {
     @Getter
     private int pageCount;
 
-    private int itemsEaPage = Math.round((AppState.getInstance().getDisplayPanelHeight() - Properties.displayPanelYOffset) / 24);
+    private int itemsEaPage = Math.round((AppState.getInstance().getDisplayPanelHeight() - AppProperties.displayPanelYOffset) / 24);
 
     public List<DataRow> getPage(int i) {
         if (i >= pages.size()) {
@@ -37,7 +37,7 @@ public class TableModel {
     }
 
     public TableModel(Table table) {
-        maxColSize = (AppState.getInstance().getDisplayPanelWidth() - Properties.displayPanelXOffset) / 3;
+        maxColSize = (AppState.getInstance().getDisplayPanelWidth() - AppProperties.displayPanelXOffset) / 3;
         pages = new HashMap<>();
         data = table;
         columns = Arrays.asList(data.getColumnTitles());
