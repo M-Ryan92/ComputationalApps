@@ -4,6 +4,8 @@ import controlP5.Button;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import controlP5.Controller;
+import controlP5.ControllerInterface;
+import controlP5.Textfield;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import lombok.Getter;
@@ -58,9 +60,9 @@ public final class MainView extends BaseView {
                 .hide());
         ((Button) getcontrollerByName("floorDown")).getCaptionLabel().setFont(state.getIconFont());
 
-        picker("day", app.width - (app.width / 3), state.getDisplayPanelHeight(), 20);
-        picker("month", app.width - (app.width / 3) + 25, state.getDisplayPanelHeight(), 20);
-        picker("year", app.width - (app.width / 3) + 50, state.getDisplayPanelHeight(), 40);
+        picker("day", app.width - (app.width / 3), state.getDisplayPanelHeight(), 30);
+        picker("month", app.width - (app.width / 3) + 35, state.getDisplayPanelHeight(), 40);
+        picker("year", app.width - (app.width / 3) + 80, state.getDisplayPanelHeight(), 40);
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
@@ -93,27 +95,40 @@ public final class MainView extends BaseView {
         getControllers().add(cp5.addButton(name + "Plus")
                 .setColorBackground(AppProperties.buttonColor)
                 .setPosition(x, y + (AppProperties.buttonHeight * 1))
-                .setLabel("+")
+                .setLabel(name + " +")
                 .setSize(width, AppProperties.buttonHeight)
         );
         getControllers().add(cp5.addTextfield(name + "Val")
                 .setColorBackground(AppProperties.buttonColor)
                 .setPosition(x, state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 2) + 4)
-                .setInputFilter(ControlP5.INTEGER)
+                //.setInputFilter(ControlP5.INTEGER)
                 .setSize(width, AppProperties.buttonHeight)
                 .setLabel("")
+                .lock()
         );
+        ((Textfield) getcontrollerByName(name + "Val")).getValueLabel().alignX(ControlP5.CENTER);
         getControllers().add(cp5.addButton(name + "Minus")
                 .setColorBackground(AppProperties.buttonColor)
                 .setPosition(x, y + (AppProperties.buttonHeight * 3) + 8)
-                .setLabel("-")
+                .setLabel(name + " -")
                 .setSize(width, AppProperties.buttonHeight)
         );
     }
 
     public void controlEvent(ControlEvent evt) {
         Controller<?> controller = evt.getController();
+        ControllerInterface ctrl;
+        int newVal = 0;
+        boolean isDigit = true;
         switch (controller.getName()) {
+            case ("dayPlus"):
+                ctrl = getcontrollerByName("dayVal");
+                ((Textfield) ctrl).setText("0");
+                break;
+            case ("dayMinus"):
+                ctrl = getcontrollerByName("dayVal");
+                ((Textfield) ctrl).setText("32");
+                break;
             case ("selectFileBtn"):
                 JFileChooser fc = new JFileChooser();
                 fc.setFileFilter(new FileNameExtensionFilter("data files(txt, ics, csv, tsv, tab)",
