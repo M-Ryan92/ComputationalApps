@@ -72,10 +72,9 @@ public final class MainView extends BaseView {
                 .hide()
         );
 
-        Calendar cal = Calendar.getInstance();
-        picker("day", pickerx, pickery, 30, cal.get(Calendar.DAY_OF_MONTH));
-        picker("month", pickerx + 35, pickery, 40, cal.get(Calendar.MONTH) + 1);
-        picker("year", pickerx + 80, pickery, 40, cal.get(Calendar.YEAR));
+        picker("day", pickerx, pickery, 30, c.get(Calendar.DAY_OF_MONTH));
+        picker("month", pickerx + 35, pickery, 40, c.get(Calendar.MONTH) + 1);
+        picker("year", pickerx + 80, pickery, 40, c.get(Calendar.YEAR));
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
