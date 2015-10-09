@@ -18,8 +18,7 @@ public class StateObserver implements Observer {
         try {
             callable.call();
         } catch (Exception ex) {
-            Dialog dialog = new Dialog();
-            dialog.fatalErrorDialog(ex.getMessage());
+            new Dialog().fatalErrorDialog(ex.getMessage());
         }
     }
 }

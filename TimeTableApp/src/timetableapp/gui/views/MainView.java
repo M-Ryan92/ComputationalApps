@@ -91,14 +91,14 @@ public final class MainView extends BaseView {
         state.getLoadingFileStateObserver().addObserver(new StateObserver(() -> {
             if (state.getLoadingFileState() == 1) {
                 state.setSelectedViewState(ViewStates.LoadView);
-                this.hide();
+                hide();
             }
             return null;
         }));
 
         state.getFileLoadedStateObserver().addObserver(new StateObserver(() -> {
             state.setSelectedViewState(ViewStates.MainView);
-            this.show();
+            show();
             return null;
         }));
 
@@ -107,20 +107,38 @@ public final class MainView extends BaseView {
                 getcontrollerByName("viewData").show();
                 getcontrollerByName("floorUp").show();
                 getcontrollerByName("floorDown").show();
+
+                getcontrollerByName("dayPlus").show();
+                getcontrollerByName("dayVal").show();
+                getcontrollerByName("dayMinus").show();
+                getcontrollerByName("monthPlus").show();
+                getcontrollerByName("monthVal").show();
+                getcontrollerByName("monthMinus").show();
+                getcontrollerByName("yearPlus").show();
+                getcontrollerByName("yearVal").show();
+                getcontrollerByName("yearMinus").show();
+                
+                getcontrollerByName("startHourPlus").show();
+                getcontrollerByName("startHourVal").show();
+                getcontrollerByName("startHourMinus").show();
+                getcontrollerByName("startMinPlus").show();
+                getcontrollerByName("startMinVal").show();
+                getcontrollerByName("startMinMinus").show();
+
             }
             return null;
         }));
 
     }
 
-    private String getDisplayString(int input){
-        if(input < 10){
+    private String getDisplayString(int input) {
+        if (input < 10) {
             return 0 + String.valueOf(input);
         } else {
             return String.valueOf(input);
-        }    
+        }
     }
-    
+
     private void timePicker(String name, int x, int y, int width, int input) {
         getControllers().add(cp5.addButton(name + "Plus")
                 .setColorBackground(AppProperties.buttonColor)
@@ -129,7 +147,7 @@ public final class MainView extends BaseView {
                 .setSize(width, AppProperties.buttonHeight)
                 .hide()
         );
-        
+
         getControllers().add(cp5.addTextfield(name + "Val")
                 .setColorBackground(AppProperties.buttonColor)
                 .setPosition(x, y + (AppProperties.buttonHeight * 2) + 4)
@@ -180,6 +198,7 @@ public final class MainView extends BaseView {
         ((Textfield) getcontrollerByName("startHourVal")).setText(getDisplayString(c.get(Calendar.HOUR)));
         ((Textfield) getcontrollerByName("startMinVal")).setText(getDisplayString(c.get(Calendar.MINUTE)));
     }
+
     private void setDateFields() {
         ((Textfield) getcontrollerByName("dayVal")).setText(getDisplayString(c.get(Calendar.DAY_OF_MONTH)));
         ((Textfield) getcontrollerByName("monthVal")).setText(getDisplayString(c.get(Calendar.MONTH) + 1));
@@ -199,7 +218,7 @@ public final class MainView extends BaseView {
             case ("startHourMinus"):
                 c.add(Calendar.HOUR_OF_DAY, -1);
                 setTimeFields();
-                break;            
+                break;
             case ("startMinPlus"):
                 c.add(Calendar.MINUTE, 1);
                 setTimeFields();
@@ -270,7 +289,7 @@ public final class MainView extends BaseView {
 
                 app.fill(AppProperties.displayColor);
                 app.rect(pickerx - 10, pickery - 5, 140, (AppProperties.buttonHeight * 3) + 42);
-                
+
                 app.rect(pickerx + (app.width / 12) - 20, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);
                 app.fill(255);
 
