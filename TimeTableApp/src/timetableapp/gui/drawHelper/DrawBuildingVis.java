@@ -336,14 +336,12 @@ public class DrawBuildingVis {
 
         app.translate((app.width / 2), boundaryY2);
         initCoreBuilding(building);
-        for (int floor : building.getFloorList().keySet()) {
-            if ((floor - startetage) >= 0 && floor < (fittingEtage + startetage)) {
-                initFloor(building, floor);
-            }
-        }
+        building.getFloorList().keySet().stream().filter((floor) -> ((floor - startetage) >= 0 && floor < (fittingEtage + startetage))).forEach((floor) -> {
+            initFloor(building, floor);
+        });
 
         //draw al the connectors for the elevators
-        Object[] nArr = nodes.stream().filter(n -> n.type == "elevator").toArray();
+        Object[] nArr = nodes.stream().filter(n -> "elevator".equals(n.type)).toArray();
         for (int item = 0; item < nArr.length; item++) {
             if (item + 1 < nArr.length) {
                 drawConector((Node) nArr[item], (Node) nArr[item + 1]);

@@ -25,7 +25,7 @@ public final class MainView extends BaseView {
     @Getter
     private DrawBuildingVis dbv;
 
-    private int pickerx = app.width - (app.width / 3) - (app.width / 9) ;
+    private int pickerx = app.width - (app.width / 3) - (app.width / 9);
     private int pickery = state.getDisplayPanelHeight() + 30;
     private Calendar c = Calendar.getInstance();
 
@@ -65,16 +65,26 @@ public final class MainView extends BaseView {
                 .hide());
         ((Button) getcontrollerByName("floorDown")).getCaptionLabel().setFont(state.getIconFont());
 
+        //dateselector
         getControllers().add(cp5
                 .addLabel("Select Date")
                 .setFont(state.getFont())
                 .setPosition(pickerx + 20, pickery)
                 .hide()
         );
+        datePicker("day", pickerx, pickery, 30, c.get(Calendar.DAY_OF_MONTH));
+        datePicker("month", pickerx + 35, pickery, 40, c.get(Calendar.MONTH) + 1);
+        datePicker("year", pickerx + 80, pickery, 40, c.get(Calendar.YEAR));
 
-        picker("day", pickerx, pickery, 30, c.get(Calendar.DAY_OF_MONTH));
-        picker("month", pickerx + 35, pickery, 40, c.get(Calendar.MONTH) + 1);
-        picker("year", pickerx + 80, pickery, 40, c.get(Calendar.YEAR));
+        //time start selector
+        getControllers().add(cp5
+                .addLabel("Select Start Time")
+                .setFont(state.getFont())
+                .setPosition(pickerx + (app.width / 12) - 15, pickery)
+                .hide()
+        );
+        timePicker("hour", pickerx + (app.width / 12), pickery, 40, c.get(Calendar.HOUR_OF_DAY));
+        timePicker("min", pickerx + (app.width / 12) + 45, pickery, 40, c.get(Calendar.MINUTE));
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
@@ -103,7 +113,43 @@ public final class MainView extends BaseView {
 
     }
 
-    private void picker(String name, int x, int y, int width, int input) {
+    private String getDisplayString(int input){
+        if(input < 10){
+            return 0 + String.valueOf(input);
+        } else {
+            return String.valueOf(input);
+        }    
+    }
+    
+    private void timePicker(String name, int x, int y, int width, int input) {
+        getControllers().add(cp5.addButton(name + "Plus")
+                .setColorBackground(AppProperties.buttonColor)
+                .setPosition(x, y + (AppProperties.buttonHeight * 1))
+                .setLabel("+")
+                .setSize(width, AppProperties.buttonHeight)
+                .hide()
+        );
+        
+        getControllers().add(cp5.addTextfield(name + "Val")
+                .setColorBackground(AppProperties.buttonColor)
+                .setPosition(x, y + (AppProperties.buttonHeight * 2) + 4)
+                .setSize(width, AppProperties.buttonHeight)
+                .setText(getDisplayString(input))
+                .setLabel("")
+                .lock()
+                .hide()
+        );
+        ((Textfield) getcontrollerByName(name + "Val")).getValueLabel().alignX(ControlP5.CENTER);
+        getControllers().add(cp5.addButton(name + "Minus")
+                .setColorBackground(AppProperties.buttonColor)
+                .setPosition(x, y + (AppProperties.buttonHeight * 3) + 8)
+                .setLabel("-")
+                .setSize(width, AppProperties.buttonHeight)
+                .hide()
+        );
+    }
+
+    private void datePicker(String name, int x, int y, int width, int input) {
         getControllers().add(cp5.addButton(name + "Plus")
                 .setColorBackground(AppProperties.buttonColor)
                 .setPosition(x, y + (AppProperties.buttonHeight * 1))
@@ -115,7 +161,7 @@ public final class MainView extends BaseView {
                 .setColorBackground(AppProperties.buttonColor)
                 .setPosition(x, y + (AppProperties.buttonHeight * 2) + 4)
                 .setSize(width, AppProperties.buttonHeight)
-                .setText(String.valueOf(input))
+                .setText(getDisplayString(input))
                 .setLabel("")
                 .lock()
                 .hide()
@@ -131,9 +177,9 @@ public final class MainView extends BaseView {
     }
 
     private void setDateFields() {
-        ((Textfield) getcontrollerByName("dayVal")).setText(String.valueOf(c.get(Calendar.DAY_OF_MONTH)));
-        ((Textfield) getcontrollerByName("monthVal")).setText(String.valueOf(c.get(Calendar.MONTH) + 1));
-        ((Textfield) getcontrollerByName("yearVal")).setText(String.valueOf(c.get(Calendar.YEAR)));
+        ((Textfield) getcontrollerByName("dayVal")).setText(getDisplayString(c.get(Calendar.DAY_OF_MONTH)));
+        ((Textfield) getcontrollerByName("monthVal")).setText(getDisplayString(c.get(Calendar.MONTH) + 1));
+        ((Textfield) getcontrollerByName("yearVal")).setText(getDisplayString(c.get(Calendar.YEAR)));
     }
 
     public void controlEvent(ControlEvent evt) {
@@ -204,6 +250,8 @@ public final class MainView extends BaseView {
 
                 app.fill(AppProperties.displayColor);
                 app.rect(pickerx - 10, pickery - 5, 140, (AppProperties.buttonHeight * 3) + 42);
+                
+                app.rect(pickerx + (app.width / 12) - 20, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);
                 app.fill(255);
 
                 app.text(dbv.getEtageRange(), (app.width / 2), state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 3) - 8);

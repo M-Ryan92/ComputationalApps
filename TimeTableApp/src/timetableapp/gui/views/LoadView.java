@@ -25,23 +25,24 @@ public class LoadView extends BaseView {
         int x = 0;
         int r = 70;
         int s = 20;
+        int offsetx = state.getDisplayPanelWidth() / 2;
+        int offsety = (state.getDisplayPanelHeight() / 2) + 50;
 
         Draw.drawDisplay();
         Draw.drawDisplayMessage("processing file please wait");
 
-        app.translate((state.getDisplayPanelWidth() / 2), (state.getDisplayPanelHeight() / 2) + 50);
         app.noStroke();
-        
+
         while (x < 360) {
             app.fill(AppProperties.specialColor);
             if (x == start) {
                 app.fill(AppProperties.specialActiveColor);
             }
 
-            app.ellipse(sin(-radians(x)) * r, cos(-radians(x)) * r, s, s);
+            app.ellipse((sin(-radians(x)) * r) + offsetx, (cos(-radians(x)) * r) + offsety, s, s);
             x += 30;
         }
-        
+
         app.stroke(AppProperties.strokeColor);
         start += 30;
         if (start == 360) {
@@ -52,9 +53,7 @@ public class LoadView extends BaseView {
         } catch (InterruptedException ex) {
             Logger.getLogger(BaseApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         app.fill(255);
-        app.translate(-(state.getDisplayPanelWidth()), -(state.getDisplayPanelHeight() + 50));
     }
 
 }
