@@ -83,8 +83,8 @@ public final class MainView extends BaseView {
                 .setPosition(pickerx + (app.width / 12) - 15, pickery)
                 .hide()
         );
-        timePicker("hour", pickerx + (app.width / 12), pickery, 40, c.get(Calendar.HOUR_OF_DAY));
-        timePicker("min", pickerx + (app.width / 12) + 45, pickery, 40, c.get(Calendar.MINUTE));
+        timePicker("startHour", pickerx + (app.width / 12), pickery, 40, c.get(Calendar.HOUR_OF_DAY));
+        timePicker("startMin", pickerx + (app.width / 12) + 45, pickery, 40, c.get(Calendar.MINUTE));
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
@@ -176,6 +176,10 @@ public final class MainView extends BaseView {
         );
     }
 
+    private void setTimeFields() {
+        ((Textfield) getcontrollerByName("startHourVal")).setText(getDisplayString(c.get(Calendar.HOUR)));
+        ((Textfield) getcontrollerByName("startMinVal")).setText(getDisplayString(c.get(Calendar.MINUTE)));
+    }
     private void setDateFields() {
         ((Textfield) getcontrollerByName("dayVal")).setText(getDisplayString(c.get(Calendar.DAY_OF_MONTH)));
         ((Textfield) getcontrollerByName("monthVal")).setText(getDisplayString(c.get(Calendar.MONTH) + 1));
@@ -188,6 +192,22 @@ public final class MainView extends BaseView {
         int newVal = 0;
         boolean isDigit = true;
         switch (controller.getName()) {
+            case ("startHourPlus"):
+                c.add(Calendar.HOUR_OF_DAY, 1);
+                setTimeFields();
+                break;
+            case ("startHourMinus"):
+                c.add(Calendar.HOUR_OF_DAY, -1);
+                setTimeFields();
+                break;            
+            case ("startMinPlus"):
+                c.add(Calendar.MINUTE, 1);
+                setTimeFields();
+                break;
+            case ("startMinMinus"):
+                c.add(Calendar.MINUTE, -1);
+                setTimeFields();
+                break;
             case ("dayPlus"):
                 c.add(Calendar.DATE, 1);
                 setDateFields();
