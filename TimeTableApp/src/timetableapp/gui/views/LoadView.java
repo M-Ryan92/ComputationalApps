@@ -28,7 +28,7 @@ public class LoadView extends BaseView {
 
         Draw.drawDisplay();
         Draw.drawDisplayMessage("processing file please wait");
-        app.pushMatrix();
+
         app.translate((state.getDisplayPanelWidth() / 2), (state.getDisplayPanelHeight() / 2) + 50);
         app.noStroke();
         
@@ -55,7 +55,6 @@ public class LoadView extends BaseView {
 
         app.fill(255);
         app.translate(-(state.getDisplayPanelWidth()), -(state.getDisplayPanelHeight() + 50));
-        app.popMatrix();
     }
 
 }
