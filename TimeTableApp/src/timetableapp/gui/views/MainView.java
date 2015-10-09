@@ -6,6 +6,7 @@ import controlP5.ControlP5;
 import controlP5.Controller;
 import controlP5.ControllerInterface;
 import controlP5.Textfield;
+import java.util.Calendar;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import lombok.Getter;
@@ -60,9 +61,10 @@ public final class MainView extends BaseView {
                 .hide());
         ((Button) getcontrollerByName("floorDown")).getCaptionLabel().setFont(state.getIconFont());
 
-        picker("day", app.width - (app.width / 3), state.getDisplayPanelHeight(), 30);
-        picker("month", app.width - (app.width / 3) + 35, state.getDisplayPanelHeight(), 40);
-        picker("year", app.width - (app.width / 3) + 80, state.getDisplayPanelHeight(), 40);
+        Calendar cal = Calendar.getInstance();
+        picker("day", app.width - (app.width / 3), state.getDisplayPanelHeight(), 30, cal.get(Calendar.DAY_OF_MONTH));
+        picker("month", app.width - (app.width / 3) + 35, state.getDisplayPanelHeight(), 40, cal.get(Calendar.MONTH)+1);
+        picker("year", app.width - (app.width / 3) + 80, state.getDisplayPanelHeight(), 40, cal.get(Calendar.YEAR));
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
@@ -91,7 +93,7 @@ public final class MainView extends BaseView {
 
     }
 
-    private void picker(String name, int x, int y, int width) {
+    private void picker(String name, int x, int y, int width, int input) {
         getControllers().add(cp5.addButton(name + "Plus")
                 .setColorBackground(AppProperties.buttonColor)
                 .setPosition(x, y + (AppProperties.buttonHeight * 1))
@@ -101,9 +103,8 @@ public final class MainView extends BaseView {
         getControllers().add(cp5.addTextfield(name + "Val")
                 .setColorBackground(AppProperties.buttonColor)
                 .setPosition(x, state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 2) + 4)
-                //.setInputFilter(ControlP5.INTEGER)
                 .setSize(width, AppProperties.buttonHeight)
-                .setLabel("")
+                .setText(String.valueOf(input))
                 .lock()
         );
         ((Textfield) getcontrollerByName(name + "Val")).getValueLabel().alignX(ControlP5.CENTER);
