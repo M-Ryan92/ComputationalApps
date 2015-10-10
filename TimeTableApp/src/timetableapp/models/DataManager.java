@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import timetableapp.models.table.TableModel;
 import lombok.Getter;
 import processing.data.Table;
 import processing.data.TableRow;
+import timetableapp.models.table.TableModel;
 
 public class DataManager {
 
@@ -177,7 +177,10 @@ public class DataManager {
     }
 
     public List<Activity> getActivitiesByCalendarDateAndBuilding(Calendar cal, String building) {
-        List<Activity> collect = activities.stream().filter(a -> a.building.equals(building)).filter(a -> a.getStartDate().before(cal)).filter(a -> a.getEndDate().after(cal)).collect(Collectors.toList());
+        List<Activity> collect = activities.stream()
+                .filter(a -> a.building.equals(building))
+                .filter(a -> a.getStartDate().before(cal) && a.getEndDate().after(cal))
+                .collect(Collectors.toList());
         return collect;
     }
 }
