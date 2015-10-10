@@ -367,7 +367,7 @@ public class DrawBuildingVis {
                 drawConector((Node) nArr[item], (Node) nArr[item + 1]);
             }
         }
-        if (nArr.length >1) {
+        if (nArr.length > 1) {
             if (currentPage != maxPages) {
                 Node n = (Node) nArr[nArr.length - 1];
                 drawConector(n, new Node(n.x, -(boundaryY2 - 1), 44, 44));
@@ -382,15 +382,14 @@ public class DrawBuildingVis {
         nodes = new ArrayList<>();
 
         app.popMatrix();
-//        app.noStroke();
-//        app.fill(AppProperties.displayColor);
-//        app.rect((app.width / 2) - 8, boundaryY1 + 19, 16, -30);
-//        app.stroke(AppProperties.strokeColor);
-//        app.fill(255);
-//
-//        AppState.getInstance().setFontSize(30);
-//
-//        app.text(building.getName() + " " + building.getCode(), app.width / 2, boundaryY1 + 15);
-//        AppState.getInstance().setFontSize();
+        app.noStroke();
+        app.fill(AppProperties.displayColor);
+        app.rect((app.width / 2) - 8, boundaryY1 + 19, 16, -30);
+        app.stroke(AppProperties.strokeColor);
+        app.fill(255);
+
+        AppState.getInstance().setFontSize(30);
+        app.text(building.getName() + " " + building.getCode(), app.width / 2, boundaryY1 + 15);
+        AppState.getInstance().setFontSize();
     }
 }
