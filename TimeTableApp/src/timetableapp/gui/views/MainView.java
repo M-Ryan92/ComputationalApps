@@ -132,8 +132,20 @@ public final class MainView extends BaseView {
             setTimeFields();
             setDateFields();
             List<Activity> activitiesNow = dm.getActivitiesByCalendarDateAndBuilding(c, building);
-            
-            System.out.println("");
+
+            dm.getBl().get(building).getFloorList().forEach((floor, classrooms) -> {
+                classrooms.forEach((location, classroom) -> {
+                    classroom.setAvailable(true);
+                });
+            });
+
+            for (Activity activity : activitiesNow) {
+                dm.getBl().get(building)
+                        .getFloorList()
+                        .get(activity.getFloor())
+                        .get(activity.getClassroom())
+                        .setAvailable(false);
+            }
         }));
 
     }

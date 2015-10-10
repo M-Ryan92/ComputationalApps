@@ -91,11 +91,13 @@ public class DataManager {
         String clsroom = "";
         if (Arrays.asList(formatOne).contains(classRoomInfo[0])) {
             LocationProperties lp = new LocationProperties(classRoomInfo);
-            clsroom = lp.letter + String.valueOf(lp.number);
+            
+            clsroom = lp.letter + String.format("%02d", lp.number);
+            
             activities.add(new Activity(activity, course, start, end, lp.building, lp.floor, clsroom));
         } else if (Arrays.asList(formatTwo).contains(classRoomInfo[0])) {
             LocationProperties lp = new LocationProperties(classRoomInfo);
-            clsroom = String.valueOf(lp.number);
+            clsroom = String.format("%02d", lp.number);
             activities.add(new Activity(activity, course, start, end, lp.building, lp.floor, clsroom));
         }
     }
