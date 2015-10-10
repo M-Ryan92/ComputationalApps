@@ -88,6 +88,17 @@ public final class MainView extends BaseView {
         timePicker("startHour", pickerx + 160, pickery, 40, c.get(Calendar.HOUR_OF_DAY));
         timePicker("startMin", pickerx + 205, pickery, 40, c.get(Calendar.MINUTE));
 
+        
+        //time start selector
+        getControllers().add(cp5
+                .addLabel("Select End Time")
+                .setFont(state.getFont())
+                .setPosition(pickerx + 145 + 135, pickery)
+                .hide()
+        );
+        timePicker("endHour", pickerx + 160 + 135, pickery, 40, c.get(Calendar.HOUR_OF_DAY));
+        timePicker("enhMin", pickerx + 205 + 135, pickery, 40, c.get(Calendar.MINUTE));        
+        
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
         state.getLoadingFileStateObserver().addObserver(new StateObserver(() -> {
@@ -315,7 +326,10 @@ public final class MainView extends BaseView {
                 app.fill(AppProperties.displayColor);
                 app.rect(pickerx - 10, pickery - 5, 140, (AppProperties.buttonHeight * 3) + 42);
 
-                app.rect(pickerx + 150 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);
+                
+                app.rect(pickerx + 150 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);//start time picker
+                
+                app.rect(pickerx + 150 + 135 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);//end time picker
                 app.fill(255);
 
                 app.text(dbv.getEtageRange(), (app.width / 2), state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 3) - 8);
