@@ -82,11 +82,11 @@ public final class MainView extends BaseView {
         getControllers().add(cp5
                 .addLabel("Select Start Time")
                 .setFont(state.getFont())
-                .setPosition(pickerx + (app.width / 12) - 15, pickery)
+                .setPosition(pickerx + 145, pickery)
                 .hide()
         );
-        timePicker("startHour", pickerx + (app.width / 12), pickery, 40, c.get(Calendar.HOUR_OF_DAY));
-        timePicker("startMin", pickerx + (app.width / 12) + 45, pickery, 40, c.get(Calendar.MINUTE));
+        timePicker("startHour", pickerx + 160, pickery, 40, c.get(Calendar.HOUR_OF_DAY));
+        timePicker("startMin", pickerx + 205, pickery, 40, c.get(Calendar.MINUTE));
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
@@ -315,7 +315,7 @@ public final class MainView extends BaseView {
                 app.fill(AppProperties.displayColor);
                 app.rect(pickerx - 10, pickery - 5, 140, (AppProperties.buttonHeight * 3) + 42);
 
-                app.rect(pickerx + (app.width / 12) - 20, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);
+                app.rect(pickerx + 150 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);
                 app.fill(255);
 
                 app.text(dbv.getEtageRange(), (app.width / 2), state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 3) - 8);

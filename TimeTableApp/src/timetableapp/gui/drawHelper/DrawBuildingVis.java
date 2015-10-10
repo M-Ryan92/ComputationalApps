@@ -324,7 +324,7 @@ public class DrawBuildingVis {
                 x -= counter;
             }
 
-            if (currentItem >= 1) {
+            if (currentItem >= 1 && nodes.size()-2 > 0) {
                 drawConector(nodes.get(nodes.size() - 2), nodes.get(nodes.size() - 1));
             } else {
                 drawConector(foundElevator.orElse(nodes.get(0)), nodes.get(nodes.size() - 1));
