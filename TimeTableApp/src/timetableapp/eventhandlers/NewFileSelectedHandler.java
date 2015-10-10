@@ -1,6 +1,5 @@
 package timetableapp.eventhandlers;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import processing.data.Table;
@@ -9,12 +8,12 @@ import timetableapp.models.DataManager;
 import timetableapp.util.Parser;
 import timetableapp.util.state.AppState;
 
-public class NewFileSelectedHandler implements Callable {
+public class NewFileSelectedHandler implements Runnable {
 
     private AppState state = AppState.getInstance();
 
     @Override
-    public Object call() throws Exception {
+    public void run() {
         ExecutorService etp = Executors.newFixedThreadPool(1);
         etp.submit(() -> {
             try {
@@ -34,7 +33,6 @@ public class NewFileSelectedHandler implements Callable {
                 new Dialog().fatalErrorDialog("could not load file properly, application will close now");
             }
         });
-        return null;
     }
 
 }

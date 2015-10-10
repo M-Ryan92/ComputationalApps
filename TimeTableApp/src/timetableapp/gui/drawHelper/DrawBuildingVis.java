@@ -103,23 +103,27 @@ public class DrawBuildingVis {
         return img;
     }
 
-    private void makeEnteranceNode(int x, int y) {
+    private synchronized void makeEnteranceNode(int x, int y) {
         Node n = new Node(x, y, enteranceIcon.width / scale, enteranceIcon.height / scale);
         centerDrawing(n);
         n.type = "enterance";
         n.floor = 0;
-        nodes.add(n);
+        if (!nodeExists(n)) {
+            nodes.add(n);
+        }
     }
 
-    private void makeElevatorNode(int x, int y, int floor) {
+    private synchronized void makeElevatorNode(int x, int y, int floor) {
         Node n = new Node(x, y, elevatorIcon.width / scale, elevatorIcon.height / scale);
         centerDrawing(n);
         n.type = "elevator";
         n.floor = floor;
-        nodes.add(n);
+        if (!nodeExists(n)) {
+            nodes.add(n);
+        }
     }
 
-    private void makeClassRoomNode(int x, int y, int floor, ClassRoom cr) {
+    private synchronized void makeClassRoomNode(int x, int y, int floor, ClassRoom cr) {
         Node n;
 
         if (cr.isAvailable()) {
@@ -132,13 +136,24 @@ public class DrawBuildingVis {
         n.cr = cr;
         n.type = "classroom";
         n.floor = floor;
-        nodes.add(n);
-        spacing += 15;
+        if (!nodeExists(n)) {
+            nodes.add(n);
+            spacing += 15;
+        }
     }
 
     private void centerDrawing(Node n) {
         n.x = n.x - (n.width / 2);
         n.y = n.y - (n.height / 2);
+    }
+
+    private boolean nodeExists(Node n) {
+        for (Node o : nodes) {
+            if (o.floor == n.floor && o.type.equals(n.type) && o.x == n.x && o.y == n.y) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void drawNode(Node n) {
@@ -152,11 +167,11 @@ public class DrawBuildingVis {
 
                 app.noStroke();
                 app.fill(AppProperties.displayColor);
-                app.rect(n.x, n.y - 22, app.textWidth(text), 19);
+                app.rect(n.x - 6, n.y - 22, app.textWidth(text), 19);
                 app.stroke(AppProperties.strokeColor);
                 app.fill(255);
 
-                app.text(text, n.x + (app.textWidth(text) / 2), n.y - 10);
+                app.text(text, n.x + (app.textWidth(text) / 2) - 6, n.y - 10);
                 break;
             case "classroom":
                 if (n.cr.isAvailable()) {
@@ -203,12 +218,12 @@ public class DrawBuildingVis {
         }
         maxEtages = building.getFloorCount();
         floorYHeight = ((boundaryY2) / maxEtages) + 120;
-        if (currentPage == 0) {
+        if (currentPage == 0 && nodes.isEmpty()) {
             makeEnteranceNode(0, -(y - 60));
         }
 
         for (int floor : building.getFloorList().keySet()) {
-            if ((floor - startetage) >= 0 && boundaryY2 - (floorYHeight * (floor - startetage + 1)) > (boundaryX1 - y)) {
+            if ((floor - startetage) >= 0 && boundaryY2 - (floorYHeight * (floor - startetage + 1)) > boundaryX1 - y) {
                 makeElevatorNode(0, -(floorYHeight * (floor - startetage)) - y, floor);
                 if (isUnKownFitting) {
                     fittingEtage++;
@@ -341,13 +356,12 @@ public class DrawBuildingVis {
         });
 
         //draw al the connectors for the elevators
-        Object[] nArr = nodes.stream().filter(n -> "elevator".equals(n.type)).toArray();
+        Object[] nArr = nodes.stream().filter(n -> "elevator" == n.type).toArray();
         for (int item = 0; item < nArr.length; item++) {
             if (item + 1 < nArr.length) {
                 drawConector((Node) nArr[item], (Node) nArr[item + 1]);
             }
         }
-
         if (currentPage != maxPages) {
             Node n = (Node) nArr[nArr.length - 1];
             drawConector(n, new Node(n.x, -(boundaryY2 - 1), 44, 44));
@@ -356,7 +370,6 @@ public class DrawBuildingVis {
             Node n = (Node) nArr[0];
             drawConector(n, new Node(n.x, boundaryY1 - 5, 44, 44));
         }
-
         //draw all the nodes on screen and clear node list
         nodes.stream().forEach(n -> drawNode(n));
         nodes = new ArrayList<>();

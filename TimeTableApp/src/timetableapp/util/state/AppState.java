@@ -3,6 +3,7 @@ package timetableapp.util.state;
 import controlP5.ControlP5;
 import java.awt.Font;
 import java.io.File;
+import java.util.Calendar;
 import lombok.Getter;
 import lombok.Setter;
 import processing.core.PApplet;
@@ -31,6 +32,8 @@ public class AppState {
     @Getter
     private int displayPanelHeight;
 
+    @Getter
+    private ObservableValue<Calendar> startTimeObserver = new ObservableValue(Calendar.getInstance());
     @Getter
     private ObservableValue<Integer> newFileSelectedStateObserver = new ObservableValue(0);
     @Getter
@@ -85,6 +88,10 @@ public class AppState {
         app.textFont(txtfont, size);
     }
 
+    public void setStartTime(Calendar c) {
+        startTimeObserver.setValue(c);
+    }
+    
     public void setNewFileSelectedState(int value) {
         newFileSelectedStateObserver.setValue(value);
     }
@@ -101,6 +108,10 @@ public class AppState {
         selectedViewStateObserver.setValue(value);
     }
 
+    public Calendar getStartTime() {
+        return startTimeObserver.getValue();
+    }    
+    
     public int getNewFileSelectedState() {
         return newFileSelectedStateObserver.getValue();
     }

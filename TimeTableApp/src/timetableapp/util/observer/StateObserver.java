@@ -2,21 +2,20 @@ package timetableapp.util.observer;
 
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.Callable;
 import timetableapp.gui.Dialog;
 
 public class StateObserver implements Observer {
 
-    private Callable callable;
+    private Runnable runnable;
 
-    public StateObserver(Callable callable) {
-        this.callable = callable;
+    public StateObserver(Runnable runnable) {
+        this.runnable = runnable;
     }
 
     @Override
     public void update(Observable o, Object arg) {
         try {
-            callable.call();
+            runnable.run();
         } catch (Exception ex) {
             new Dialog().fatalErrorDialog(ex.getMessage());
         }
