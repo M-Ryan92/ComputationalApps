@@ -33,15 +33,17 @@ public class AppState {
     private int displayPanelHeight;
 
     @Getter
-    private ObservableValue<Calendar> startTimeObserver = new ObservableValue(Calendar.getInstance());
+    private ObservableValue<Calendar> startTimeObserver;
     @Getter
-    private ObservableValue<Integer> newFileSelectedStateObserver = new ObservableValue(0);
+    private ObservableValue<Calendar> endTimeObserver;
     @Getter
-    private ObservableValue<Integer> loadingFileStateObserver = new ObservableValue(0);
+    private ObservableValue<Integer> newFileSelectedStateObserver;
     @Getter
-    private ObservableValue<Integer> fileLoadedStateObserver = new ObservableValue(0);
+    private ObservableValue<Integer> loadingFileStateObserver;
     @Getter
-    private ObservableValue<Integer> selectedViewStateObserver = new ObservableValue(ViewStates.MainView);
+    private ObservableValue<Integer> fileLoadedStateObserver;
+    @Getter
+    private ObservableValue<Integer> selectedViewStateObserver;
 
     public void setApp(PApplet app) {
         this.app = app;
@@ -59,6 +61,13 @@ public class AppState {
     private Font iFont;
 
     private AppState() {
+        this.selectedViewStateObserver = new ObservableValue(ViewStates.MainView);
+        this.fileLoadedStateObserver = new ObservableValue(0);
+        this.loadingFileStateObserver = new ObservableValue(0);
+        this.newFileSelectedStateObserver = new ObservableValue(0);
+        this.startTimeObserver = new ObservableValue(Calendar.getInstance());
+        this.endTimeObserver = new ObservableValue(Calendar.getInstance());
+        
         Font f;
         try {
             f = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("ttf/OpenSans-Regular.ttf").openStream());
@@ -91,7 +100,11 @@ public class AppState {
     public void setStartTime(Calendar c) {
         startTimeObserver.setValue(c);
     }
-    
+
+    public void setEndTime(Calendar c) {
+        endTimeObserver.setValue(c);
+    }
+
     public void setNewFileSelectedState(int value) {
         newFileSelectedStateObserver.setValue(value);
     }
@@ -110,8 +123,12 @@ public class AppState {
 
     public Calendar getStartTime() {
         return startTimeObserver.getValue();
-    }    
-    
+    }
+
+    public Calendar getEndTime() {
+        return endTimeObserver.getValue();
+    }
+
     public int getNewFileSelectedState() {
         return newFileSelectedStateObserver.getValue();
     }
