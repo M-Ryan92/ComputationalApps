@@ -236,7 +236,7 @@ public class DrawBuildingVis {
         if (maxPages == 0) {
             maxPages = maxEtages / fittingEtage;
         }
-        if (currentPage == 0) {
+        if (currentPage == 0 && nodes.size() > 1) {
             drawConector(nodes.get(0), nodes.get(1));
         }
     }
@@ -324,10 +324,13 @@ public class DrawBuildingVis {
                 x -= counter;
             }
 
-            if (currentItem >= 1 && nodes.size()-2 > 0) {
+            if (currentItem >= 1 && nodes.size() - 2 > 0) {
                 drawConector(nodes.get(nodes.size() - 2), nodes.get(nodes.size() - 1));
             } else {
-                drawConector(foundElevator.orElse(nodes.get(0)), nodes.get(nodes.size() - 1));
+                if (foundElevator.isPresent()) {
+                    drawConector(foundElevator.get(), nodes.get(nodes.size() - 1));
+                }
+
                 if (floor == 0) {
                     drawConector(nodes.get(0), nodes.get(nodes.size() - 1));
                 }
@@ -338,10 +341,10 @@ public class DrawBuildingVis {
                 row++;
             }
         }
-        if (floor != 0 && foundElevator.isPresent() == true) {
+        if (foundElevator.isPresent() == true) {
             drawConector(nodes.get(nodes.size() - 1), foundElevator.get());
-        } else {
-            drawConector(nodes.get(nodes.size() - 1), foundElevator.orElse(nodes.get(0)));
+        } else if (floor == 0) {
+            drawConector(nodes.get(nodes.size() - 1), nodes.get(0));
         }
 
     }
@@ -349,41 +352,45 @@ public class DrawBuildingVis {
     public void draw(Building building) {
         Draw.drawDisplay();
 
+        app.pushMatrix();
         app.translate((app.width / 2), boundaryY2);
         initCoreBuilding(building);
+
         building.getFloorList().keySet().stream().filter((floor) -> ((floor - startetage) >= 0 && floor < (fittingEtage + startetage))).forEach((floor) -> {
             initFloor(building, floor);
         });
 
-        //draw al the connectors for the elevators
-        Object[] nArr = nodes.stream().filter(n -> "elevator" == n.type).toArray();
+//        //draw al the connectors for the elevators
+        Object[] nArr = nodes.stream().filter(n -> "elevator".equals(n.type)).toArray();
         for (int item = 0; item < nArr.length; item++) {
             if (item + 1 < nArr.length) {
                 drawConector((Node) nArr[item], (Node) nArr[item + 1]);
             }
         }
-        if (currentPage != maxPages) {
-            Node n = (Node) nArr[nArr.length - 1];
-            drawConector(n, new Node(n.x, -(boundaryY2 - 1), 44, 44));
-        }
-        if (currentPage > 0) {
-            Node n = (Node) nArr[0];
-            drawConector(n, new Node(n.x, boundaryY1 - 5, 44, 44));
+        if (nArr.length >1) {
+            if (currentPage != maxPages) {
+                Node n = (Node) nArr[nArr.length - 1];
+                drawConector(n, new Node(n.x, -(boundaryY2 - 1), 44, 44));
+            }
+            if (currentPage > 0) {
+                Node n = (Node) nArr[0];
+                drawConector(n, new Node(n.x, boundaryY1 - 5, 44, 44));
+            }
         }
         //draw all the nodes on screen and clear node list
         nodes.stream().forEach(n -> drawNode(n));
         nodes = new ArrayList<>();
-        app.translate(-(app.width / 2), -boundaryY2);
 
-        app.noStroke();
-        app.fill(AppProperties.displayColor);
-        app.rect((app.width / 2) - 8, boundaryY1 + 19, 16, -30);
-        app.stroke(AppProperties.strokeColor);
-        app.fill(255);
-
-        AppState.getInstance().setFontSize(30);
-
-        app.text(building.getName() + " " + building.getCode(), app.width / 2, boundaryY1 + 15);
-        AppState.getInstance().setFontSize();
+        app.popMatrix();
+//        app.noStroke();
+//        app.fill(AppProperties.displayColor);
+//        app.rect((app.width / 2) - 8, boundaryY1 + 19, 16, -30);
+//        app.stroke(AppProperties.strokeColor);
+//        app.fill(255);
+//
+//        AppState.getInstance().setFontSize(30);
+//
+//        app.text(building.getName() + " " + building.getCode(), app.width / 2, boundaryY1 + 15);
+//        AppState.getInstance().setFontSize();
     }
 }
