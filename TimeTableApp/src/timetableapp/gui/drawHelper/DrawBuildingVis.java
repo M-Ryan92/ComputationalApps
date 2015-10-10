@@ -338,7 +338,7 @@ public class DrawBuildingVis {
                 row++;
             }
         }
-        if (floor != 0) {
+        if (floor != 0 && foundElevator.isPresent() == true) {
             drawConector(nodes.get(nodes.size() - 1), foundElevator.get());
         } else {
             drawConector(nodes.get(nodes.size() - 1), foundElevator.orElse(nodes.get(0)));

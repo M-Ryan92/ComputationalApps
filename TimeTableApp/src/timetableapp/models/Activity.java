@@ -4,6 +4,7 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import lombok.Getter;
 
 public class Activity {
 
@@ -14,30 +15,45 @@ public class Activity {
     //when
     private int weekNr;
     private String day;
-    private Date startDate;
-    private Date endDate;
+    @Getter
+    private Calendar startDate;
+    @Getter
+    private Calendar endDate;
     private Date startTime;
     private Date endTime;
     private int[] duration = new int[3];
 
-    public Activity(String activity, String course, Date startDay, Date endDay) {
+    //where
+    @Getter
+    String building;
+    @Getter
+    int floor;
+    @Getter
+    String classroom;
+    
+    private int MINSinMilis = 60 * 1000;
+    private int HOURSinMilis = 60 * MINSinMilis;
+    private int DAYinMilis = 24 * HOURSinMilis;
+            
+    public Activity(String activity, String course, Calendar start, Calendar end , String building, int floor, String classroom) {
         this.activity = activity;
         this.course = course;
-        this.startDate = startDay;
-        this.endDate = endDay;
-        this.startTime = startDay;
-        this.endTime = endDay;
+        this.startDate = start;
+        this.endDate = end;
+        this.startTime = start.getTime();
+        this.endTime = end.getTime();
+        
+        this.building = building;
+        this.floor = floor;
+        this.classroom = classroom;
 
         long diff = endTime.getTime() - startTime.getTime();
-        duration[0] = (int) (diff / (24 * 60 * 60 * 1000));//days
-        duration[1] = (int) (diff / (60 * 60 * 1000));//hours
-        duration[2] = (int) (diff / (60 * 1000));//minutes
+        duration[0] = (int) (diff / DAYinMilis);//days
+        duration[1] = (int) ((diff % DAYinMilis) / HOURSinMilis);//hours
+        duration[2] = (int) (((diff % DAYinMilis) % HOURSinMilis) / MINSinMilis);//minutes
 
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(startDate);
-
-        day = new DateFormatSymbols(Locale.ENGLISH).getWeekdays()[cal.get(Calendar.DAY_OF_WEEK)];
-        weekNr = cal.get(Calendar.WEEK_OF_YEAR);
+        day = new DateFormatSymbols(Locale.ENGLISH).getWeekdays()[startDate.get(Calendar.DAY_OF_WEEK)];
+        weekNr = startDate.get(Calendar.WEEK_OF_YEAR);
     }
 
 }

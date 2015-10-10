@@ -7,6 +7,7 @@ import controlP5.Controller;
 import controlP5.ControllerInterface;
 import controlP5.Textfield;
 import java.util.Calendar;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import timetableapp.eventhandlers.NewFileSelectedHandler;
 import timetableapp.gui.BaseView;
 import timetableapp.gui.drawHelper.Draw;
 import timetableapp.gui.drawHelper.DrawBuildingVis;
+import timetableapp.models.Activity;
 import timetableapp.models.DataManager;
 import timetableapp.util.AppProperties;
 import timetableapp.util.observer.StateObserver;
@@ -129,6 +131,9 @@ public final class MainView extends BaseView {
             c = state.getStartTime();
             setTimeFields();
             setDateFields();
+            List<Activity> activitiesNow = dm.getActivitiesByCalendarDateAndBuilding(c, building);
+            
+            System.out.println("");
         }));
 
     }
@@ -281,6 +286,8 @@ public final class MainView extends BaseView {
         }
     }
 
+    private String building = "WBH";
+
     @Override
     public void draw() {
         if (ishidden == false) {
@@ -290,7 +297,7 @@ public final class MainView extends BaseView {
                 Draw.drawDisplayMessage("no file selected");
             } else {
                 //do some epic drawing magic =D
-                dbv.draw(dm.getBl().get("WBH"));
+                dbv.draw(dm.getBl().get(building));
                 dbv.checkBtnState(getcontrollerByName("floorDown"), getcontrollerByName("floorUp"));
 
                 app.fill(AppProperties.displayColor);

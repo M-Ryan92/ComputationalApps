@@ -4,9 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import timetableapp.models.table.TableModel;
 import lombok.Getter;
 import processing.data.Table;
@@ -23,8 +26,8 @@ public class DataManager {
     @Getter
     private List<Activity> activities;
 
-    private Map<String,String> names;
-    
+    private Map<String, String> names;
+
     private static DataManager instance = new DataManager();
 
     public static DataManager getInstance() {
@@ -32,16 +35,18 @@ public class DataManager {
     }
 
     private DataManager() {
-            names = new HashMap(){{
-                put("KSH","KOHNSTAMMHUIS");
-                put("STU","STUDIO HVA");
-                put("MLH","MULLER-LULOFSHUIS");
-                put("TTH","THEO THIJSSENHUIS");
-                put("BPH","BENNO PREMSELAHUIS");
-                put("WBH","WIBAUTHUIS");
-                put("KMH","KOETSIER-MONTAIGNEHUIS");
-            }};
-        
+        names = new HashMap() {
+            {
+                put("KSH", "KOHNSTAMMHUIS");
+                put("STU", "STUDIO HVA");
+                put("MLH", "MULLER-LULOFSHUIS");
+                put("TTH", "THEO THIJSSENHUIS");
+                put("BPH", "BENNO PREMSELAHUIS");
+                put("WBH", "WIBAUTHUIS");
+                put("KMH", "KOETSIER-MONTAIGNEHUIS");
+            }
+        };
+
     }
 
     public void createTable(Table data) {
@@ -55,10 +60,43 @@ public class DataManager {
             activities = new ArrayList<>();
             SimpleDateFormat dp = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             for (TableRow tr : data.rows()) {
-                activities.add(new Activity(tr.getString("Activity"),tr.getString("Course"),
-                        dp.parse(tr.getString("Start date") + " " + tr.getString("Start time")),
-                        dp.parse(tr.getString("End date") + " " + tr.getString("End time"))));
+                try {
+                    Date startDate = dp.parse(tr.getString("Start date") + " " + tr.getString("Start time"));
+                    Calendar start = Calendar.getInstance();
+
+                    start.setTime(startDate);
+
+                    Date endDate = dp.parse(tr.getString("End date") + " " + tr.getString("End time"));
+                    Calendar end = Calendar.getInstance();
+                    end.setTime(endDate);
+
+                    String locations = tr.getString("Location");
+                    if (locations.contains(",")) {
+                        for (String location : locations.split(",")) {
+                            addActivity(tr.getString("Activity"), tr.getString("Course"), start, end, location.split(" "));
+                        }
+                    } else {
+                        addActivity(tr.getString("Activity"), tr.getString("Course"), start, end, locations.split(" "));
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("");
+                }
             }
+        }
+    }
+
+    private void addActivity(String activity, String course, Calendar start, Calendar end, String[] classRoomInfo) {
+        String clsroom = "";
+        if (Arrays.asList(formatOne).contains(classRoomInfo[0])) {
+            LocationProperties lp = new LocationProperties(classRoomInfo);
+            clsroom = lp.letter + String.valueOf(lp.number);
+            activities.add(new Activity(activity, course, start, end, lp.building, lp.floor, clsroom));
+        } else if (Arrays.asList(formatTwo).contains(classRoomInfo[0])) {
+            LocationProperties lp = new LocationProperties(classRoomInfo);
+            clsroom = String.valueOf(lp.number);
+            activities.add(new Activity(activity, course, start, end, lp.building, lp.floor, clsroom));
         }
     }
 
@@ -79,7 +117,7 @@ public class DataManager {
             }
         }
     }
-    
+
     private void addLocation(String location) {
         String[] classRoomInfo = location.trim().split(" ");
         String code = classRoomInfo[0];
@@ -98,27 +136,46 @@ public class DataManager {
             bl.put(code, b);
         }
     }
+    private String[] formatOne = {"KSH", "STU", "MLH", "TTH", "BPH", "WBH"};
+    private String[] formatTwo = {"KMH"};
+
+    private class LocationProperties {
+
+        int floor, number, capacity;
+        char letter;
+        String building;
+
+        public LocationProperties(String[] classRoomInfo) {
+            building = classRoomInfo[0];
+            if (Arrays.asList(formatOne).contains(classRoomInfo[0])) {
+                floor = Integer.valueOf(classRoomInfo[1].subSequence(0, 2).toString());
+                letter = classRoomInfo[1].charAt(2);
+                number = Integer.valueOf(classRoomInfo[1].subSequence(3, 5).toString());
+                capacity = Integer.valueOf(classRoomInfo[classRoomInfo.length - 1].substring(1, classRoomInfo[classRoomInfo.length - 1].length() - 1));
+
+            } else if (Arrays.asList(formatTwo).contains(classRoomInfo[0])) {
+                floor = Integer.valueOf(classRoomInfo[1].subSequence(0, 1).toString());
+                number = Integer.valueOf(classRoomInfo[1].subSequence(2, 4).toString());
+                capacity = Integer.valueOf(classRoomInfo[classRoomInfo.length - 1].substring(1, classRoomInfo[classRoomInfo.length - 1].length() - 1));
+            }
+        }
+
+    }
 
     private ClassRoom makeClassRoom(String[] classRoomInfo) {
         ClassRoom classRoom = null;
-        String[] formatOne = {"KSH", "STU", "MLH", "TTH", "BPH", "WBH"};
-        String[] formatTwo = {"KMH"};
-
         if (Arrays.asList(formatOne).contains(classRoomInfo[0])) {
-            int floor = Integer.valueOf(classRoomInfo[1].subSequence(0, 2).toString());
-            char letter = classRoomInfo[1].charAt(2);
-            int number = Integer.valueOf(classRoomInfo[1].subSequence(3, 5).toString());
-            int capacity = Integer.valueOf(classRoomInfo[classRoomInfo.length - 1].substring(1, classRoomInfo[classRoomInfo.length - 1].length() - 1));
-            classRoom = new ClassRoom(floor, letter, number, capacity);
+            LocationProperties lp = new LocationProperties(classRoomInfo);
+            classRoom = new ClassRoom(lp.floor, lp.letter, lp.number, lp.capacity);
         } else if (Arrays.asList(formatTwo).contains(classRoomInfo[0])) {
-            int floor = Integer.valueOf(classRoomInfo[1].subSequence(0, 1).toString());
-            int number = Integer.valueOf(classRoomInfo[1].subSequence(2, 4).toString());
-            int capacity = Integer.valueOf(classRoomInfo[classRoomInfo.length - 1].substring(1, classRoomInfo[classRoomInfo.length - 1].length() - 1));
-            classRoom = new ClassRoom(floor, number, capacity);
+            LocationProperties lp = new LocationProperties(classRoomInfo);
+            classRoom = new ClassRoom(lp.floor, lp.number, lp.capacity);
         }
-        //KMH 2.20
-
         return classRoom;
     }
 
+    public List<Activity> getActivitiesByCalendarDateAndBuilding(Calendar cal, String building) {
+        List<Activity> collect = activities.stream().filter(a -> a.building.equals(building)).filter(a -> a.getStartDate().before(cal)).filter(a -> a.getEndDate().after(cal)).collect(Collectors.toList());
+        return collect;
+    }
 }
