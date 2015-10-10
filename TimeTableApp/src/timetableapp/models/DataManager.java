@@ -91,9 +91,9 @@ public class DataManager {
         String clsroom = "";
         if (Arrays.asList(formatOne).contains(classRoomInfo[0])) {
             LocationProperties lp = new LocationProperties(classRoomInfo);
-            
+
             clsroom = lp.letter + String.format("%02d", lp.number);
-            
+
             activities.add(new Activity(activity, course, start, end, lp.building, lp.floor, clsroom));
         } else if (Arrays.asList(formatTwo).contains(classRoomInfo[0])) {
             LocationProperties lp = new LocationProperties(classRoomInfo);
@@ -176,10 +176,14 @@ public class DataManager {
         return classRoom;
     }
 
-    public List<Activity> getActivitiesByCalendarDateAndBuilding(Calendar cal, String building) {
+    public List<Activity> getActivitiesByCalendarDateAndBuilding(Calendar start, Calendar end, String building) {
         List<Activity> collect = activities.stream()
                 .filter(a -> a.building.equals(building))
-                .filter(a -> a.getStartDate().before(cal) && a.getEndDate().after(cal))
+                .filter(a -> ((a.getStartDate().compareTo(start) <= 0 && a.getEndDate().compareTo(start) >= 0)
+                        || (a.getStartDate().compareTo(end) <= 0 && a.getEndDate().compareTo(end) >= 0))
+                        || (a.getStartDate().compareTo(start) >= 0 && a.getEndDate().compareTo(end) <= 0)
+                        
+                )
                 .collect(Collectors.toList());
         return collect;
     }

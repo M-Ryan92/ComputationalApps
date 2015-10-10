@@ -115,19 +115,21 @@ public final class MainView extends BaseView {
 
         state.getStartTimeObserver().addObserver(new StateObserver(() -> {
             startTime = state.getStartTime();
+            endTime.set(startTime.get(Calendar.YEAR), startTime.get(Calendar.MONTH), startTime.get(Calendar.DAY_OF_MONTH));
             setStartTimeFields();
             setDateFields();
-            SetClassRoomStates(startTime);
+            SetClassRoomStates(startTime, endTime);
         }));
         state.getEndTimeObserver().addObserver(new StateObserver(() -> {
             endTime = state.getEndTime();
             endTime.set(startTime.get(Calendar.YEAR), startTime.get(Calendar.MONTH), startTime.get(Calendar.DAY_OF_MONTH));
             setEndTimeFields();
+            SetClassRoomStates(startTime, endTime);
         }));
     }
 
-    private void SetClassRoomStates(Calendar start) {
-        List<Activity> activitiesNow = dm.getActivitiesByCalendarDateAndBuilding(start, building);
+    private void SetClassRoomStates(Calendar start, Calendar end) {
+        List<Activity> activitiesNow = dm.getActivitiesByCalendarDateAndBuilding(start, end, building);
 
         dm.getBl().get(building).getFloorList().forEach((floor, classrooms) -> {
             classrooms.forEach((location, classroom) -> {
