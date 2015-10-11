@@ -20,7 +20,7 @@ public abstract class BaseView {
 
     public ControllerInterface getcontrollerByName(String name) {
         for (ControllerInterface c : controllers) {
-            if(c.getName().equals(name)){
+            if (c.getName().equals(name)) {
                 return c;
             }
         }
@@ -35,6 +35,12 @@ public abstract class BaseView {
         ishidden = true;
         controllers.stream().forEach(ci -> ci.hide());
         app.background(AppProperties.backgroundColor);
+    }
+
+    public void showNoControlls() {
+        ishidden = false;
+        app.background(AppProperties.backgroundColor);
+        draw();
     }
 
     public void show() {

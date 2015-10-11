@@ -33,6 +33,7 @@ public final class MainView extends BaseView {
     private Calendar endTime = state.getEndTime();
     private String[] items = state.getItems();
 
+    @Getter
     private String building = null;
 
     public MainView() {
@@ -124,7 +125,10 @@ public final class MainView extends BaseView {
 
         state.getFileLoadedStateObserver().addObserver(new StateObserver(() -> {
             state.setSelectedViewState(ViewStates.MainView);
-            show();
+                showNoControlls();
+                getcontrollerByName("viewData").show();
+                getcontrollerByName("selectFileBtn").show();  
+                getcontrollerByName("selectBuilding").show();  
         }));
 
         state.getStartTimeObserver().addObserver(new StateObserver(() -> {
@@ -253,6 +257,7 @@ public final class MainView extends BaseView {
             case ("selectBuilding"):
                 building = (String) ((DropdownList) controller).getItem((int) controller.getValue()).get("text");
                 dbv.reset();
+                show();
                 break;
             case ("startHourPlus"):
                 startTime.add(Calendar.HOUR_OF_DAY, 1);
@@ -353,20 +358,23 @@ public final class MainView extends BaseView {
                 //do some epic drawing magic =D
                 dbv.draw(dm.getBl().get(building));
                 dbv.checkBtnState(getcontrollerByName("floorDown"), getcontrollerByName("floorUp"));
-
-                app.fill(AppProperties.displayColor);
-                app.rect(pickerx - 10, pickery - 5, 140, (AppProperties.buttonHeight * 3) + 42);
-
-                app.rect(pickerx + 150 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);//start time picker
-
-                app.rect(pickerx + 150 + 135 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);//end time picker
-                app.fill(255);
-
-                app.text(dbv.getEtageRange(), (app.width / 2), state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 3) - 8);
+                drawNavigationBackground();
             } else {
                 Draw.drawDisplayMessage("selecte a building");
             }
         }
+    }
+
+    private void drawNavigationBackground() {
+        app.fill(AppProperties.displayColor);
+        app.rect(pickerx - 10, pickery - 5, 140, (AppProperties.buttonHeight * 3) + 42);
+
+        app.rect(pickerx + 150 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);//start time picker
+
+        app.rect(pickerx + 150 + 135 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);//end time picker
+        app.fill(255);
+
+        app.text(dbv.getEtageRange(), (app.width / 2), state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 3) - 8);
     }
 
 }
