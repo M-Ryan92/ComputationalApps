@@ -4,7 +4,7 @@ import controlP5.Button;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import controlP5.Controller;
-import controlP5.ControllerInterface;
+import controlP5.DropdownList;
 import controlP5.Textfield;
 import java.util.Calendar;
 import java.util.List;
@@ -31,6 +31,9 @@ public final class MainView extends BaseView {
     private int pickery = state.getDisplayPanelHeight() + 30;
     private Calendar startTime = state.getStartTime();
     private Calendar endTime = state.getEndTime();
+    private String[] items = state.getItems();
+
+    private String building = null;
 
     public MainView() {
         super();
@@ -49,6 +52,17 @@ public final class MainView extends BaseView {
                 .setSize(70, AppProperties.buttonHeight)
                 .setLabel("View Data")
                 .hide());
+
+        getControllers().add(cp5
+                .addDropdownList("selectBuilding")
+                .setBarHeight(AppProperties.buttonHeight)
+                .setColorBackground(AppProperties.buttonColor)
+                .setPosition(app.width - ((app.width / 3) * 2), state.getDisplayPanelHeight() + AppProperties.buttonHeight)
+                .setItemHeight(AppProperties.buttonHeight)
+                .setHeight(AppProperties.buttonHeight * 4)
+                .addItems(items)
+                .hide()
+        );
 
         getControllers().add(cp5
                 .addButton(cp5, "floorUp")
@@ -233,10 +247,13 @@ public final class MainView extends BaseView {
 
     public void controlEvent(ControlEvent evt) {
         Controller<?> controller = evt.getController();
-        ControllerInterface ctrl;
         int newVal = 0;
         boolean isDigit = true;
         switch (controller.getName()) {
+            case ("selectBuilding"):
+                building = (String) ((DropdownList) controller).getItem((int) controller.getValue()).get("text");
+                dbv.reset();
+                break;
             case ("startHourPlus"):
                 startTime.add(Calendar.HOUR_OF_DAY, 1);
                 state.setStartTime(startTime);
@@ -325,8 +342,6 @@ public final class MainView extends BaseView {
         }
     }
 
-    private String building = "WBH";
-
     @Override
     public void draw() {
         if (ishidden == false) {
@@ -334,7 +349,7 @@ public final class MainView extends BaseView {
 
             if (state.getFileLoadedState() != 1) {
                 Draw.drawDisplayMessage("no file selected");
-            } else {
+            } else if (building != null) {
                 //do some epic drawing magic =D
                 dbv.draw(dm.getBl().get(building));
                 dbv.checkBtnState(getcontrollerByName("floorDown"), getcontrollerByName("floorUp"));
@@ -348,6 +363,8 @@ public final class MainView extends BaseView {
                 app.fill(255);
 
                 app.text(dbv.getEtageRange(), (app.width / 2), state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 3) - 8);
+            } else {
+                Draw.drawDisplayMessage("selecte a building");
             }
         }
     }

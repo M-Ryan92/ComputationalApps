@@ -4,6 +4,8 @@ import controlP5.ControlP5;
 import java.awt.Font;
 import java.io.File;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import processing.core.PApplet;
@@ -61,13 +63,30 @@ public class AppState {
     private Font iFont;
 
     private AppState() {
+        this.formatTwo = new String[]{"KMH"};
+        this.formatOne = new String[]{"KSH", "STU", "MLH", "TTH", "BPH", "WBH"};
+        this.buildingNames = new HashMap() {
+            {
+                put("KSH", "KOHNSTAMMHUIS");
+                put("STU", "STUDIO HVA");
+                put("MLH", "MULLER-LULOFSHUIS");
+                put("TTH", "THEO THIJSSENHUIS");
+                put("BPH", "BENNO PREMSELAHUIS");
+                put("WBH", "WIBAUTHUIS");
+                put("KMH", "KOETSIER-MONTAIGNEHUIS");
+            }
+        };
+        this.items = new String[]{
+            "KSH", "STU", "MLH", "TTH", "BPH", "WBH", "KMH"
+        };
+        
         this.selectedViewStateObserver = new ObservableValue(ViewStates.MainView);
         this.fileLoadedStateObserver = new ObservableValue(0);
         this.loadingFileStateObserver = new ObservableValue(0);
         this.newFileSelectedStateObserver = new ObservableValue(0);
         this.startTimeObserver = new ObservableValue(Calendar.getInstance());
         this.endTimeObserver = new ObservableValue(Calendar.getInstance());
-        
+
         Font f;
         try {
             f = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResource("ttf/OpenSans-Regular.ttf").openStream());
@@ -80,6 +99,15 @@ public class AppState {
             new Dialog().fatalErrorDialog("error occured app closes now");
         }
     }
+
+    @Getter
+    private final String[] items;
+    @Getter
+    private final Map<String, String> buildingNames;
+    @Getter
+    private final String[] formatOne;
+    @Getter
+    private final String[] formatTwo;
 
     public PFont getIconFont() {
         return iconFont;

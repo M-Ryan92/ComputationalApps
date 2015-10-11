@@ -14,6 +14,7 @@ import lombok.Getter;
 import processing.data.Table;
 import processing.data.TableRow;
 import timetableapp.models.table.TableModel;
+import timetableapp.util.state.AppState;
 
 public class DataManager {
 
@@ -35,18 +36,7 @@ public class DataManager {
     }
 
     private DataManager() {
-        names = new HashMap() {
-            {
-                put("KSH", "KOHNSTAMMHUIS");
-                put("STU", "STUDIO HVA");
-                put("MLH", "MULLER-LULOFSHUIS");
-                put("TTH", "THEO THIJSSENHUIS");
-                put("BPH", "BENNO PREMSELAHUIS");
-                put("WBH", "WIBAUTHUIS");
-                put("KMH", "KOETSIER-MONTAIGNEHUIS");
-            }
-        };
-
+        names = AppState.getInstance().getBuildingNames();
     }
 
     public void createTable(Table data) {
@@ -138,8 +128,8 @@ public class DataManager {
             bl.put(code, b);
         }
     }
-    private String[] formatOne = {"KSH", "STU", "MLH", "TTH", "BPH", "WBH"};
-    private String[] formatTwo = {"KMH"};
+    private String[] formatOne = AppState.getInstance().getFormatOne();
+    private String[] formatTwo = AppState.getInstance().getFormatTwo();
 
     private class LocationProperties {
 

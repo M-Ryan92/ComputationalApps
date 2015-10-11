@@ -37,6 +37,16 @@ public class DrawBuildingVis {
     private int currentPage = 0;
     private int maxEtages = 0;
 
+    boolean isUnKownFitting = true;
+
+    public void reset() {
+        startetage = 0;
+        maxPages = 0;
+        currentPage = 0;
+        maxEtages = 0;
+        isUnKownFitting = true;
+    }
+
     public void floorsUp() {
         if (currentPage + 1 <= maxPages) {
             currentPage++;
@@ -210,13 +220,11 @@ public class DrawBuildingVis {
         app.stroke(AppProperties.strokeColor);
     }
 
-    boolean isUnKownFitting = true;
-
     private void initCoreBuilding(Building building) {
         if (isUnKownFitting) {
             fittingEtage = 0;
         }
-        maxEtages = building.getFloorCount();
+        maxEtages = building.getFloorCount() <= 0 ? 1 : building.getFloorCount();
         floorYHeight = ((boundaryY2) / maxEtages) + 120;
         if (currentPage == 0 && nodes.isEmpty()) {
             makeEnteranceNode(0, -(y - 60));
@@ -233,7 +241,7 @@ public class DrawBuildingVis {
         if (fittingEtage > 0) {
             isUnKownFitting = false;
         }
-        if (maxPages == 0) {
+        if (maxPages == 0 && fittingEtage != 0) {
             maxPages = maxEtages / fittingEtage;
         }
         if (currentPage == 0 && nodes.size() > 1) {
