@@ -3,7 +3,6 @@ package timetableapp.util.state;
 import controlP5.ControlP5;
 import java.awt.Font;
 import java.io.File;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
@@ -34,10 +33,6 @@ public class AppState {
     @Getter
     private int displayPanelHeight;
 
-    @Getter
-    private ObservableValue<Calendar> startTimeObserver;
-    @Getter
-    private ObservableValue<Calendar> endTimeObserver;
     @Getter
     private ObservableValue<Integer> newFileSelectedStateObserver;
     @Getter
@@ -79,13 +74,11 @@ public class AppState {
         this.items = new String[]{
             "KSH", "STU", "MLH", "TTH", "BPH", "WBH", "KMH"
         };
-        
+
         this.selectedViewStateObserver = new ObservableValue(ViewStates.MainView);
         this.fileLoadedStateObserver = new ObservableValue(0);
         this.loadingFileStateObserver = new ObservableValue(0);
         this.newFileSelectedStateObserver = new ObservableValue(0);
-        this.startTimeObserver = new ObservableValue(Calendar.getInstance());
-        this.endTimeObserver = new ObservableValue(Calendar.getInstance());
 
         Font f;
         try {
@@ -125,14 +118,6 @@ public class AppState {
         app.textFont(txtfont, size);
     }
 
-    public void setStartTime(Calendar c) {
-        startTimeObserver.setValue(c);
-    }
-
-    public void setEndTime(Calendar c) {
-        endTimeObserver.setValue(c);
-    }
-
     public void setNewFileSelectedState(int value) {
         newFileSelectedStateObserver.setValue(value);
     }
@@ -147,14 +132,6 @@ public class AppState {
 
     public void setSelectedViewState(int value) {
         selectedViewStateObserver.setValue(value);
-    }
-
-    public Calendar getStartTime() {
-        return startTimeObserver.getValue();
-    }
-
-    public Calendar getEndTime() {
-        return endTimeObserver.getValue();
     }
 
     public int getNewFileSelectedState() {

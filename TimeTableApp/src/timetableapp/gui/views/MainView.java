@@ -5,6 +5,7 @@ import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import controlP5.Controller;
 import controlP5.DropdownList;
+import controlP5.Range;
 import controlP5.Textfield;
 import java.util.Calendar;
 import java.util.List;
@@ -29,8 +30,8 @@ public final class MainView extends BaseView {
 
     private int pickerx = app.width - (app.width / 3) - (app.width / 9);
     private int pickery = state.getDisplayPanelHeight() + 30;
-    private Calendar startTime = state.getStartTime();
-    private Calendar endTime = state.getEndTime();
+    private Calendar startTime = Calendar.getInstance();
+    private Calendar endTime = Calendar.getInstance();
     private String[] items = state.getItems();
 
     @Getter
@@ -94,25 +95,65 @@ public final class MainView extends BaseView {
         datePicker("month", pickerx + 35, pickery, 40, startTime.get(Calendar.MONTH) + 1);
         datePicker("year", pickerx + 80, pickery, 40, startTime.get(Calendar.YEAR));
 
-        //time start selector
-        getControllers().add(cp5
-                .addLabel("Select Start Time")
-                .setFont(state.getFont())
-                .setPosition(pickerx + 145, pickery)
+        getControllers().add(cp5.addTextfield("startHourVal")
+                .setColorBackground(AppProperties.buttonColor)
+                .setPosition(pickerx + 160, pickery + (AppProperties.buttonHeight * 2) - 3)
+                .setSize(40, AppProperties.buttonHeight)
+                .setText(getDisplayString(startTime.get(Calendar.HOUR_OF_DAY)))
+                .setLabel("")
+                .lock()
                 .hide()
         );
-        timePicker("startHour", pickerx + 160, pickery, 40, startTime.get(Calendar.HOUR_OF_DAY));
-        timePicker("startMin", pickerx + 205, pickery, 40, startTime.get(Calendar.MINUTE));
+        ((Textfield) getcontrollerByName("startHourVal")).getValueLabel().alignX(ControlP5.CENTER);
+        getControllers().add(cp5.addTextfield("startMinVal")
+                .setColorBackground(AppProperties.buttonColor)
+                .setPosition(pickerx + 205, pickery + (AppProperties.buttonHeight * 2) - 3)
+                .setSize(40, AppProperties.buttonHeight)
+                .setText(getDisplayString(startTime.get(Calendar.MINUTE)))
+                .setLabel("")
+                .lock()
+                .hide()
+        );
+        ((Textfield) getcontrollerByName("startMinVal")).getValueLabel().alignX(ControlP5.CENTER);
 
-        //time start selector
-        getControllers().add(cp5
-                .addLabel("Select End Time")
-                .setFont(state.getFont())
-                .setPosition(pickerx + 145 + 135, pickery)
+        getControllers().add(cp5.addTextfield("endHourVal")
+                .setColorBackground(AppProperties.buttonColor)
+                .setPosition(pickerx + 395, pickery + (AppProperties.buttonHeight * 2) - 3)
+                .setSize(40, AppProperties.buttonHeight)
+                .setText(getDisplayString(startTime.get(Calendar.HOUR_OF_DAY)))
+                .setLabel("")
+                .lock()
                 .hide()
         );
-        timePicker("endHour", pickerx + 160 + 135, pickery, 40, startTime.get(Calendar.HOUR_OF_DAY));
-        timePicker("endMin", pickerx + 205 + 135, pickery, 40, startTime.get(Calendar.MINUTE));
+        ((Textfield) getcontrollerByName("endHourVal")).getValueLabel().alignX(ControlP5.CENTER);
+        getControllers().add(cp5.addTextfield("endMinVal")
+                .setColorBackground(AppProperties.buttonColor)
+                .setPosition(pickerx + 440, pickery + (AppProperties.buttonHeight * 2) - 3)
+                .setSize(40, AppProperties.buttonHeight)
+                .setText(getDisplayString(startTime.get(Calendar.MINUTE)))
+                .setLabel("")
+                .lock()
+                .hide()
+        );
+        ((Textfield) getcontrollerByName("endMinVal")).getValueLabel().alignX(ControlP5.CENTER);
+
+        getControllers().add(cp5.addRange("timepicker")
+                .setBroadcast(false)
+                .setPosition(pickerx + 200, pickery + (AppProperties.buttonHeight * 3) + 10)
+                .setWidth(240)
+                .setHeight((AppProperties.buttonHeight / 3) * 2)
+                .setDecimalPrecision(0)
+                .setLabel("")
+                .setColorBackground(AppProperties.buttonColor)
+                .hide()
+        );
+        Range r = (Range) getcontrollerByName("timepicker");
+        r.setRange(0, (24 * 60) - 1);//1439
+        r.setRangeValues((startTime.get(Calendar.HOUR_OF_DAY) * 60) + startTime.get(Calendar.MINUTE),
+                (endTime.get(Calendar.HOUR_OF_DAY) * 60) + endTime.get(Calendar.MINUTE));
+        r.setLowValueLabel("");
+        r.setHighValueLabel("");
+        r.setBroadcast(true);
 
         state.getNewFileSelectedStateObserver().addObserver(new StateObserver(new NewFileSelectedHandler()));
 
@@ -125,25 +166,12 @@ public final class MainView extends BaseView {
 
         state.getFileLoadedStateObserver().addObserver(new StateObserver(() -> {
             state.setSelectedViewState(ViewStates.MainView);
-                showNoControlls();
-                getcontrollerByName("viewData").show();
-                getcontrollerByName("selectFileBtn").show();  
-                getcontrollerByName("selectBuilding").show();  
+            showNoControlls();
+            getcontrollerByName("viewData").show();
+            getcontrollerByName("selectFileBtn").show();
+            getcontrollerByName("selectBuilding").show();
         }));
 
-        state.getStartTimeObserver().addObserver(new StateObserver(() -> {
-            startTime = state.getStartTime();
-            endTime.set(startTime.get(Calendar.YEAR), startTime.get(Calendar.MONTH), startTime.get(Calendar.DAY_OF_MONTH));
-            setStartTimeFields();
-            setDateFields();
-            SetClassRoomStates(startTime, endTime);
-        }));
-        state.getEndTimeObserver().addObserver(new StateObserver(() -> {
-            endTime = state.getEndTime();
-            endTime.set(startTime.get(Calendar.YEAR), startTime.get(Calendar.MONTH), startTime.get(Calendar.DAY_OF_MONTH));
-            setEndTimeFields();
-            SetClassRoomStates(startTime, endTime);
-        }));
     }
 
     private void SetClassRoomStates(Calendar start, Calendar end) {
@@ -170,34 +198,6 @@ public final class MainView extends BaseView {
         } else {
             return String.valueOf(input);
         }
-    }
-
-    private void timePicker(String name, int x, int y, int width, int input) {
-        getControllers().add(cp5.addButton(name + "Plus")
-                .setColorBackground(AppProperties.buttonColor)
-                .setPosition(x, y + (AppProperties.buttonHeight * 1))
-                .setLabel("+")
-                .setSize(width, AppProperties.buttonHeight)
-                .hide()
-        );
-
-        getControllers().add(cp5.addTextfield(name + "Val")
-                .setColorBackground(AppProperties.buttonColor)
-                .setPosition(x, y + (AppProperties.buttonHeight * 2) + 4)
-                .setSize(width, AppProperties.buttonHeight)
-                .setText(getDisplayString(input))
-                .setLabel("")
-                .lock()
-                .hide()
-        );
-        ((Textfield) getcontrollerByName(name + "Val")).getValueLabel().alignX(ControlP5.CENTER);
-        getControllers().add(cp5.addButton(name + "Minus")
-                .setColorBackground(AppProperties.buttonColor)
-                .setPosition(x, y + (AppProperties.buttonHeight * 3) + 8)
-                .setLabel("-")
-                .setSize(width, AppProperties.buttonHeight)
-                .hide()
-        );
     }
 
     private void datePicker(String name, int x, int y, int width, int input) {
@@ -249,6 +249,32 @@ public final class MainView extends BaseView {
         }
     }
 
+    private void handleTimeCange() {
+        int min,
+                hour;
+        float value;
+        Range r = (Range) getcontrollerByName("timepicker");
+
+        r.setLowValueLabel("");
+        r.setHighValueLabel("");
+
+        value = r.getArrayValue(0);
+        min = (int) (value % 60);
+        hour = (int) ((value - min) / 60);
+        startTime.set(Calendar.HOUR_OF_DAY, hour);
+        startTime.set(Calendar.MINUTE, min);
+
+        value = r.getArrayValue(1);
+        min = (int) (value % 60);
+        hour = (int) ((value - min) / 60);
+        endTime.set(Calendar.HOUR_OF_DAY, hour);
+        endTime.set(Calendar.MINUTE, min);
+
+        setStartTimeFields();
+        setEndTimeFields();
+        SetClassRoomStates(startTime, endTime);
+    }
+
     public void controlEvent(ControlEvent evt) {
         Controller<?> controller = evt.getController();
         int newVal = 0;
@@ -259,69 +285,44 @@ public final class MainView extends BaseView {
                 dbv.reset();
                 show();
                 break;
-            case ("startHourPlus"):
-                startTime.add(Calendar.HOUR_OF_DAY, 1);
-                state.setStartTime(startTime);
-            case ("endHourPlus"):
-                endTime.add(Calendar.HOUR_OF_DAY, 1);
-                state.setEndTime(endTime);
+            case ("timepicker"):
+                handleTimeCange();
                 break;
-
-            case ("startHourMinus"):
-                startTime.add(Calendar.HOUR_OF_DAY, -1);
-                state.setStartTime(startTime);
-            case ("endHourMinus"):
-                endTime.add(Calendar.HOUR_OF_DAY, -1);
-                if (endTime.before(startTime)) {
-                    startTime.add(Calendar.HOUR_OF_DAY, -1);
-                    state.setStartTime(startTime);
-                }
-                state.setEndTime(endTime);
-                break;
-
-            case ("startMinPlus"):
-                startTime.add(Calendar.MINUTE, 1);
-                state.setStartTime(startTime);
-            case ("endMinPlus"):
-                endTime.add(Calendar.MINUTE, 1);
-                state.setEndTime(endTime);
-                break;
-
-            case ("startMinMinus"):
-                startTime.add(Calendar.MINUTE, -1);
-                state.setStartTime(startTime);
-            case ("endMinMinus"):
-                endTime.add(Calendar.MINUTE, -1);
-                if (endTime.before(startTime)) {
-                    startTime.add(Calendar.MINUTE, -1);
-                    state.setStartTime(startTime);
-                }
-                state.setEndTime(endTime);
-                break;
-
             case ("dayPlus"):
                 startTime.add(Calendar.DATE, 1);
-                state.setStartTime(startTime);
+                endTime.add(Calendar.DATE, 1);
+                setDateFields();
+                handleTimeCange();
                 break;
             case ("dayMinus"):
                 startTime.add(Calendar.DATE, -1);
-                state.setStartTime(startTime);
+                endTime.add(Calendar.DATE, -1);
+                setDateFields();
+                handleTimeCange();
                 break;
             case ("monthPlus"):
                 startTime.add(Calendar.MONTH, 1);
-                state.setStartTime(startTime);
+                endTime.add(Calendar.MONTH, 1);
+                setDateFields();
+                handleTimeCange();
                 break;
             case ("monthMinus"):
                 startTime.add(Calendar.MONTH, -1);
-                state.setStartTime(startTime);
+                endTime.add(Calendar.MONTH, -1);
+                setDateFields();
+                handleTimeCange();
                 break;
             case ("yearPlus"):
                 startTime.add(Calendar.YEAR, 1);
-                state.setStartTime(startTime);
+                endTime.add(Calendar.YEAR, 1);
+                setDateFields();
+                handleTimeCange();
                 break;
             case ("yearMinus"):
                 startTime.add(Calendar.YEAR, -1);
-                state.setStartTime(startTime);
+                endTime.add(Calendar.YEAR, -1);
+                setDateFields();
+                handleTimeCange();
                 break;
             case ("selectFileBtn"):
                 JFileChooser fc = new JFileChooser();
@@ -358,21 +359,24 @@ public final class MainView extends BaseView {
                 //do some epic drawing magic =D
                 dbv.draw(dm.getBl().get(building));
                 dbv.checkBtnState(getcontrollerByName("floorDown"), getcontrollerByName("floorUp"));
-                drawNavigationBackground();
+                drawNavigationBackgroundAndLabels();
             } else {
                 Draw.drawDisplayMessage("selecte a building");
             }
         }
     }
 
-    private void drawNavigationBackground() {
+    private void drawNavigationBackgroundAndLabels() {
         app.fill(AppProperties.displayColor);
         app.rect(pickerx - 10, pickery - 5, 140, (AppProperties.buttonHeight * 3) + 42);
 
-        app.rect(pickerx + 150 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);//start time picker
+        app.rect(pickerx + 150 - 10, pickery - 5, 360, (AppProperties.buttonHeight * 3) + 42);
 
-        app.rect(pickerx + 150 + 135 - 10, pickery - 5, 125, (AppProperties.buttonHeight * 3) + 42);//end time picker
         app.fill(255);
+
+        app.text("book classroom", pickerx + 315, pickery + 10);
+        app.text("start time", pickerx + 200, pickery + 40);
+        app.text("end time", pickerx + 435, pickery + 40);
 
         app.text(dbv.getEtageRange(), (app.width / 2), state.getDisplayPanelHeight() + (AppProperties.buttonHeight * 3) - 8);
     }

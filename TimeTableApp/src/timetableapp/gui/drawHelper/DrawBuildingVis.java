@@ -49,7 +49,7 @@ public class DrawBuildingVis {
         boundaryX2 = displayWidth - spacing;
         boundaryY2 = displayHeight - spacing;
 
-        centerX = (boundaryX2 / 2) + boundaryX1;
+        centerX = (boundaryX2 / 2) + boundaryX1+20;
         centerY = (boundaryY2 / 2) + boundaryY1;
 
         nodes = new ArrayList<>();
@@ -132,6 +132,7 @@ public class DrawBuildingVis {
                 if (item + 1 < elevators.size()) {
                     drawConector(elevators.get(item), elevators.get(item + 1));
                 }
+                // ((currentPage==0 && item == 0) || currentPage >=1) &&
                 if (elevators.get(item) != null && roomsEachFloor.get(elevators.get(item).getFloor()) != null) {
                     List<Node> rooms = roomsEachFloor.get(elevators.get(item).getFloor());
                     int roomCount = 0;
@@ -159,7 +160,7 @@ public class DrawBuildingVis {
                         }
                         if (i + 1 == rooms.size()) {
                             drawConector(elevators.get(item), room);
-                            if(i-1 >= 0){
+                            if (i - 1 >= 0 && rooms.get(i - 1).getX() >= centerX + 40 ) {
                                 drawConector(room, rooms.get(i - 1));
                             }
                         }
@@ -189,7 +190,7 @@ public class DrawBuildingVis {
         //building lable
         app.noStroke();
         app.fill(AppProperties.displayColor);
-        app.rect((app.width / 2) - 20, boundaryY1 - 10, 16, 30);
+        app.rect((app.width / 2) - 20, boundaryY1 - 10, 30, 30);
         app.stroke(AppProperties.strokeColor);
         app.fill(255);
 
@@ -213,7 +214,10 @@ public class DrawBuildingVis {
                         if (isKnownEtageFits == false) {
                             nrOfEtageFits++;
                         }
-                        initializefloorNodes(building, floor);
+                        if (floor != 0) {
+                            initializefloorNodes(building, floor);
+                        }
+
                     }
                 }
                 isKnownEtageFits = true;
