@@ -23,7 +23,7 @@ public class NewFileSelectedHandler implements Runnable {
                 Table data = new Parser(state.getSelectedFile()).parse();
                 DataManager dm = DataManager.getInstance();
 
-                //dm.createTable(data);
+                dm.createTable(data);
                 dm.createMap(data);
                 dm.createActivities(data);
 

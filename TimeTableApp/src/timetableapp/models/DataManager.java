@@ -53,7 +53,6 @@ public class DataManager {
                 try {
                     Date startDate = dp.parse(tr.getString("Start date") + " " + tr.getString("Start time"));
                     Calendar start = Calendar.getInstance();
-
                     start.setTime(startDate);
 
                     Date endDate = dp.parse(tr.getString("End date") + " " + tr.getString("End time"));

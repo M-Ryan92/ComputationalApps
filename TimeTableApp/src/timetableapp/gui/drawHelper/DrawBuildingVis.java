@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -19,46 +18,92 @@ import timetableapp.util.state.AppState;
 
 public class DrawBuildingVis {
 
+    //base draw properties
     private PApplet app;
     private PImage enteranceIcon, elevatorIcon, classRoomIcon, classRoomUnavailableIcon;
     private int scale = 7;
     private List<Node> nodes;
-    private int boundaryX1, boundaryX2, boundaryY1, boundaryY2;
-    private int width, height;
+    private int displayWidth, displayHeight, boundaryX1, boundaryX2, boundaryY1,
+            boundaryY2;
+    private int centerX, centerY;
+    private int spacing = 70;
 
-    private int floorYHeight;
-    private int y = 25;
-    private int spacing = 15;
-    private Map<Character, List<ClassRoom>> groupedOnLetter;
+    //floor properties
+    private int floorHeight = 150;
 
-    private int fittingEtage;
+    //pagination
+    private int nrOfEtageFits = 0;
+    private boolean isKnownEtageFits = false;
     private int startetage = 0;
     private int maxPages = 0;
     private int currentPage = 0;
     private int maxEtages = 0;
 
-    boolean isUnKownFitting = true;
+    public DrawBuildingVis(PApplet app) {
+        this.app = app;
+        displayWidth = AppState.getInstance().getDisplayPanelWidth();
+        displayHeight = AppState.getInstance().getDisplayPanelHeight();
+
+        boundaryX1 = AppProperties.displayPanelXOffset + 20;
+        boundaryY1 = AppProperties.displayPanelYOffset + 20;
+        boundaryX2 = displayWidth - spacing;
+        boundaryY2 = displayHeight - spacing;
+
+        centerX = (boundaryX2 / 2) + boundaryX1;
+        centerY = (boundaryY2 / 2) + boundaryY1;
+
+        nodes = new ArrayList<>();
+
+        try {
+            elevatorIcon = loadIcon("images/elevatoricon.png");
+            enteranceIcon = loadIcon("images/deuricon.png");
+            classRoomIcon = loadIcon("images/klasicon.png");
+            classRoomUnavailableIcon = loadIcon("images/klasclosedicon.png");
+        } catch (IOException ex) {
+            new Dialog().fatalErrorDialog("error occured app closes now =C");
+        }
+    }
+
+    private PImage loadIcon(String path) throws IOException {
+        PImage img = app.loadImage(getClass().getResource(path).getFile());
+        if (img == null) {
+            img = app.loadImage(getClass().getResource(path).openConnection().getURL().toString());
+        }
+        return img;
+    }
 
     public void reset() {
+        isKnownEtageFits = false;
         startetage = 0;
         maxPages = 0;
         currentPage = 0;
+        nrOfEtageFits = 0;
         maxEtages = 0;
-        isUnKownFitting = true;
+        nodes = new ArrayList<>();
     }
 
     public void floorsUp() {
         if (currentPage + 1 <= maxPages) {
             currentPage++;
-            startetage = fittingEtage * currentPage;
+            startetage = nrOfEtageFits * currentPage;
+            nodes = new ArrayList<>();
         }
     }
 
     public void floorsDown() {
         if (currentPage != 0) {
             currentPage--;
-            startetage = fittingEtage * currentPage;
+            startetage = nrOfEtageFits * currentPage;
+            nodes = new ArrayList<>();
         }
+    }
+
+    public String getEtageRange() {
+        int endRange = currentPage > 0 ? startetage + (nrOfEtageFits - 1) : (nrOfEtageFits - 1);
+        if (currentPage == maxPages) {
+            endRange = maxEtages;
+        }
+        return startetage + "-" + endRange;
     }
 
     public void checkBtnState(ControllerInterface ctrl1, ControllerInterface ctrl2) {
@@ -74,197 +119,164 @@ public class DrawBuildingVis {
         }
     }
 
-    public String getEtageRange() {
-        int endRange = currentPage > 0 ? startetage + (fittingEtage - 1) : (fittingEtage - 1);
-        if (currentPage == maxPages) {
-            endRange = maxEtages;
-        }
-        return startetage + "-" + endRange;
-    }
-
-    public DrawBuildingVis(PApplet app) {
-        this.app = app;
-
-        width = AppState.getInstance().getDisplayPanelWidth();
-        height = AppState.getInstance().getDisplayPanelHeight();
-
-        boundaryX1 = AppProperties.displayPanelXOffset + 20;
-        boundaryY1 = AppProperties.displayPanelYOffset + 20;
-        boundaryX2 = width - boundaryX1;
-        boundaryY2 = height - boundaryY1;
-
-        try {
-            elevatorIcon = loadIcon("images/elevatoricon.png");
-            enteranceIcon = loadIcon("images/deuricon.png");
-            classRoomIcon = loadIcon("images/klasicon.png");
-            classRoomUnavailableIcon = loadIcon("images/klasclosedicon.png");
-        } catch (IOException ex) {
-            new Dialog().fatalErrorDialog("error occured app closes now =C");
-        }
-
-        nodes = new ArrayList<>();
-    }
-
-    private PImage loadIcon(String path) throws IOException {
-        PImage img = app.loadImage(getClass().getResource(path).getFile());
-        if (img == null) {
-            img = app.loadImage(getClass().getResource(path).openConnection().getURL().toString());
-        }
-        return img;
-    }
-
-    private synchronized void makeEnteranceNode(int x, int y) {
-        Node n = new Node(x, y, enteranceIcon.width / scale, enteranceIcon.height / scale);
-        centerDrawing(n);
-        n.type = "enterance";
-        n.floor = 0;
-        if (!nodeExists(n)) {
-            nodes.add(n);
-        }
-    }
-
-    private synchronized void makeElevatorNode(int x, int y, int floor) {
-        Node n = new Node(x, y, elevatorIcon.width / scale, elevatorIcon.height / scale);
-        centerDrawing(n);
-        n.type = "elevator";
-        n.floor = floor;
-        if (!nodeExists(n)) {
-            nodes.add(n);
-        }
-    }
-
-    private synchronized void makeClassRoomNode(int x, int y, int floor, ClassRoom cr) {
-        Node n;
-
-        if (cr.isAvailable()) {
-            n = new Node(x, y, classRoomIcon.width / scale, classRoomIcon.height / scale);
-        } else {
-            n = new Node(x, y, classRoomUnavailableIcon.width / scale, classRoomUnavailableIcon.height / scale);
-        }
-
-        centerDrawing(n);
-        n.cr = cr;
-        n.type = "classroom";
-        n.floor = floor;
-        if (!nodeExists(n)) {
-            nodes.add(n);
-            spacing += 15;
-        }
-    }
-
-    private void centerDrawing(Node n) {
-        n.x = n.x - (n.width / 2);
-        n.y = n.y - (n.height / 2);
-    }
-
-    private boolean nodeExists(Node n) {
-        for (Node o : nodes) {
-            if (o.floor == n.floor && o.type.equals(n.type) && o.x == n.x && o.y == n.y) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void drawNode(Node n) {
-        switch (n.type) {
-            case "enterance":
-                app.image(enteranceIcon, n.x, n.y, n.width, n.height);
-                break;
-            case "elevator":
-                app.image(elevatorIcon, n.x, n.y, n.width, n.height);
-                String text = "etage " + n.floor;
-
-                app.noStroke();
-                app.fill(AppProperties.displayColor);
-                app.rect(n.x - 6, n.y - 22, app.textWidth(text), 19);
-                app.stroke(AppProperties.strokeColor);
-                app.fill(255);
-
-                app.text(text, n.x + (app.textWidth(text) / 2) - 6, n.y - 10);
-                break;
-            case "classroom":
-                if (n.cr.isAvailable()) {
-                    app.image(classRoomIcon, n.x, n.y, n.width, n.height);
-                } else {
-                    app.image(classRoomUnavailableIcon, n.x, n.y, n.width, n.height);
-                }
-                app.text(n.cr.floorLocation(), n.x + (n.width / 2), n.y + (n.height / 2) + 3);
-                break;
-        }
-    }
-
-    private class Node {
-
-        public int x, y;
-        public int width, height;
-        public String type;
-        public int floor;
-        public ClassRoom cr;
-
-        public Node(int x, int y, int width, int height) {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-        }
-    }
-
-    private void drawConector(Node one, Node two) {
-        app.stroke(Color.decode("#a6e63c").getRGB());
-        app.strokeWeight(5);
-
-        app.line(one.x + (one.width / 2), one.y + (one.height / 2), two.x + (two.width / 2), two.y + (two.height / 2));
-
-        app.strokeWeight(1);
-        app.stroke(AppProperties.strokeColor);
-    }
-
-    private void initCoreBuilding(Building building) {
-        if (isUnKownFitting) {
-            fittingEtage = 0;
-        }
-        maxEtages = building.getFloorCount() <= 0 ? 1 : building.getFloorCount();
-        floorYHeight = ((boundaryY2) / maxEtages) + 120;
-        if (currentPage == 0 && nodes.isEmpty()) {
-            makeEnteranceNode(0, -(y - 60));
-        }
-
-        for (int floor : building.getFloorList().keySet()) {
-            if ((floor - startetage) >= 0 && boundaryY2 - (floorYHeight * (floor - startetage + 1)) > boundaryX1 - y) {
-                makeElevatorNode(0, -(floorYHeight * (floor - startetage)) - y, floor);
-                if (isUnKownFitting) {
-                    fittingEtage++;
-                }
-            }
-        }
-        if (fittingEtage > 0) {
-            isUnKownFitting = false;
-        }
-        if (maxPages == 0 && fittingEtage != 0) {
-            maxPages = maxEtages / fittingEtage;
-        }
-        if (currentPage == 0 && nodes.size() > 1) {
+    private void connectingNodes() {
+        if (maxEtages > 0 && currentPage == 0) {
             drawConector(nodes.get(0), nodes.get(1));
         }
+
+        List<Node> elevators = nodes.stream().filter(n -> "elevator".equals(n.getType())).collect(Collectors.toList());
+        Map<Integer, List<Node>> roomsEachFloor = nodes.stream().filter(n -> "classroom".equals(n.getType())).collect(Collectors.groupingBy((n) -> n.getFloor()));
+        if (elevators.size() > 0) {
+            for (int item = 0; item < elevators.size(); item++) {
+                boolean isleft = true;
+                if (item + 1 < elevators.size()) {
+                    drawConector(elevators.get(item), elevators.get(item + 1));
+                }
+                if (elevators.get(item) != null && roomsEachFloor.get(elevators.get(item).getFloor()) != null) {
+                    List<Node> rooms = roomsEachFloor.get(elevators.get(item).getFloor());
+                    int roomCount = 0;
+                    for (int i = 0; i < rooms.size(); i++) {
+                        Node room = rooms.get(i);
+
+                        if (i == 0) {
+                            drawConector(elevators.get(item), room);
+                        }
+                        if (i + 1 < rooms.size()) {
+                            if (isleft == true) {
+                                if (rooms.get(i + 1).getX() <= centerX - 70) {
+                                    drawConector(room, rooms.get(i + 1));
+                                } else {
+                                    isleft = false;
+                                    drawConector(elevators.get(item), room);
+                                    drawConector(elevators.get(item), rooms.get(i + 1));
+                                }
+                            }
+                            if (isleft == false) {
+                                if (rooms.get(i + 1).getX() >= centerX + 70) {
+                                    drawConector(room, rooms.get(i + 1));
+                                }
+                            }
+                        }
+                        if (i + 1 == rooms.size()) {
+                            drawConector(elevators.get(item), room);
+                            if(i-1 >= 0){
+                                drawConector(room, rooms.get(i - 1));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (currentPage != maxPages && elevators.size() > 1) {
+            Node n = elevators.get(elevators.size() - 2);
+            drawConector(n, new Node(n.getX() + (n.getWidth() / 2), boundaryY1 - 17, 0, 0));
+        }
+        if (currentPage > 0 && elevators.size() >= 1) {
+            Node n = elevators.get(elevators.size() - 1);
+            drawConector(n, new Node(n.getX() + (n.getWidth() / 2), boundaryY2 + spacing + 17, 0, 0));
+        }
+
     }
 
-    private void initFloor(Building building, int floor) {
-        List<List<ClassRoom>> devidedLists;
+    public void draw(Building building) {
+        Draw.drawDisplay();
+        initializeNodes(building);
+        connectingNodes();
 
-        Collection<ClassRoom> rooms = building.getFloorList().get(floor).values();
-        Optional<Node> foundElevator = nodes.stream().filter(n -> n.floor == floor && "elevator".equals(n.type)).findFirst();
-        groupedOnLetter = rooms.stream().collect(Collectors.groupingBy(s -> s.getLetter()));
-        Character[] keys = groupedOnLetter.keySet().toArray(new Character[groupedOnLetter.size()]);
+        nodes.forEach(n -> drawNode(n));
 
-        if (keys.length < 2) {
-            devidedLists = devideLists(keys, groupedOnLetter.get(keys[0]), new ArrayList<>());
-        } else {
-            devidedLists = devideLists(keys, groupedOnLetter.get(keys[0]), groupedOnLetter.get(keys[1]));
+        //building lable
+        app.noStroke();
+        app.fill(AppProperties.displayColor);
+        app.rect((app.width / 2) - 20, boundaryY1 - 10, 16, 30);
+        app.stroke(AppProperties.strokeColor);
+        app.fill(255);
+
+        AppState.getInstance().setFontSize(30);
+        app.text(building.getName() + " " + building.getCode(), app.width / 2, boundaryY1 + 15);
+        AppState.getInstance().setFontSize();
+    }
+
+    private void initializeNodes(Building building) {
+        if (nodes.isEmpty()) {
+            maxEtages = building.getFloorCount();
+
+            if (currentPage == 0) {
+                makeEnteranceNode();
+            }
+
+            if (maxEtages >= 1) {
+                for (int floor = startetage; floor <= maxEtages; floor++) {
+                    if (boundaryY2 - (floorHeight * (floor - startetage + 1)) > (boundaryY1 - 10)) {
+                        makeElevatorNode(centerX, boundaryY2 - (floorHeight * (floor - startetage)), floor);
+                        if (isKnownEtageFits == false) {
+                            nrOfEtageFits++;
+                        }
+                        initializefloorNodes(building, floor);
+                    }
+                }
+                isKnownEtageFits = true;
+                if (maxPages == 0) {
+                    maxPages = maxEtages / nrOfEtageFits;
+                }
+
+            }
         }
-        drawRooms(devidedLists.get(0), floor, foundElevator, true);
-        drawRooms(devidedLists.get(1), floor, foundElevator, false);
+    }
 
+    Map<Character, List<ClassRoom>> groupedOnLetter;
+
+    private void initializefloorNodes(Building building, int floor) {
+        List<List<ClassRoom>> devidedLists;
+        Collection<ClassRoom> rooms = null;
+        if (building.getFloorList().get(floor) != null) {
+            rooms = building.getFloorList().get(floor).values();
+        }
+        if (rooms != null) {
+            groupedOnLetter = rooms.stream().collect(Collectors.groupingBy(s -> s.getLetter()));
+
+            Character[] keys = groupedOnLetter.keySet().toArray(new Character[groupedOnLetter.size()]);
+
+            if (keys.length == 1) {
+                devidedLists = devideLists(keys, groupedOnLetter.get(keys[0]), new ArrayList<>());
+            } else {
+                devidedLists = devideLists(keys, groupedOnLetter.get(keys[0]), groupedOnLetter.get(keys[1]));
+            }
+
+            Node n = nodes.get(nodes.size() - 1);
+            initializeRooms(devidedLists.get(0), floor, n, true);
+            initializeRooms(devidedLists.get(1), floor, n, false);
+        }
+    }
+
+    private void initializeRooms(List<ClassRoom> locations, int floor, Node n, boolean isLeft) {
+        int x, counter;
+        int currentItem = 0;
+        int itemsPerRow = (locations.size() / 2);
+
+        if (isLeft) {
+            x = centerX - 70;
+            counter = -70;
+        } else {
+            x = centerX + 70;
+            counter = 70;
+        }
+
+        for (ClassRoom cr : locations) {
+            if (currentItem >= locations.size() - 1) {
+                x = centerX + counter;
+            }
+            if (currentItem < itemsPerRow) {
+                makeClassRoomNode(x, (boundaryY2 - (floorHeight * (floor - startetage))), floor, cr);
+                x += counter;
+            } else {
+                makeClassRoomNode(x, (boundaryY2 - 55 - (floorHeight * (floor - startetage))), floor, cr);
+                x -= counter;
+            }
+
+            currentItem++;
+        }
     }
 
     private List<List<ClassRoom>> devideLists(Character[] keys, List<ClassRoom> left, List<ClassRoom> right) {
@@ -285,6 +297,7 @@ public class DrawBuildingVis {
             right.addAll(subList);
             subList = left.subList(0, left.size() - (dif / 2));
             left = subList;
+
         } else if (left.size() + (leftover.size() / 2) < (right.size() + (leftover.size() / 2))) {
             left.addAll(leftover);
             dif = right.size() - left.size();
@@ -292,6 +305,7 @@ public class DrawBuildingVis {
             left.addAll(subList);
             subList = right.subList(0, right.size() - (dif / 2));
             right = subList;
+
         } else {
             dif = right.size() - left.size();
             left.addAll(leftover.subList(0, leftover.size() - (dif / 2)));
@@ -305,99 +319,84 @@ public class DrawBuildingVis {
         return results;
     }
 
-    private void drawRooms(List<ClassRoom> locations, int floor, Optional<Node> foundElevator, boolean isLeft) {
-
-        int height = 50 + 5;
-        int row = 0;
-        int itemsPerRow = (locations.size() / 2);
-        int currentItem = 0;
-        int x, counter;
-        if (isLeft) {
-            x = 70;
-            counter = 70;
-        } else {
-            x = -70;
-            counter = -70;
+    private void makeEnteranceNode() {
+        Node n = new Node(centerX, boundaryY2 + spacing - 10, enteranceIcon.width / scale, enteranceIcon.height / scale);
+        n.setType("enterance");
+        n.setFloor(0);
+        if (!nodeExists(n)) {
+            nodes.add(n);
         }
-
-        for (ClassRoom cr : locations) {
-            if (currentItem >= locations.size() - 1) {
-                x = counter;
-            }
-            if (currentItem < itemsPerRow) {
-                makeClassRoomNode(-x, -(y + (0 * height) + (floorYHeight * (floor - startetage))), floor, cr);
-                x += counter;
-            } else {
-                makeClassRoomNode(-x, -(y + (1 * height) + (floorYHeight * (floor - startetage))), floor, cr);
-                x -= counter;
-            }
-
-            if (currentItem >= 1 && nodes.size() - 2 > 0) {
-                drawConector(nodes.get(nodes.size() - 2), nodes.get(nodes.size() - 1));
-            } else {
-                if (foundElevator.isPresent()) {
-                    drawConector(foundElevator.get(), nodes.get(nodes.size() - 1));
-                }
-
-                if (floor == 0) {
-                    drawConector(nodes.get(0), nodes.get(nodes.size() - 1));
-                }
-            }
-            currentItem++;
-
-            if (x < AppProperties.displayPanelXOffset) {
-                row++;
-            }
-        }
-        if (foundElevator.isPresent() == true) {
-            drawConector(nodes.get(nodes.size() - 1), foundElevator.get());
-        } else if (floor == 0) {
-            drawConector(nodes.get(nodes.size() - 1), nodes.get(0));
-        }
-
     }
 
-    public void draw(Building building) {
-        Draw.drawDisplay();
+    private void makeElevatorNode(int x, int y, int floor) {
+        Node n = new Node(x, y, elevatorIcon.width / scale, elevatorIcon.height / scale);
+        n.setType("elevator");
+        n.setFloor(floor);
+        if (!nodeExists(n)) {
+            nodes.add(n);
+        }
+    }
 
-        app.pushMatrix();
-        app.translate((app.width / 2), boundaryY2);
-        initCoreBuilding(building);
+    private void makeClassRoomNode(int x, int y, int floor, ClassRoom cr) {
+        Node n;
+        if (cr.isAvailable()) {
+            n = new Node(x, y, classRoomIcon.width / scale, classRoomIcon.height / scale);
+        } else {
+            n = new Node(x, y, classRoomUnavailableIcon.width / scale, classRoomUnavailableIcon.height / scale);
+        }
 
-        building.getFloorList().keySet().stream().filter((floor) -> ((floor - startetage) >= 0 && floor < (fittingEtage + startetage))).forEach((floor) -> {
-            initFloor(building, floor);
-        });
+        n.setCr(cr);
+        n.setType("classroom");
+        n.setFloor(floor);
+        if (!nodeExists(n)) {
+            nodes.add(n);
+        }
+    }
 
-//        //draw al the connectors for the elevators
-        Object[] nArr = nodes.stream().filter(n -> "elevator".equals(n.type)).toArray();
-        for (int item = 0; item < nArr.length; item++) {
-            if (item + 1 < nArr.length) {
-                drawConector((Node) nArr[item], (Node) nArr[item + 1]);
+    private boolean nodeExists(Node n) {
+        for (Node o : nodes) {
+            if (o.getFloor() == n.getFloor() && o.getType().equals(n.getType()) && o.getX() == n.getX() && o.getY() == n.getY()) {
+                return true;
             }
         }
-        if (nArr.length > 1) {
-            if (currentPage != maxPages) {
-                Node n = (Node) nArr[nArr.length - 1];
-                drawConector(n, new Node(n.x, -(boundaryY2 - 1), 44, 44));
-            }
-            if (currentPage > 0) {
-                Node n = (Node) nArr[0];
-                drawConector(n, new Node(n.x, boundaryY1 - 5, 44, 44));
-            }
-        }
-        //draw all the nodes on screen and clear node list
-        nodes.stream().forEach(n -> drawNode(n));
-        nodes = new ArrayList<>();
+        return false;
+    }
 
-        app.popMatrix();
-        app.noStroke();
-        app.fill(AppProperties.displayColor);
-        app.rect((app.width / 2) - 8, boundaryY1 + 19, 16, -30);
+    private void drawNode(Node n) {
+        switch (n.getType()) {
+            case "enterance":
+                app.image(enteranceIcon, n.getX(), n.getY(), n.getWidth(), n.getHeight());
+                break;
+            case "elevator":
+                app.image(elevatorIcon, n.getX(), n.getY(), n.getWidth(), n.getHeight());
+                String text = "etage " + n.getFloor();
+
+                app.noStroke();
+                app.fill(AppProperties.displayColor);
+                app.rect(n.getX() - 6, n.getY() - 22, app.textWidth(text), 19);
+                app.stroke(AppProperties.strokeColor);
+                app.fill(255);
+
+                app.text(text, n.getX() + (app.textWidth(text) / 2) - 6, n.getY() - 10);
+                break;
+            case "classroom":
+                if (n.getCr().isAvailable()) {
+                    app.image(classRoomIcon, n.getX(), n.getY(), n.getWidth(), n.getHeight());
+                } else {
+                    app.image(classRoomUnavailableIcon, n.getX(), n.getY(), n.getWidth(), n.getHeight());
+                }
+                app.text(n.getCr().floorLocation(), n.getX() + (n.getWidth() / 2), n.getY() + (n.getHeight() / 2) + 3);
+                break;
+        }
+    }
+
+    private void drawConector(Node one, Node two) {
+        app.stroke(Color.decode("#a6e63c").getRGB());
+        app.strokeWeight(5);
+
+        app.line(one.getX() + (one.getWidth() / 2), one.getY() + (one.getHeight() / 2), two.getX() + (two.getWidth() / 2), two.getY() + (two.getHeight() / 2));
+
+        app.strokeWeight(1);
         app.stroke(AppProperties.strokeColor);
-        app.fill(255);
-
-        AppState.getInstance().setFontSize(30);
-        app.text(building.getName() + " " + building.getCode(), app.width / 2, boundaryY1 + 15);
-        AppState.getInstance().setFontSize();
     }
 }
