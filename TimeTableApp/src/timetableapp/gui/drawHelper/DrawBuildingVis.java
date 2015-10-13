@@ -3,6 +3,7 @@ package timetableapp.gui.drawHelper;
 import controlP5.ControllerInterface;
 import java.awt.Color;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 import processing.core.PApplet;
 import processing.core.PImage;
 import timetableapp.gui.Dialog;
+import timetableapp.models.Activity;
 import timetableapp.models.Building;
 import timetableapp.models.ClassRoom;
 import timetableapp.util.AppProperties;
@@ -49,7 +51,7 @@ public class DrawBuildingVis {
         boundaryX2 = displayWidth - spacing;
         boundaryY2 = displayHeight - spacing;
 
-        centerX = (boundaryX2 / 2) + boundaryX1+20;
+        centerX = (boundaryX2 / 2) + boundaryX1 + 20;
         centerY = (boundaryY2 / 2) + boundaryY1;
 
         nodes = new ArrayList<>();
@@ -160,7 +162,7 @@ public class DrawBuildingVis {
                         }
                         if (i + 1 == rooms.size()) {
                             drawConector(elevators.get(item), room);
-                            if (i - 1 >= 0 && rooms.get(i - 1).getX() >= centerX + 40 ) {
+                            if (i - 1 >= 0 && rooms.get(i - 1).getX() >= centerX + 40) {
                                 drawConector(room, rooms.get(i - 1));
                             }
                         }
@@ -186,6 +188,30 @@ public class DrawBuildingVis {
         connectingNodes();
 
         nodes.forEach(n -> drawNode(n));
+        nodes.forEach(n -> {
+            if (n.containsMouse(app, "classroom")) {
+                String text = "  in use: 24:00 - 24:00 ";
+                int y = 30;
+                app.fill(Color.decode("#6EADC0").getRGB());
+                if (!n.getCr().getActivities().isEmpty()) {
+                    app.rect(n.getX() + n.getWidth(), n.getY() + n.getHeight() , app.textWidth(text) + 10, (n.getCr().getActivities().size() * 30) + y);
+                } else {
+                    app.rect(n.getX() + n.getWidth(), n.getY() + n.getHeight(), app.textWidth(text) + 10, y);
+                }
+                app.fill(255);
+
+                if (!n.getCr().getActivities().isEmpty()) {
+                    for (Activity a : n.getCr().getActivities()) {
+                        text = "  in use: "
+                                + DateFormat.getInstance().format(a.getStartDate().getTime()).substring(8) + " - "
+                                + DateFormat.getInstance().format(a.getEndDate().getTime()).substring(8);
+                        app.text(text,
+                                n.getX() + n.getWidth() + (app.textWidth(text) / 2), n.getY() + n.getHeight() + y);
+                        y += 30;
+                    }
+                }
+            }
+        });
 
         //building lable
         app.noStroke();

@@ -2,6 +2,7 @@ package timetableapp.gui.drawHelper;
 
 import lombok.Getter;
 import lombok.Setter;
+import processing.core.PApplet;
 import timetableapp.models.ClassRoom;
 
 public class Node {
@@ -21,6 +22,14 @@ public class Node {
         this.y = y - (height / 2);
         this.width = width;
         this.height = height;
+    }
+
+    boolean containsMouse(PApplet app, String type) {
+        if(this.type.equals(type)){
+            return (app.sq(this.x + (this.width / 2) - app.mouseX) + app.sq(this.y + (this.height / 2) - app.mouseY)) < app.sq(this.width / 2);
+        } else {
+            return false;
+        }
     }
 
 }

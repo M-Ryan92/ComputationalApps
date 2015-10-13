@@ -1,5 +1,7 @@
 package timetableapp.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +16,9 @@ public class ClassRoom {
     @Getter
     private int capacity;
 
+    @Getter
+    private List<Activity> activities;
+    
     //less geeft aan dat het lokaal niet beschikbaar is
     //private Les les;
     //on false the class will be red
@@ -28,6 +33,7 @@ public class ClassRoom {
         this.number = number;
         this.capacity = capacity;
         isAvailable = true;
+        activities = new ArrayList<>();
     }
 
     public ClassRoom(int floor, int number, int capacity) {

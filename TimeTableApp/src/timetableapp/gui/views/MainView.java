@@ -17,6 +17,7 @@ import timetableapp.gui.BaseView;
 import timetableapp.gui.drawHelper.Draw;
 import timetableapp.gui.drawHelper.DrawBuildingVis;
 import timetableapp.models.Activity;
+import timetableapp.models.ClassRoom;
 import timetableapp.models.DataManager;
 import timetableapp.util.AppProperties;
 import timetableapp.util.observer.StateObserver;
@@ -180,15 +181,19 @@ public final class MainView extends BaseView {
         dm.getBl().get(building).getFloorList().forEach((floor, classrooms) -> {
             classrooms.forEach((location, classroom) -> {
                 classroom.setAvailable(true);
+                classroom.getActivities().clear();
             });
         });
 
         for (Activity activity : activitiesNow) {
-            dm.getBl().get(building)
+            ClassRoom classroom = dm.getBl().get(building)
                     .getFloorList()
                     .get(activity.getFloor())
-                    .get(activity.getClassroom())
-                    .setAvailable(false);
+                    .get(activity.getClassroom());
+            classroom.setAvailable(false);
+            if(!classroom.getActivities().contains(activity)){
+                classroom.getActivities().add(activity);
+            }
         }
     }
 
