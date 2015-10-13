@@ -38,7 +38,12 @@ public class ClassRoom {
     }
 
     public String floorLocation() {
-        return letter + String.format("%02d", number);
+        if(Character.isLetter(letter)){
+            return letter + String.format("%02d", number);
+        } else {
+            return String.format("%02d", number);
+        }
+        
     }
 
 }
