@@ -190,25 +190,44 @@ public class DrawBuildingVis {
         nodes.forEach(n -> drawNode(n));
         nodes.forEach(n -> {
             if (n.containsMouse(app, "classroom")) {
-                String text = "  in use: 24:00 - 24:00 ";
-                int y = 30;
-                app.fill(Color.decode("#6EADC0").getRGB());
+                int y = 40;
+                int offset = 20;
+                app.fill(AppProperties.backgroundColor);
                 if (!n.getCr().getActivities().isEmpty()) {
-                    app.rect(n.getX() + n.getWidth(), n.getY() + n.getHeight() , app.textWidth(text) + 10, (n.getCr().getActivities().size() * 30) + y);
+                    int width = (int) app.textWidth(" 24:00 - 24:00 ");
+
+                    for (Activity a : n.getCr().getActivities()) {
+                        if (app.textWidth(a.getActivity()) > width) {
+                            width = (int) app.textWidth(a.getActivity());
+                        }
+                    }
+
+                    if (n.getY() + n.getHeight() + (n.getCr().getActivities().size() * y) > AppState.getInstance().getDisplayPanelHeight()) {
+                        offset -= AppState.getInstance().getDisplayPanelHeight() - (n.getY() + n.getHeight() + (n.getCr().getActivities().size() * y));
+                    }
+                    app.rect(n.getX() + n.getWidth(), n.getY() + n.getHeight() - offset, width + 20, (n.getCr().getActivities().size() * 40) + y - 30);
                 } else {
-                    app.rect(n.getX() + n.getWidth(), n.getY() + n.getHeight(), app.textWidth(text) + 10, y);
+                    app.rect(n.getX() + n.getWidth(), n.getY() + n.getHeight() - offset, app.textWidth("possible to book") + 20, y + 15);
                 }
                 app.fill(255);
 
                 if (!n.getCr().getActivities().isEmpty()) {
                     for (Activity a : n.getCr().getActivities()) {
-                        text = "  in use: "
+                        String text = ""
                                 + DateFormat.getInstance().format(a.getStartDate().getTime()).substring(8) + " - "
                                 + DateFormat.getInstance().format(a.getEndDate().getTime()).substring(8);
+                        app.text(a.getActivity(),
+                                n.getX() + n.getWidth() + (app.textWidth(a.getActivity()) / 2) + 10, n.getY() + n.getHeight() + y - offset - 20);
                         app.text(text,
-                                n.getX() + n.getWidth() + (app.textWidth(text) / 2), n.getY() + n.getHeight() + y);
-                        y += 30;
+                                n.getX() + n.getWidth() + (app.textWidth(text) / 2) + 10, n.getY() + n.getHeight() + y - offset);
+                        y += 40;
                     }
+                } else {
+                    app.text("no activities",
+                            n.getX() + n.getWidth() + (app.textWidth("no activities") / 2) + 10, n.getY() + n.getHeight() + y - offset - 15);
+                    app.text("possible to book",
+                            n.getX() + n.getWidth() + (app.textWidth("possible to book") / 2) + 10, n.getY() + n.getHeight() + y - offset );                    
+                    
                 }
             }
         });

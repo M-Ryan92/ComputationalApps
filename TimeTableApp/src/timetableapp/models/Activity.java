@@ -9,6 +9,7 @@ import lombok.Getter;
 public class Activity {
 
     //what
+    @Getter
     private String activity;
     private String course;
 
