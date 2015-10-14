@@ -57,7 +57,8 @@ public class DrawBuildingVis {
         nodes = new ArrayList<>();
 
         try {
-            elevatorIcon = loadIcon("images/elevatoricon.png");
+            //elevatorIcon = loadIcon("images/elevatoricon.png");
+            elevatorIcon = loadIcon("images/elevatorsquareicon.png");
             enteranceIcon = loadIcon("images/deuricon.png");
             classRoomIcon = loadIcon("images/klasicon.png");
             classRoomUnavailableIcon = loadIcon("images/klasclosedicon.png");
@@ -191,7 +192,8 @@ public class DrawBuildingVis {
         nodes.forEach(n -> {
             if (n.containsMouse(app, "classroom")) {
                 int y = 40;
-                int offset = 20;
+                int offsetY = 20;
+                int offsetX = 0;
                 app.fill(AppProperties.backgroundColor);
                 if (!n.getCr().getActivities().isEmpty()) {
                     int width = (int) app.textWidth(" 24:00 - 24:00 ");
@@ -203,11 +205,22 @@ public class DrawBuildingVis {
                     }
 
                     if (n.getY() + n.getHeight() + (n.getCr().getActivities().size() * y) > AppState.getInstance().getDisplayPanelHeight()) {
-                        offset -= AppState.getInstance().getDisplayPanelHeight() - (n.getY() + n.getHeight() + (n.getCr().getActivities().size() * y));
+                        offsetY -= (AppState.getInstance().getDisplayPanelHeight() - (n.getY() + n.getHeight() + (n.getCr().getActivities().size() * y)));
                     }
-                    app.rect(n.getX() + n.getWidth(), n.getY() + n.getHeight() - offset, width + 20, (n.getCr().getActivities().size() * 40) + y - 30);
+
+                    if ((n.getX() + n.getWidth()) + (width + 20) > AppState.getInstance().getDisplayPanelWidth()) {
+                        offsetX += (width + 30 + n.getWidth());
+                    }
+
+                    app.rect(n.getX() + n.getWidth() - offsetX, n.getY() + n.getHeight() - offsetY, width + 20, (n.getCr().getActivities().size() * 40) + y - 30);
                 } else {
-                    app.rect(n.getX() + n.getWidth(), n.getY() + n.getHeight() - offset, app.textWidth("possible to book") + 20, y + 15);
+
+                    offsetX = 0;
+                    if ((n.getX() + n.getWidth()) + (app.textWidth("possible to book") + 20) > AppState.getInstance().getDisplayPanelWidth()) {
+                        offsetX += (app.textWidth("possible to book") + 30 + n.getWidth());
+                    }
+
+                    app.rect(n.getX() + n.getWidth() - offsetX, n.getY() + n.getHeight() - offsetY, app.textWidth("possible to book") + 20, y + 15);
                 }
                 app.fill(255);
 
@@ -217,17 +230,30 @@ public class DrawBuildingVis {
                                 + DateFormat.getInstance().format(a.getStartDate().getTime()).substring(8) + " - "
                                 + DateFormat.getInstance().format(a.getEndDate().getTime()).substring(8);
                         app.text(a.getActivity(),
-                                n.getX() + n.getWidth() + (app.textWidth(a.getActivity()) / 2) + 10, n.getY() + n.getHeight() + y - offset - 20);
+                                n.getX() + n.getWidth() + (app.textWidth(a.getActivity()) / 2) + 10 - offsetX,
+                                n.getY() + n.getHeight() + y - offsetY - 20
+                        );
                         app.text(text,
-                                n.getX() + n.getWidth() + (app.textWidth(text) / 2) + 10, n.getY() + n.getHeight() + y - offset);
+                                n.getX() + n.getWidth() + (app.textWidth(text) / 2) + 10 - offsetX,
+                                n.getY() + n.getHeight() + y - offsetY
+                        );
                         y += 40;
                     }
                 } else {
+                    offsetX = 0;
+                    if ((n.getX() + n.getWidth()) + (app.textWidth("possible to book") + 20) > AppState.getInstance().getDisplayPanelWidth()) {
+                        offsetX += (app.textWidth("possible to book") + 30 + n.getWidth());
+                    }
+
                     app.text("no activities",
-                            n.getX() + n.getWidth() + (app.textWidth("no activities") / 2) + 10, n.getY() + n.getHeight() + y - offset - 15);
+                            (n.getX() + n.getWidth() + (app.textWidth("no activities") / 2) + 10) - offsetX,
+                            n.getY() + n.getHeight() + y - offsetY - 15
+                    );
                     app.text("possible to book",
-                            n.getX() + n.getWidth() + (app.textWidth("possible to book") / 2) + 10, n.getY() + n.getHeight() + y - offset );                    
-                    
+                            (n.getX() + n.getWidth() + (app.textWidth("possible to book") / 2) + 10) - offsetX,
+                            n.getY() + n.getHeight() + y - offsetY
+                    );
+
                 }
             }
         });

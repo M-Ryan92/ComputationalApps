@@ -55,8 +55,6 @@ public class AppState {
 
     private PFont txtfont, iconFont;
 
-    private Font iFont;
-
     private AppState() {
         this.formatTwo = new String[]{"KMH"};
         this.formatOne = new String[]{"KSH", "STU", "MLH", "TTH", "BPH", "WBH"};
