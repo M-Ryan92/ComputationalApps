@@ -19,10 +19,6 @@ public class ClassRoom {
     @Getter
     private List<Activity> activities;
     
-    //less geeft aan dat het lokaal niet beschikbaar is
-    //private Les les;
-    //on false the class will be red
-    //on true it will be green
     @Getter
     @Setter
     private boolean isAvailable;

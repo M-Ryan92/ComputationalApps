@@ -17,13 +17,14 @@ public class NewFileSelectedHandler implements Runnable {
         ExecutorService etp = Executors.newFixedThreadPool(1);
         etp.submit(() -> {
             try {
+                    
                 state.getNewFileSelectedStateObserver().resetValue();
                 state.setLoadingFileState(1);
 
                 Table data = new Parser(state.getSelectedFile()).parse();
                 DataManager dm = DataManager.getInstance();
 
-                //dm.createTable(data);
+                dm.createTable(data);
                 dm.createMap(data);
                 dm.createActivities(data);
 
