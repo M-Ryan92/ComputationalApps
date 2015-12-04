@@ -2,3 +2,8 @@
 /TimeTableApp/build/
 /TimeTableApp/dist/
 TimeTableApp/TTA.smproj
+
+/AviationApp/nbproject/private/
+/AviationApp/build/
+/AviationApp/dist/
+AviationApp/TTA.smproj
