@@ -1,0 +1,527 @@
+﻿totaal(deaths)	crew(deaths)	passenger(deaths)	ground(deaths)	notes(deaths)	type	incident	aircraft	location	phase	airport	distance	date
+1700	11	81	1600	†	INH	American Airlines Flight 11	Boeing 767-223ER	usnewyneNew York City, US	ENR [10]			9/11/2001
+1000	9	56	900	†	INH	United Airlines Flight 175	Boeing 767-222	usnewyneNew York City, US	ENR [11]			9/11/2001
+583	23	560	0		COM	Pan Am Flight 1736 and KLM Flight 4805	Boeing 747-121 and Boeing 747-206B	spctTenerife, Spain	TXI [9][16][17]	TFN		3/27/1977
+520	15	505	0		COM	Japan Airlines Flight 123	Boeing 747SR-46	juUeno, Japan	ENR [18][19]			8/12/1985
+349	33	316	0	†	COM	Saudi Arabian Flight 763 and Kazakhstan Airlines Flight 1907	Boeing 747-168B and Ilyushin Il-76TD	indicCharkhi Dadri, India	ENR [20][21]			11/12/1996
+346	11	335	0	†	COM	Turkish Airlines Flight 981	McDonnell Douglas DC-10-10	frafFontaine-Chaalis, France	ENR [22][23] [24]			3/3/1974
+329	22	307	0	†	INB	Air India Flight 182	Boeing 747-237B	aticAtlantic Ocean, area of Cork, Ireland	ENR [25]			6/23/1985
+301	14	287	0	†	COM	Saudia Flight 163	Lockheed L-1011-200 TriStar	sarRiyadh, Saudi Arabia	ENR [26]			8/19/1980
+298	15	283	0	†	EXG	Malaysia Airlines Flight 17	Boeing 777-2H6ER	irake near Hrabove, Donetsk Oblast, Ukraine	ENR [27]			7/17/2014
+290	16	274	0	†	EXG	Iran Air Flight 655	Airbus A300B2-203	irastStrait of Hormuz, off Shib Deraz, Iran	ENR [28]			7/3/1988
+275	18	257	0	†	MIL	Iranian Air Force (15-2280)	Ilyushin Il-76MD	irakenear Kerman, Iran	ENR [29]			2/19/2003
+273	13	258	2	†	COM	American Airlines Flight 191	McDonnell Douglas DC-10-10	usilidDes Plaines, Illinois, US	TOF [30][31] [32][nb 3]	ORD	1.4 km (0.87 mi)	5/25/1979
+270	16	243	11	†	INB	Pan Am Flight 103	Boeing 747-121	unsLockerbie, Scotland, UK	ENR [34]			12/21/1988
+269	23	246	0	†	EXS	Korean Air Lines Flight 007	Boeing 747-230B	rumonSea of Japan, near Moneron Island, Soviet Union	ENR [35]			9/1/1983
+265	9	251	5	†	COM	American Airlines Flight 587	Airbus A300B4-605R	usnewybBelle Harbor, New York, US	ENR [36][37]			11/12/2001
+264	15	249	0		COM	China Airlines Flight 140	Airbus A300B4-622R	jkKomaki, Japan	APR [38][39]	NKM	<0.1 km (0.06 mi)	4/26/1994
+261	14	247	0	†	COM	Nigeria Airways Flight 2120	McDonnell Douglas DC-8-61	sajJeddah, Saudi Arabia	APR [40]	JED	2.8 km (1.7 mi)	7/11/1991
+257	20	237	0	†	COM	Air New Zealand Flight 901	McDonnell Douglas DC-10-30	antMount Erebus, Antarctica	ENR [32][41]			11/28/1979
+256	8	248	0	†	COM	Arrow Air Flight 1285	McDonnell Douglas DC-8-63CF	canneGander, Newfoundland, Canada	ICL [42]	YQX	1 km (0.6 mi)	12/12/1985
+239	12	227	0	†	COM	Malaysia Airlines Flight 370	Boeing 777-2H6ER	indoUnknown, possibly Indian Ocean	ENR [43]			3/8/2014
+237	0	0	237[44]		COM	African Air (RA-26222)	Antonov An-32B	demkinKinshasa, DR Congo	ICL [45]	NLO	0.6 km (0.4 mi)	1/8/1996
+234	12	222	0	†	COM	Garuda Indonesia Flight 152	Airbus A300B4-220	indonmenear Medan, Indonesia	APR [46]	MES	32 km (20 mi)	9/26/1997
+230	18	212	0	†	COM	TWA Flight 800	Boeing 747-131	usnewyeAtlantic Ocean, off East Moriches, New York, US	ENR [47][48]			7/17/1996
+229	14	215	0	†	COM	Swissair Flight 111	McDonnell Douglas MD-11	cannoAtlantic Ocean, off Peggys Cove, N.S., Canada	ENR [49][50]			9/2/1998
+228	12	216	0	†	COM	Air France Flight 447	Airbus A330-203	atAtlantic Ocean, area of Saint Peter and Saint Paul Archipelago	ENR [51]			6/1/2009
+228	22	206	0		COM	Korean Air Flight 801	Boeing 747-3B5	usguguaAsan, Guam, US	APR [52][53]	GUM	4.8 km (3 mi)	8/6/1997
+225	19	206	0	†	COM	China Airlines Flight 611	Boeing 747-209B	chintpTaiwan Strait, near Penghu Islands, Taiwan	ENR [54]			5/25/2002
+224	7	217	0	†	INB	Metrojet Flight 9268	Airbus A321-231	near Hasna, North Sinai Governorate, Egypt	ENR [55]			10/31/2015
+223	10	213	0	†	COM	Lauda Air Flight 004	Boeing 767-3Z9ER	thpPhu Toei National Park, Thailand	ENR [56]			5/26/1991
+217	15	202	0	†	COM	EgyptAir Flight 990	Boeing 767-366ER	atumAtlantic Ocean, area of Nantucket, Massachusetts, US	ENR [57][nb 4]			10/31/1999
+213	23	190	0	†	COM	Air India Flight 855	Boeing 747-237B	indimuArabian Sea, off Mumbai, India	ENR [59]			1/1/1978
+203	14	182	7	†	COM	China Airlines Flight 676	Airbus A300B4-622R	chintdDayuan District, Taiwan	APR [60]	TPE	0.06 km (0.04 mi)	2/16/1998
+200	9	191	0	†	COM	Aeroflot Flight 7425	Tupolev Tu-154B-2	uzunear Uchkuduk, Uzbekistan	ENR [61]			7/10/1985
+199	6	181	12	†	COM	TAM Airlines Flight 3054	Airbus A320-233	brsaopSão Paulo, Brazil	LDG [62]	CGH		7/17/2007
+191	9	182	0	†	COM	Martinair Holland Flight 138	Douglas DC-8-55F	srmasnear Maskeliya, Sri Lanka	ENR [63]			12/4/1974
+189	13	176	0	†	COM	Birgenair Flight 301	Boeing 757-225	dopAtlantic Ocean, near Puerto Plata, Dominican Republic	ENR [65]			2/6/1996
+189	6	58	125	†	INH	American Airlines Flight 77	Boeing 757-223	usvirarArlington, Virginia, US	ENR [64]			9/11/2001
+188	7	181	0	†	COM	Alia Royal Jordanian (JY-AEE)	Boeing 707-321C	moiTamri, Morocco	ENR [66]			8/3/1975
+183	11	172	0	†	COM	LOT Flight 5055	Ilyushin Il-62M	polwWarsaw, Poland	ENR [nb 5][67]	WAW	6 km (3.7 mi)	5/9/1987
+183	8	175	0		COM	Icelandic Airlines Flight 001	Douglas DC-8-63CF	srkKatunayake, Sri Lanka	APR [68]	CMB	2.1 km (1.3 mi)	11/15/1978
+181	19	162	0		COM	Avianca Flight 011	Boeing 747-283B	spmadMadrid, Spain	APR [69]	MAD	12 km (7.5 mi)	11/27/1983
+180	7	173	0	†	COM	Inex-Adria Aviopromet Flight 1308	McDonnell Douglas MD-81	frac Mt. San Pietro, Petreto-Bicchisano, Corsica, France	ENR [70]			12/1/1981
+178	13	165	0	†	COM	Aeroflot/Moldovia flight 7628 and Aeroflot flight 7880	Tupolev Tu-134A (both)	kasnear Dniprodzerzhynsk, Ukraine	ENR [72][73]			8/11/1979
+178	5	169	4		COM	Aeroflot Flight 3352	Tupolev Tu-154	ruomsOmsk, Russia	LDG [71]	OMS		10/11/1984
+177	14	162	1	†	COM	British Airways Flight 476 and Inex Adria Flight 550	Hawker Siddeley Trident 3B and Douglas DC-9-32	crvVrbovec, Croatia	ENR [74][75] [76]			9/10/1976
+176	9	167	0		COM	Surinam Airways Flight 764	Douglas DC-8-62	surParamaribo, Surinam	APR [77]	PBM	3 km (1.9 mi)	6/7/1989
+176	6	170	0		COM	Nigeria Airways (JY-ADO)	Boeing 707-3D3C	nigerikKano, Nigeria	LDG [78]	KAN		1/22/1973
+174	10	164	0	†	COM	Aeroflot Flight 217	Ilyushin Il-62	rumosMoscow, Russia	APR [79]	SVO	11 km (6.8 mi)	10/13/1972
+171	11	115	45	†	COM	Cubana de Aviación Flight 9646	Ilyushin II-62M	cuhHavana, Cuba	ICL [80]	HAV	<1.5 km (0.9 mi)	9/3/1989
+170	10	160	0	†	COM	Pulkovo Flight 612	Tupolev Tu-154M	ukrnSukha Balka, Donetsk Obl., Ukraine	ENR [81]			8/22/2006
+170	14	156	0	†	INB	Union de Transports Aériens Flight 772	McDonnell Douglas DC-10-30	nigeraTénéré, Niger	ENR [82][83]			9/19/1989
+169	10	159	0		COM	Kenya Airways Flight 431	Airbus A310-304	cotGulf of Guinea off Côte d'Ivoire	ENR [84]	ABJ	2.8 km (1.7 mi)	1/30/2000
+168	12	156	0	†	COM	Caspian Airlines Flight 7908	Tupolev Tu-154M	IraqQazvin, Iran	ENR [85]			7/15/2009
+167	12	155	0	†	COM	Pakistan International Airlines Flight 268	Airbus A300B4-200	nekKathmandu, Nepal	APR [86]	KTM	20 km (12 mi)	9/28/1992
+167	8	159	0	†	COM	Mexicana Flight 940	Boeing 727-264	mexs Sierra Madre Oriental Mts., Mexico	ENR [87]			3/31/1986
+166	10	156	0	†	COM	Aeroflot Flight 4227	Tupolev Tu-154B-2	kaaAlmaty, Kazakhstan	ENR [88]	ALA	5 km (3.1 mi)	7/8/1980
+163	6	147	10	†	COM	Dana Air Flight 992	McDonnell Douglas MD-83	nigerilLagos, Nigeria	APR [89]	LOS	9.3 km (5.8 mi)	6/3/2012
+162	7	155	0	†	COM	Indonesia AirAsia Flight 8501	Airbus A320-216	nigerilKarimata Strait, between Belitung and Borneo, Java Sea, Indonesia	ENR [90]			12/28/2014
+162	7	155	0	1*	COM	All Nippon Airways Flight 58 and JASDF (92-7932)	Boeing 727-281 and F-86 Sabre	jshShizukuishi, Japan	ENR [91]			7/30/1971
+160	8	152	0	†	COM	West Caribbean Airways Flight 708	McDonnell Douglas MD-82	vemacMachiques, Venezuela	ENR [92]			8/16/2005
+160	14	146	0	†	COM	China Northwest Airlines Flight 2303	Tupolev Tu-154M	chinxXian, China	ENR [93]			6/6/1994
+159	8	151	0		COM	American Airlines Flight 965	Boeing 757-223	colbunear Buga, Colombia	APR [94]	CLO	c. 48 km (30 mi)	12/20/1995
+159	19	140	0	†	COM	South African Airways Flight 295	Boeing 747-244B	indomIndian Ocean, area of Mauritius	ENR [95]			11/28/1987
+158	6	152	0		COM	Air India Express Flight 812	Boeing 737-8HG	indimaMangalore, India	LDG [96]	IXE		5/22/2010
+158	6	152	0	†	MIL	Nigerian Air Force (NAF911)	Lockheed C-130H Hercules	nigerilLagos, Nigeria	ENR [97]			9/26/1992
+157	10	147	0		COM	Libyan Arab Airlines Flight 1103 and Libyan Air Force	Boeing 727-2L5 and Mikoyan-Gurevich MiG-23	libyqQasr bin Ghashir, Tripoli, Libya	APR [98]	TIP	9 km (5.6 mi)	12/22/1992
+156	11	145	0	†	COM	Pakistan International Airlines Flight 740	Boeing 707-340C	satnear Taif, Saudi Arabia	ENR [101]			11/26/1979
+156	8	148	0	†	COM	Interflug (DM-SEA)	Ilyushin Il-62	gerkKönigs Wusterhausen, Germany	ENR [102]			8/14/1972
+156	6	148	2	1*	COM	Northwest Airlines Flight 255	McDonnell Douglas DC-9-82	usmiRomulus, Michigan, US	TOF [99][100]	DTW	<0.5 km (0.3 mi)	8/16/1987
+155	7	148	0	†	COM	Spantax Flight 275	Convair 990 Coronado	spctsSan Cristóbal, Tenerife, Canary Islands, Spain	ICL [104]	TFN	0.33 km (0.2 mi)	12/3/1972
+155	10	74	71	†	COM	Viasa Flight 742	McDonnell Douglas DC-9-32	vemarMaracaibo, Venezuela	ICL [105]	MAR	0.85 km (0.5 mi)	3/16/1969
+155	5	150	0		MIL	US Air Force (68-0218)	Lockheed C-5A Galaxy	visSaigon, South Vietnam	ENR [103]			4/4/1975
+154	6	148	0		COM	Spanair Flight 5022	McDonnell Douglas MD-82	spmadMadrid, Spain	TOF [106]	MAD	<0.5 km (0.3 mi)	8/20/2008
+154	6	148	0	†	COM	Gol Transportes Aéreos Flight 1907 and ExcelAire (N600XL)	Boeing 737-8EH and Embraer Legacy 600	brpenear Peixoto Azevedo, Brazil	ENR [107]			9/29/2006
+154	8	146	0	†	COM	Turkish Airlines Flight 452	Boeing 727-2F2	tuiIsparta, Turkey	APR [108]	Isparta***[nb 6]		9/19/1976
+153	7	138	8	†	COM	Pan Am Flight 759	Boeing 727-235	uslolkKenner, Louisiana, US	ICL [109][110]	MSY	<1 km (0.6 mi)	7/9/1982
+152	6	146	0	†	COM	Airblue Flight 202	Airbus A321-231	pakiIslamabad, Pakistan	APR [111]	ISB	15 km (9.3 mi)	7/28/2010
+152	11	141	0	1*	COM	Yemenia Flight 626	Airbus A310-324	commMozambique Channel off Mitsamiouli, Comoros	APR [112]	HAH	c. 40 km (25 mi)	6/30/2009
+150	6	144	0	†	COM	Germanwings Flight 9525	Airbus A320-211	near French Alps, France	ENR [113]			3/24/2015
+149	5	95	49		COM	Mandala Airlines Flight 091	Boeing 737-230	indonmeMedan, Indonesia	ICL [114][115]	MES	c. 1 km (0.6 mi)	9/5/2005
+149	7	64	78		COM	EAS Airlines Flight 4226	BAC One-Eleven 500	nigerikKano, Nigeria	ENR [116]			5/4/2002
+148	13	135	0	†	COM	Flash Airlines Flight 604	Boeing 737-3Q8	egshRed Sea, off Sharm el-Sheikh, Egypt	ENR [117]			1/3/2004
+148	7	141	0	†	COM	Iberia Airlines Flight 610	Boeing 727-256	spmtOiz mountain, Spain	ENR [118]			2/19/1985
+146	8	138	0	†	COM	Dan-Air Flight 1008	Boeing 727-46	spctlLa Esperanza Forrest, Tenerife, Canary Islands, Spain	APR [119]	TFN	12 km (7.5 mi)	4/25/1980
+145	9	136	0	†	COM	Vladivostok Air Flight 352	Tupolev Tu-154M	ruirnear Budaro, Irkutsk, Russia	APR [120]	IKT	23 km (14 mi)	7/4/2001
+144	10	134	0	†	COM	ADC Airlines Flight 86	Boeing 727-231	nigeriejEjirin, Lagos State, Nigeria	APR [121]	LOS	56 km (35 mi)	11/7/1996
+144	7	137	0	†	COM	Independent Air Flight 1851	Boeing 707-331B	porasPico Alto Mtn., Azores, Portugal	APR [122]	SMA	6.6 km (4.1 mi)	2/8/1989
+144	9	128	7	†	COM	PSA Flight 182 and Private aircraft (N7711G)	Boeing 727-214 and Cessna 172	uscasdSan Diego, California, US	APR [123][124]	SAN	5.6 km (3.5 mi)	9/25/1978
+143	8	135	0	†	COM	Gulf Air Flight 072	Airbus A320-212	bahPersian Gulf, off Al Muharraq, Bahrain	APR [126]	BAH	2 km (1.2 mi)	8/23/2000
+143	7	136	0	†	COM	Avianca Flight 410	Boeing 727-21	colsSardinata, Colombia	ENR [127]			3/17/1988
+143	12	109	22	†	MIL	Indonesian Air Force C-130	Lockheed C-130 Hercules	WeMedan, Indonesia	ICL [125]	MES	1 km (0.6 mi)	6/30/2015
+141	5	136	0		COM	UTAGE Flight 141	Boeing 727-223	benCotonou, Benin	TOF [128]	COO	<1 km (0.6 mi)	12/25/2003
+141	11	130	0	†	COM	Vnukovo Airlines Flight 2801	Tupolev Tu-154M	NoSvalbard, Norway	APR [129]	LYR	14.3 km (8.9 mi)	8/29/1996
+141	4	137	0		COM	Trans Service Airlift (9Q-CRR)	Lockheed L-188 Electra	ancJamba, Cuando Cubango, Angola	TOF [130]			12/18/1995
+141	10	131	0	†	COM	China Southern Airlines Flight 3943	Boeing 737-31B	chinysHejiaqiao, Yanshan District, China	APR [131]	KWL	20 km (12 mi)	11/24/1992
+137	9	128	0	†	COM	VASP Flight 168	Boeing 727-212A	brpaPacatuba, Brazil	APR [134]	FOR	25 km (16 mi)	6/8/1982
+137	8	126	1		COM	Delta Air Lines Flight 191	Lockheed L-1011 TriStar	ustexdalDallas–Fort Worth, Texas, US	APR [132][133]	DFW	c. 2 km (1.2 mi)	8/2/1985
+135	12	121	2	1*	MIL	Indonesian Air Force (A-1324)	Lockheed C-130H-30 Hercules	indoncEast Jakarta, Indonesia	ICL [135]	HLP	3 km (1.9 mi)	10/5/1991
+134	12	116	6	†	COM	United Airlines Flight 826 and TWA Flight 266	Douglas DC-8-21 and Lockheed L-1049	usnewyneNew York City, US	APR [136][137] [138]	LGA		12/16/1960
+133	7	126	0	†	COM	All Nippon Airways Flight 60	Boeing 727-81	jtobTokyo Bay, Japan	APR [140]	HND	12 km (7.5 mi)	2/4/1966
+133	12	119	2	†	MIL	Iran Air Tours *EP-ITD* and Iranian Air Force Su-24	Tupolev Tu-154 and Sukhoi Su-24	iratShahr-e Qods, Iran	TOF [139]	THR	15 km (9.3 mi)	2/8/1993
+132	5	127	0	†	COM	US Air Flight 427	Boeing 737-3B7	uspenAliquippa, Pennsylvania, US	APR [141][142]	PIT	13 km (8.1 mi)	9/8/1994
+132	7	125	0	†	COM	SAM Colombia Flight 501	Boeing 727-146	colmeLa Canada, near Medellín, Colombia	ENR [143]			5/19/1993
+132	8	124	0	†	COM	Aeroflot Flight 8641	Yakovlev Yak-42	belamaMazyr, Belarus	ENR [144][145]			6/28/1982
+131	7	124	0	†	COM	Air Philippines Flight 541	Boeing 737-2H4	phsSamal, Philippines	APR [146]	DVO	7.5 km (4.7 mi)	4/19/2000
+131	4	127	0		COM	Tan-Sahsa Flight 414	Boeing 727-224	hoTegucigalpa, Honduras	APR [147]	TGU	9 km (5.6 mi)	10/21/1989
+131	6	125	0		COM	Indian Airlines Flight 113	Boeing 737-2A8	indiahAhmedabad, India	APR [148]	AMD	5 km (3.1 mi)	10/19/1988
+131	6	125	0		COM	TAP Portugal Flight 425	Boeing 727-282Adv	porsSanta Cruz, Madeira	LDG [149]	FNC		11/19/1977
+130	4	126	0	†	COM	TAAG Angola Airlines (D2-TBN)	Boeing 737-200	anlubLubango, Angola	ICL [nb 7]	SDD	1 km (0.6 mi)	11/8/1983
+130	8	122	0		COM	Air France Flight 007	Boeing 707-328	frapParis, France	TOF [151]	ORY		6/3/1962
+129	8	121	0		COM	Air China Flight 129	Boeing 767-2J6ER	soubBusan, South Korea	APR [152]	PUS	4.6 km (2.9 mi)	4/15/2002
+129	4	0	125	†	COM	Flying Tiger Line (N228SW)	Canadair CL-44D4-1	vidDa Nang, Vietnam	APR [153]	DAD	c. 1 km (0.6 mi)	12/24/1966
+129	7	122	0	†	MIL	US Air Force (51-0137)	Douglas C-124A-DL Globemaster II	jtaTachikawa, Japan	APR [154]	RJTC	5.6 km (3.5 mi)	6/18/1953
+128	8	120	0	†	COM	Iran Air Flight 291	Boeing 727-86	iraaAlborz Mountains, Iran	APR [158]	THR	29 km (18 mi)	1/21/1980
+128	11	117	0	†	COM	United Airlines Flight 718 and TWA Flight 2	Douglas DC-7 and Lockheed L-1049	usarGrand Canyon, Arizona, US	ENR [159][160] [161]			6/30/1956
+128	7	75	46		INH	Xiamen Air Flight 8301, China Southwest Flight 2402, and China Southern (B-2812)	Boeing 737-247, Boeing 707-3J6B, and Boeing 757-21B	chingBaiyun District, Guangzhou, China	STD [155][156][157][nb 8]	***		10/2/1990
+127	6	121	0	†	COM	Bhoja Air Flight 213	Boeing 737-236	pakiIslamabad, Pakistan	APR [162]	ISB	c. 2.5 km (1.6 mi)	4/20/2012
+126	11	115	0		COM	ČSA Flight 542	Ilyushin Il-62	sydDamascus, Syria	APR [163]	DAM	17 km (11 mi)	8/20/1975
+126	9	117	0		COM	Globe Air (HB-ITB)	Bristol Britannia 313	cyNicosia, Cyprus	APR [164]	NIC	3.5 km (2.2 mi)	4/20/1967
+125	5	120	0		COM	Sibir (S7) Airlines Flight 778	Airbus A310-300	ruirIrkutsk, Russia	LDG [165]	IKT		7/9/2006
+125	6	119	0		INH	Ethiopian Airlines Flight 961	Boeing 767-260ER	comgIndian Ocean, off Grande Comore, Comoros	APR [166]	HAH[nb 9]	0.5 km (0.3 ml)	11/23/1996
+124	11	113	0	†	COM	BOAC Flight 911	Boeing 707-436	jgGotemba, Japan	ENR [168]			3/5/1966
+124	9	115	1	†	COM	Baikal Air Flight 130	Tupolev Tu-154	ruirIrkutsk, Russia	ENR [167]			1/3/1994
+123	6	117	0	†	COM	Faucett Flight 251	Boeing 737-222	pearArequipa, Peru	APR [169]	AQP	6.3 km (3.9 mi)	2/29/1996
+123	7	116	0		COM	Varig Flight 820	Boeing 707-320C	frasSaulx-les-Chartreux, France	APR [170]	ORY	5 km (3.1 mi)	7/11/1973
+123	12	111	0		COM	South African Airways Flight 228	Boeing 707-344C	NaWindhoek, Namibia	ICL [171]	WDH	5 km (3.1 mi)	4/20/1968
+122	8	114	0	†	COM	Aeroflot Flight 964	Tupolev Tu-104B	rudoDomodedovo, Russia	APR [172]	DME	17 km (11 mi)	10/13/1973
+122	7	115	0	†	COM	Aeroflot Flight 1491	Antonov An-10	ukrknear Kharkiv, Ukraine	APR [173]	HRK	24 km (15 mi)	5/18/1972
+121	6	115	0	†	COM	Helios Airways Flight 522	Boeing 737-31S	gregGrammatiko, Greece	ENR [174]			8/14/2005
+121	13	108	0		COM	Pakistan International Airlines Flight 705	Boeing 720 040B	egcNew Cairo, Egypt	APR [175]	CAI	c. 20 km (12 mi)	5/20/1965
+120	0	0	0	†	COM	Aeroflot Flight 831 and Soviet Air Force An-12	Ilyushin Il-14M and Antonov An-12BP	ruporPoroslitsy, Yukhnovsky, Russia	ENR [176][177]			6/23/1969
+119	12	107	0	†	COM	Iran Air Tours Flight 956	Tupolev Tu-154M	irasanear Sarab-e Dowreh, Iran	APR [178]	KHD	c. 46 km (29 mi)	2/12/2002
+119	8	111	0	†	COM	TAME Ecuador (HC-BIG)	Boeing 737-200 Advanced	eccuCuenca, Ecuador	APR [179]	CUE	1.5 km (0.9 mi)	7/11/1983
+118	9	109	0	†	COM	British European Airways Flight 548	Hawker Siddeley Trident 1C	unestaStaines, England, UK	ICL [183][184]	LHR	5.5 km (3.4 mi)	6/18/1972
+118	7	111	0	†	COM	Trans-Canada Air Lines Flight 831	Douglas DC-8-54CF	canqsSainte-Thérèse, Quebec, Canada	ENR [185]			11/29/1963
+118	8	106	4	†	COM	SAS Flight 686 and Private aircraft (D-IEVX)	McDonnell Douglas MD-87 and Cessna Citation CJ2	itmMilan, Italy	TXI [180][181] [182]	LIN		10/8/2001
+117	6	111	0	†	COM	Bellview Airlines Flight 210	Boeing 737-2L9	nigerilnear Lagos, Nigeria	ENR [186]			10/22/2005
+117	11	105	0	†	COM	Sudan Airways Flight 139	Boeing 737-200C	sudpPort Sudan, Sudan	APR [187]	PZU	5 km (3.1 mi)	7/8/2003
+117	11	106	0	†	COM	Air India Flight 101	Boeing 707-437	framobMont Blanc massif, France	ENR [188]			1/24/1966
+116	6	110	0	†	COM	Air Algérie Flight 5017	McDonnell Douglas MD-83	maligonear Gossi, Mali	ENR [189]			7/24/2014
+116	8	108	0	†	COM	Avioimpex Flight 110	Yakovlev Yak-42D	repoOhrid, Republic of Macedonia	APR [190]	OHD	2 km (1.2 mi)	11/20/1993
+115	7	108	0	†	COM	Alitalia Flight 112	McDonnell Douglas DC-8-43	itsiCinisi, Sicily, Italy	APR [192]	PMO	5 km (3.1 mi)	5/5/1972
+115	11	104	0	†	INB	Korean Air Flight 858	Boeing 707-3B5C	burAndaman Sea, near Heinze Bok, Burma	ENR [191]			11/29/1987
+114	6	108	0	†	COM	Kenya Airways Flight 507	Boeing 737-8AL	camdDouala, Cameroon	ENR [193]			5/5/2007
+113	8	105	0	†	COM	Armavia Flight 967	Airbus A320-221	ruadBlack Sea, off Adler, Russia	APR [194]	AER	6 km (3.7 mi)	5/3/2006
+113	14	99	0	†	COM	Thai Airways International Flight 311	Airbus A310-304	nelLangtang National Park, Nepal	ENR [197]			7/31/1992
+113	6	107	0		COM	Eastern Air Lines Flight 66	Boeing 727-225	usnewyjaJamaica, New York, US	APR [198][199]	JFK	0.73 km (0.46 mi)	6/24/1975
+113	10	103	0	†	COM	Air France Flight 117	Boeing 707-328	Wenear Deshaies, Guadeloupe, West Indies	APR [200]	PTP	25 km (16 mi)	6/22/1962
+113	9	100	4	†	COM	Air France Flight 4590	Aérospatiale-BAC Concorde	fragoGonesse, France	ICL [195][196]	CDG	3.5 km (2.2 mi)	7/25/2000
+112	9	103	0	†	COM	China Northern Airlines Flight 6136	McDonnell Douglas MD-82	chindDalian Bay, China	APR [201]	DLC	20 km (12 mi)	5/7/2002
+112	8	104	0	†	COM	Civil Aviation Administration of China Flight 3303	Hawker Siddeley Trident	chinygnear Yangshuo, China	APR [203]	KWL	60 km (37 mi)	4/26/1982
+112	6	106	0	†	COM	Sterling Airways Flight 296	Sud Aviation Caravelle	unafFujairah, United Arab Emirates	ENR [204]			3/14/1972
+112	7	105	0	†	COM	Dan-Air (G-APDN)	de Havilland Comet 4	splLes Agudes mountain, Spain	ENR [205][206]			7/3/1970
+112	5	107	0	†	INB	Gulf Air Flight 771	Boeing 727-2P6	unafMina Jebel Ali, United Arab Emirates	APR [202]	AUH	80 km (49.7 mi)	9/23/1983
+111	1	110	0		COM	United Airlines Flight 232	McDonnell Douglas DC-10-10	usioSioux City, Iowa, US	LDG [83][207] [208]	SUX		7/19/1989
+111	11	100	0	†	COM	Aeroflot/Armenia Flight 909	Ilyushin Il-18E	ruverVerkhnyaya Khava, Verkhnekhavsky District, Russia	ENR [209]			3/6/1976
+111	7	104	0	†	COM	Alaska Airlines Flight 1866	Boeing 727-100	usaljnear Juneau, Alaska, US	APR [210][211]	JNU	30 km (19 mi)	9/4/1971
+111	10	101	0	†	COM	Caledonian Airways Flight 153	Douglas DC-7	camdDouala, Cameroon	ICL [212]	DLA	2.5 km (1.6 mi)	3/4/1962
+110	5	105	0	†	COM	ValuJet Flight 592	McDonnell Douglas DC-9-32	usflEverglades, Florida, US	ENR [213][214]			5/11/1996
+110	7	103	0	1*	COM	Aeroflot Flight 3519	Tupolev 154B-2	ruyemYemelyanovo, Yemelyanovsky, Russia	ENR [215]			12/23/1984
+110	6	104	0	†	COM	Far Eastern Air Transport Flight 103	Boeing 737-222	chintmMiaoli, Taiwan, China	ENR [216]			8/22/1981
+109	7	102	0	†	COM	Aeroflot (CCCP-75559)	Ilyushin Il-18V	rushuShushary, Russia	APR [217]	LED	2.5 km (1.6 mi)	4/27/1974
+109	8	101	0	†	COM	Aeroflot Flight 1036	Ilyushin Il-18V	blrBlack Sea, off Adler, Russia	ICL [218]	AER	4 km (2.5 mi)	10/1/1972
+109	9	100	0	†	COM	Air Canada Flight 621	McDonnell Douglas DC-8-63	canoVaughan, Ontario, Canada	LDG [219]	YYZ	11 km (6.8 mi)	7/5/1970
+108	7	101	0		COM	Sosoliso Airlines Flight 1145	McDonnell Douglas DC-9-32	nigeripPort Harcourt, Nigeria	LDG [220]	PHC		12/10/2005
+108	8	100	0		COM	China General Aviation Flight 7552	Yakovlev Yak-42D	chinnNanjing, China	ICL [222]	NKG	0.6 km (0.4 mi)	7/31/1992
+108	10	98	0	†	COM	China Southwest Airlines Flight 4146	Ilyushin Il-18D	chincnear Chongqing, China	APR [223]	CKG	c. 32 km (20 mi)	1/18/1988
+108	5	103	0		COM	Alitalia Flight 4128	McDonnell Douglas DC-9-32	itpaTyrrhenian Sea, off Palermo, Italy	APR [224]	PMO	3 km (1.9 mi)	12/23/1978
+108	8	100	0	†	COM	Aeroflot Flight 3932	Tupolev Tu-104	ruyekYekaterinburg, Russia	ICL [225]	SVX	10 km (6.2 mi)	9/30/1973
+108	4	104	0		COM	Invicta International Airlines Flight 435	Vickers 952 Vanguard	swrReinach, Switzerland	APR [226]	BSL	15 km (9.3 mi)	4/10/1973
+108	8	100	0		EXG	Transair Georgia (85163)	Tupolev Tu-154B	abbBabushara, near Sukhumi, Abkhazia	APR [221]	SUI		9/22/1993
+108	8	100	0		EXS	Libyan Arab Airlines Flight 114	Boeing 727-224	egsiWestern Sinai Peninsula, Israel	ENR [227]			2/21/1973
+107	11	96	0	†	COM	Pan Am Flight 812	Boeing 707-321B	indonba area of Negara, Bali, Indonesia	APR [229]	DPS	68 km (42 mi)	4/22/1974
+107	8	99	0	†	COM	Aeroflot Flight 2230	Ilyushin Il-18V	ruarAramil, Russia	ICL [230]	SVX	2.9 km (1.8 mi)	11/16/1967
+107	11	96	0	†	COM	Flying Tiger Line Flight 739	Lockheed L-1049H Super Constellation	pacPacific Ocean	ENR [231]			3/16/1962
+107	6	101	0	†	INB	Avianca Flight 203	Boeing 727-21	colbBogotá, Colombia	ENR [228]			11/27/1989
+106	7	99	0	†	COM	Royal Air Maroc Caravelle (OO-SRD)	Sud Aviation SE-210 Caravelle VIN	moteMt. Mellalyene, Tétouan, Morocco	ENR [233]			12/22/1973
+106	10	84	12	†	MIL	Iranian Air Force (5-8519)	Lockheed C-130E Hercules	iratTehran, Iran	APR [232]	THR	c. 5.5 km (3.4 mi)	12/6/2005
+104	8	96	0	†	COM	Kam Air Flight 904	Boeing 737-242	afcChaperi Ghar Mtn., Pamir Mts., Afghanistan	ENR [234]			2/3/2005
+104	5	99	0	†	COM	Cebu Pacific Air Flight 387	McDonnell Douglas DC-9-32	phmbMount Balatukan, Philippines	ENR [235]			2/2/1998
+104	7	97	0	†	COM	SilkAir Flight 185	Boeing 737-36N	indonmuMusi River, Indonesia	ENR [236][237]			12/19/1997
+104	6	98	0	†	COM	Iberia Airlines Flight 602	Sud Aviation SE 210 Caravelle	spiIbiza, Spain	APR [238]	IBZ	c. 15 km (9.3 mi)	1/7/1972
+104	6	11	87	†	COM	Middle East Airlines Flight 265 and Turkish Air Force (CBK-28)	Vickers Viscount 754D and Douglas C-47	tuaAnkara, Turkey	STD [239]	ESB	c. 20 km (12.4 mi)	2/1/1963
+103	11	92	0	1*	COM	Afriqiyah Airways Flight 771	Airbus A330-202	libytTripoli, Libya	APR [240]	TIP	c. 0.9 km (0.56 mi)	5/12/2010
+102	6	96	0	†	COM	Adam Air Flight 574[nb 10]	Boeing 737-4Q8	indonmakMakassar Strait, Indonesia	ENR [241][242]			1/1/2007
+102	6	96	0	1*	COM	Air Algérie Flight 6289	Boeing 737-2T4	altTamanrasset, Algeria	ICL [243]	TMR	1.6 km (1 mi)	3/6/2003
+102	5	97	0	†	COM	Dominicana de Aviación (HI-177)	McDonnell Douglas DC-9-32	dosCaribbean, off Santo Domingo, Dominican Republic	ICL [244]	SDQ	3 km (1.9 mi)	2/15/1970
+101	11	90	0		COM	Thai Airways Flight 261	Airbus A310-300	thsSurat Thani, Thailand	APR [245]	URT	c. 4 km (2.5 mi)	12/11/1998
+101	7	94	0		COM	Eastern Air Lines Flight 401	Lockheed L-1011-385-1 TriStar 1	usfleEverglades, near Tamiami, Florida, US	APR [246][247]	MIA	33.6 km (20.9 mi)	12/29/1972
+101	9	92	0	†	COM	Aeroflot Flight 558	Ilyushin Il-18V	ruspanear Spassky, Verkhneuralsky District, Russia	ENR [248]			8/31/1972
+101	6	95	0	†	COM	Northwest Airlines Flight 293	Douglas DC-7CF	pacuPacific Ocean, area of Annette Island, Alaska, US	ENR [250][251]			6/3/1963
+101	7	92	2	1*	COM	LANSA Flight 502	Lockheed L-188 Electra	pecuCusco, Peru	ICL [249]	CUZ	c. 4 km (2.5 mi)	8/9/1970
+100	7	93	0		COM	United Arab Airlines (SU-APC)	Ilyushin Il-18D	egaAswan, Egypt	LDG [253]	ASW		3/20/1969
+100	7	93	0	†	INH	Malaysian Airline System Flight 653	Boeing 737-2H6	malanear Tanjung Kupang, Malaysia	ENR [252]			12/4/1977
+99	4	95	0		COM	Aeroflot Flight 3603	Tupolev Tu-154B-2	runornear Norilsk, Russia	APR [257]	NSK	0.47 km (0.3 mi)	11/16/1981
+99	8	91	0	†	COM	KLM Flight 607E	Lockheed L-1049	atisAtlantic Ocean, area of Shannon, Ireland	ENR [258]			8/14/1958
+99	6	89	4	†	COM	TAM Airlines Flight 402	Fokker 100	brsaopSão Paulo, Brazil	ICL [255][256]	CGH	1.5 km (0.9 mi)	10/31/1996
+99	0	0	2		MIL	Indonesian Air Force (A-1325)	Lockheed C-130H Hercules	indonmadnear Madiun, Indonesia	APR [254]	WIHH	9 km (5.6 mi)	5/20/2009
+98	8	90	0	†	COM	Khabarovsk United Air Flight 3949	Tupolev Tu-154B	rugrarea of Grossevichi, Khabarovsk Krai, Russia	ENR [259]			12/6/1995
+98	6	92	0		COM	Britannia Airways Flight 105	Bristol 175 Britannia 102	slkKomenda, Slovenia	APR [262]	LJU	3 km (1.9 mi)	9/1/1966
+98	6	92	0		MIL	Royal Saudi Air Force (469)	Lockheed C-130H Hercules	saknear Khafji, Saudi Arabia	APR [260]	OERM	unknown	3/21/1991
+98	6	92	0	†	MIL	Indian Air Force Flight 203	Antonov An-12BP	indirRohtang Pass, India	ENR [261]			2/7/1968
+97	10	87	0		COM	Pan Am Flight 806	Boeing 707-321B	amPago Pago, American Samoa	APR [263]	PPG	1.2 km (0.75 mi)	1/30/1974
+97	4	93	0		COM	Aeroflot Flight 1912	Tupolev Tu-104B	ruirIrkutsk, Russia	APR [264]	IKT	0.15 km (0.09 mi)	7/25/1971
+97	17	80	0	†	COM	Varig Flight 810	Boeing 707-441	pesLa Cruz peak, San Juan de Miraflores, Peru	APR [265]	LIM	c. 25 km (16 mi)	11/27/1962
+96	4	92	0		COM	ADC Airlines Flight 53	Boeing 737-2B7	nigeriabAbuja, Nigeria	ICL [268]	ABV	c. 0.5 km (0.3 mi)	10/29/2006
+96	6	90	0	†	COM	Aeroflot Flight 3843	Tupolev Tu-104A	kaaAlmaty, Kazakhstan	APR [269]	ALA	3.5 km (2.2 mi)	1/13/1977
+96	8	88	0	†	MIL	Polish Air Force (101)	Tupolev Tu-154M	rusmoSmolensk, Russia	APR [266][267]	***	c. 1 km (0.6 mi)	4/10/2010
+95	6	89	0	†	COM	Indian Airlines Flight 171	Sud Aviation SE-210 Caravelle VIN	indimuMumbai, India	APR [270]	BOM	0.35 km (0.2 mi)	10/12/1976
+95	8	87	0	†	COM	American Airlines Flight 1	Boeing 707-123B	usnewyneJamaica Bay, New York, US	ICL [272][273]	IDL	c. 6 km (3.7 mi)	3/1/1962
+95	6	89	0	†	EXG	Air France Flight 1611	Sud Aviation SE-210 Caravelle III	franiMediterranean, near Nice, France	ENR [271]			9/11/1968
+94	7	87	0	†	COM	TAME Flight 120	Boeing 727-134	colcuCumbal Volcano, Colombia	APR [274]	TUA	c. 21 km (13 mi)	1/28/2002
+94	12	82	0	†	COM	Aeroflot Flight 8381 and Soviet Air Force (SSSR-26492)	Tupolev Tu-134 and Antonov An-26	ukrzZolochiv, Ukraine	APR [275][276]	LWO	68 km (42 mi)	5/3/1985
+94	9	85	0	†	COM	Alitalia Flight 771	McDonnell Douglas DC-8-43	indijJunnar, India	ENR [277]			7/7/1962
+93	6	87	0	†	COM	Aerovias Guatemala Caravelle (HC-BAE)	Sud Aviation SE-210 Caravelle III	guatFlores, Guatemala	APR [278][279]	FRS	8 km (5 mi)	1/18/1986
+93	6	87	0		COM	Iberia Flight 350 and Aviaco Flight 134	Boeing 727 and McDonnell Douglas DC-9	spmadMadrid, Spain	TXI [280][281]	MAD		12/7/1983
+92	4	88	0		COM	Indian Airlines Flight 605	Airbus A320-231	indibBangalore, India	APR [282]	VOBG	0.7 km (0.43 mi)	2/14/1990
+92	7	85	0	†	COM	TWA Flight 514	Boeing 727-231	usvirmMt. Weather, Virginia, US	APR [283]	DCA	40 km (25 mi)	12/1/1974
+92	7	85	0		COM	Aeroflot Flight U-45	Ilyushin Il-18V	uzbBulungur District, Uzbekistan	ENR [284]			2/6/1970
+91	6	85	0	1*	COM	LANSA Flight 508	Lockheed L-188 Electra	pepPuerto Inca, Peru	ENR [287]			12/24/1971
+91	3	0	88	†	COM	Lloyd Aéreo Boliviano (N730JP)	Boeing 707-131F	bolsSanta Cruz, Bolivia	ICL [286]	SRZ	0.6 km (0.4 mi)	10/13/1976
+91	5	86	0	†	MIL	Sudanese Air Force	Lockheed C-130H Hercules	sudjJabal Awliya, Sudan	ENR [285]			2/26/1996
+90	8	82	0	†	COM	Ethiopian Airlines Flight 409	Boeing 737-8AS	lenMediterranean, off Na'ameh, Lebanon	ICL [288]	BEY	11 km (6.8 mi)	1/25/2010
+90	5	85	0		COM	One-Two-GO Airlines Flight 269	McDonnell Douglas MD-82	thphPhuket, Thailand	LDG [289]	HKT		9/16/2007
+90	7	83	0	†	COM	Aeroflot Flight 5463	Tupolev Tu-134A	kaanear Almaty, Kazakhstan	APR [290]	ALA	36 km (22.4 mi)	8/30/1983
+90	8	82	0	†	COM	Aeroflot Flight 411	Ilyushin Il-62M	rumenMendeleyevo, Russia	ICL [291]	SVO	11.4 km (7.1 mi)	7/6/1982
+90	5	85	0	†	COM	Olympic Airways Flight 954	Douglas DC-6	grekKeratea, Greece	APR [292]	***	c. 23 km (14 mi)	12/8/1969
+89	8	81	0	†	MIL	Royal Saudi Air Force (453)	Lockheed C-130E Hercules	samMedina, Saudi Arabia	ICL [293]	MED	c. 1 km (0.6 mi)	9/14/1980
+88	6	82	0	†	COM	Aeroflot-Nord Flight 821	Boeing 737-505	ruperPerm, Russia	APR [294]	PEE	11.5 km (7.1 mi)	9/14/2008
+88	5	83	0	†	COM	Alaska Airlines Flight 261	McDonnell Douglas MD-83	uscaaPacific Ocean, off Anacapa Island, California, US	ENR [295][296]			1/31/2000
+88	6	82	0	1*	COM	Delta Air Lines Flight 723	McDonnell Douglas DC-9-31	usmamasBoston, Massachusetts, US	APR [298][299]	BOS	1 km (0.6 mi)	7/31/1973
+88	5	83	0	†	COM	Air Ferry C-54 (G-APYK)	Douglas C-54 Skymaster	framocMont Canigou, France	ENR [300]			6/3/1967
+88	9	79	0	†	INB	Trans World Airlines Flight 841 (1974)	Boeing 707-331B	grecMediterranean, area of Cephalonia, Greece	ENR [297]			9/8/1974
+87	5	82	0		COM	Air Inter Flight 148	Airbus A320-111	frabBarr, France	APR [301]	SXB	19.5 km (12.1 mi)	1/20/1992
+87	10	77	0	†	COM	LOT Polish Airlines Flight 007	Ilyushin Il-62	polwWarsaw, Poland	APR [302]	WAW	0.86 km (0.52 mi)	3/14/1980
+87	11	76	0	†	COM	Nigeria Airways Flight 825	Vickers VC-10	nigerilLagos, Nigeria	APR [303]	LOS	13 km (8.1 mi)	11/20/1969
+87	7	80	0	†	COM	LAN Chile Flight 107	Douglas DC-6	chilSan José Volcano, Chile	ENR [304]			2/6/1965
+87	9	78	0		COM	Aeroflot Flight 721	Ilyushin Il-18V	ruyuznear Yuzhno Sakhalinsk, Russia	APR [305]	UUS	26 km (16.3 mi)	9/2/1964
+87	5	82	0		MIL	US Air Force (50-0100)	Douglas C-124A Globemaster II	uswasmMoses Lake, Washington, US	ICL [306]	LRN	4 km (2.5 mi)	12/20/1952
+86	7	79	0	†	COM	Aeroflot Flight 03	Tupolev Tu-104A	ruyelnear Yelabuga, Tatarstan, Russia	ENR [309]			9/3/1962
+86	6	79	1	†	COM	Aviaco Flight 118	Sud Aviation SE 210 Caravelle 10R	spacA Coruña, Spain	APR [308]	LCG	11 km (6.8 mi)	8/13/1973
+86	0	0	0	†	MIL	Iranian Air Force	Lockheed C-130 Hercules	iramnear Mashad, Iran	ENR [307]			3/13/1997
+85	6	79	0	1*	COM	Tajikistan Airlines Flight 3183	Tupolev Tu-154B-1	unasSharjah, United Arab Emirates	APR [310]	SHJ	13 km (8.1 mi)	12/15/1997
+85	5	80	0	†	COM	Braniff Flight 352	Lockheed L-188A Electra	ustexdawDawson, Texas, US	ENR [312][313]			5/3/1968
+85	4	81	0	†	COM	Paradise Airlines Flight 901A	Lockheed L-049 Constellation	usnevgGenoa, Nevada, US	ENR [315]			3/1/1964
+85	10	72	3		COM	Japan Airlines Flight 471	Douglas DC-8-53	indinnear New Delhi, India	APR [311]	DEL	c. 20 km (12 mi)	6/14/1972
+85	4	81	0	†	MIL	US Air Force (56-4376)	Fairchild C-123B-18-FA Provider	vitnear Tuy Hòa, Vietnam	ENR [314]			12/11/1965
+84	7	77	0	†	COM	Aeroflot Flight 2808	Tupolev Tu-134A	ruandAndreevo, Ivanovo Oblast, Russia	APR [316]	IWA	3 km (1.9 mi)	8/27/1992
+84	5	79	0	†	COM	Eastern Air Lines Flight 663	Douglas DC-7B	usnewyjoAtlantic Ocean, off Jones Beach, New York, US	ENR [318][319]			2/8/1965
+84	8	76	0	†	EXG	Aeroflot Flight 902	Tupolev Tu-104A	ruvoznear Voznesenka, Krasnoyarsk Krai, Russia	ENR [320]			6/30/1962
+84	12	72	0	†	MIL	US Air Force (60-0373)	Boeing C-135 Stratolifter	uscastSantiago Canyon, California, US	ENR [317]			6/25/1965
+83	4	79	0		COM	Singapore Airlines Flight 006	Boeing 747-412	chintdDayuan District, Taiwan	TOF [321]	TPE		10/31/2000
+83	4	79	0		COM	Palair Macedonian Airlines Flight 301	Fokker 100	reppPetrovec, Republic of Macedonia	ICL [323]	SKP	0.38 km (0.24 mi)	3/5/1993
+83	9	74	0	†	COM	Thai Airways Flight 365	Boeing 737-2P5	thphPhuket, Thailand	APR [325]	HKT	15 km (9.3 mi)	8/31/1987
+83	5	78	0	†	COM	Allegheny Airlines Flight 853 and Private aircraft (N7374J)	McDonnell Douglas DC-9-30 and Piper PA-28 Cherokee	usininfFairland, Indiana, US	ENR [326][327]			9/9/1969
+83	9	74	0	1*	COM	Aeroflot Flight 15	Ilyushin Il-18D	ruparParchum, Chunsky District, Russia	ENR [328]			2/29/1968
+83	5	78	0		COM	American Flyers Flight 280	Lockheed L-188 Electra	usoklArdmore, Oklahoma, US	APR [329]	ADM	2.4 km (1.5 mi)	4/22/1966
+83	8	75	0	†	COM	British Eagle International Airlines Flight 802	Bristol 175 Britannia 312	auGlungezer mountain, Austria	ENR [330]			2/29/1964
+83	6	77	0	†	COM	President Airlines (N90773)	Douglas DC-6B	ireshShannon, Ireland	ICL [331]	SNN	1.5 km (0.9 mi)	9/10/1961
+83	11	72	0	†	MIL	Russian Air Force (RA-74295)	Ilyushin Il-18D	geoZundagi, Adjara, Georgia	APR [322]	BUS	18 km (11.3 mi)	10/25/2000
+83	5	78	0	†	MIL	Afghanistan Air Force	Antonov An-12	afshnear Shindand, Afghanistan	ICL [324]	OAH		8/10/1990
+82	5	77	0		COM	Tajikistan Airlines (87995)	Yakovlev Yak-40	takhoKhorog, Tajikistan	TOF [332]	UTOD	0.2 km (0.12 mi)	8/28/1993
+82	6	76	0	†	COM	Piedmont Airlines Flight 22 and Private aircraft (N31215S)	Boeing 727-22 and Cessna 310	usnornohHendersonville, North Carolina, US	ENR [336]			7/19/1967
+82	8	74	0	†	COM	TABSO Flight 101	Ilyushin Il-18B	slbBratislava, Slovakia	ENR [337]			11/24/1966
+82	7	60	15	†	COM	Aeroméxico Flight 498 and Private aircraft (N4891F)	McDonnell Douglas DC-9-32 and Piper PA-28-181 Archer	uscacCerritos, California, US	APR [333][334]	LAX	c. 33 km (21 mi)	8/31/1986
+82	8	74	0	†	INH	Aeroflot Flight 109	Tupolev Tu-104B	ruchiArea of Chita, Russia	ENR [335]			5/19/1973
+81	8	73	0	†	COM	Pan Am Flight 214	Boeing 707-121	usmamaeElkton, Maryland, US	APR [343][344]	PHL	55 km (34 mi)	12/8/1963
+81	7	74	0	†	COM	Aeroflot Flight 415	Antonov An-10A	abkKholodnaia Rechka, Gagra, Abkhazia	APR [345]	AER	21 km (13.1 mi)	7/28/1962
+81	4	77	0	†	EXS	Aerolinee Itavia Flight 870	McDonnell Douglas DC-9-15	ituTyrrhenian Sea, near Ustica, Italy	ENR [338][339] [nb 11]			6/27/1980
+81	15	66	0	†	INB	Middle East Airlines Flight 438	Boeing 720-023B	saasAs Sufayri, Hafar Al-Batin, Saudi Arabia	ENR [341]			1/1/1976
+81	10	71	0	†	INB	Cathay Pacific Airways Flight 700Z	Convair 880-22M-21	viplarea of Pleiku, Vietnam	ENR [342]			6/15/1972
+80	4	76	0		COM	Air Mauritanie Flight 625	Fokker F28 Fellowship 4000	mauTidjikja, Mauritania	LDG [348]	TIY		7/1/1994
+80	4	76	0	†	COM	Fuerza Aérea Colombiana (FAC-902)	Douglas DC-6B	collnear Leticia, Colombia	ENR [349]			7/24/1985
+80	7	73	0	†	COM	Union de Transportes Aériens (F-BHMS)	Douglas DC-6B	spalMt. Alcazaba, Spain	ENR [351]			10/2/1964
+80	6	74	0	†	COM	Swissair Flight 306	Sud Aviation SE-210 Caravelle III	swdDürrenäsch, Switzerland	ENR [353]			9/4/1963
+80	7	73	0		COM	World Airways Flight 830	Douglas DC-6A	usguub Mt. Barrigada, near Barrigada, Guam, US	ENR [354]			9/19/1960
+80	9	71	0	†	COM	Aeroflot (CCCP-42362)	Tupolev Tu-104A	ruvurVurnarsky, Chuvashia, Russia	ENR [355]			10/17/1958
+80	5	75	0		COM	Fairflight (G-AKBY)	Avro 689 Tudor V	unwSigingstone, Wales, UK	APR [356]	***	0.76 km (0.47 mi)	3/12/1950
+80	14	56	10		COM	Cubana de Aviación Flight 389	Tupolev Tu-154M	ecqQuito, Ecuador	TOF [347]	UIO		8/29/1998
+80	9	71	0	†	MIL	Moroccan Air Force (CAN-OQ)	Lockheed C-130 Hercules	mogGoulimime, Morocco	APR [346]	GLN	10 km (6.2 mi)	7/26/2011
+80	0	0	0		MIL	Iranian Air Force (5-8552)	Lockheed C-130H Hercules	irakaKahrizak, Iran	ENR [350]			9/29/1981
+80	5	74	1		MIL	US Air Force (61-0332)	Boeing C-135B	phaAngeles City, Philippines	APR [352]	CRK	<0.1 km (0.06 mi)	5/11/1964
+79	7	72	0	†	COM	Aeroflot Flight 630	Ilyushin Il-18V	takhunear Khujand, Tajikistan	ENR [358]			2/24/1973
+79	7	72	0	†	COM	Mexicana Flight 704	Boeing 727-64	mexaEl Carmen, Mexico	ENR [360]			6/4/1969
+79	6	73	0	†	COM	Maritime Central Airways Flight 315	Douglas DC-4	canqiIssoudun, Quebec, Canada	ENR [361]			8/11/1957
+79	3	72	4		COM	Korean Air Flight 803	McDonnell Douglas DC-10-30	libytTripoli, Libya	APR [83][357]	TIP	c. 2 km (1.2 mi)	7/27/1989
+79	6	73	0	†	MIL	US Air Force (55-4574)	Fairchild C-123K	vikKhánh Phu, Khánh Hòa Province, Vietnam	ENR [359]			11/27/1970
+78	3	75	0		COM	Wenela Air Services (A2-ZER)	Douglas DC-4	botFrancistown, Botswana	APR [366]	FRW	3.6 km (2.2 mi)	4/4/1974
+78	10	68	0	1*	COM	Pan Am Flight 816	Boeing 707-321B	frePacific Ocean, off Papeete, Tahiti, French Polynesia	ENR [367][368]			7/22/1973
+78	3	75	0		COM	Aviogenex Flight 130	Tupolev Tu-134A	croOmišalj, Croatia	LDG [369]	RJK		5/23/1971
+78	5	73	0	†	COM	TWA Flight 529	Lockheed L-049 Constellation	usilihHinsdale, Illinois, US	ENR [370][371]			9/1/1961
+78	4	70	4		COM	Air Florida Flight 90	Boeing 737-222	uswasdWashington, D.C., US	ICL [363][364]	DCA	1.4 km (0.9 mi)	1/13/1982
+78	12	66	0	†	EXG	Siberia Airlines Flight 1812	Tupolev Tu-154M	bltBlack Sea, area of Ünye, Turkey	ENR [362]			10/4/2001
+78	9	69	0	†	INB	Air France Flight 406	Lockheed L-1649A Starliner	alznear Zarzaitine, Algeria	ENR [372]			5/10/1961
+78	7	70	1	†	MIL	Indian Air Force	Antonov An-12	indilLeh, India	APR [365]	IXL	0.5 km (0.3 mi)	11/19/1978
+77	10	67	0		COM	Iran Air Flight 277	Boeing 727-286Adv	irauUrmia, Iran	APR [374]	OMH	8 km (5 mi)	1/9/2011
+77	7	70	0	†	COM	Aeroflot Flight 5003	Ilyushin Il-18V	ruminnear Mineralnye Vody, Russia	APR [377]	MRV	<5 km (3 mi)	2/15/1977
+77	6	71	0	†	COM	Air France Flight 2005	Sud Aviation SE-210 Caravelle III	morRabat, Morocco	APR [378]	RBA	9 km (5.6 mi)	9/12/1961
+77	4	72	0	1*	MIL	Algerian Air Force C-130	Lockheed C-130 Hercules	aiAïn Kercha, Oum El Bouaghi Province, Algeria	ENR [373]	CZL		2/11/2014
+77	9	68	0	1*	MIL	Soviet Air Force (CCCP-86732)	Ilyushin IL-76M	armGyumri, Armenia	APR [376]	LWN	15 km (9.4 mi)	12/11/1988
+77	0	0	77		MIL	Sknyliv air show disaster	Sukhoi Su-27	ukrlvLviv, Ukraine	MNV [375]	LWO		7/27/2002
+76	6	70	0		COM	ČSA Flight 001	Ilyushin Il-18B	slbBratislava, Slovakia	APR [380]	BTS	1.5 km (0.93 mi)	7/28/1976
+76	2	74	0		COM	Imperial Airlines Flight 201/8	Lockheed L-049 Constellation	usvirrRichmond, Virginia, US	APR [382][383]	RIC	1.5 km (0.9 mi)	11/8/1961
+76	0	0	0	†	MIL	Afghanistan Air Force	Antonov An-32	aftTashkurgan, Afghanistan	ENR [379]			4/27/1993
+76	5	69	2	1*	MIL	Air Vietnam C-54D (XV-NUG) and US Air Force	Douglas C-54D-10-DC Skymaster and F-4 Phantom II	vidDa Nang, Vietnam	APR [381]	DAD	3 km (1.9 mi)	9/20/1969
+75	13	62	0	†	COM	UM Airlines Flight 4230	Yakovlev Yak-42	tumMaçka, Trabzon, Turkey	APR [384]	TZX	c. 23 km (14 mi)	5/26/2003
+75	5	70	0		COM	Turkish Airlines Flight 634	Avro RJ100	tudiDiyarbakır, Turkey	APR [385]	DIY	0.9 km (0.56 mi)	1/8/2003
+75	6	69	0		COM	Peruvian Air Force (FAP-351)	Boeing 737-282	peanAndoas, Peru	ENR [386]			5/5/1998
+75	12	63	0	†	COM	Aeroflot Flight 593	Airbus A310-304	rumeznear Mezhdurechensk, Russia	ENR [388]			3/23/1994
+75	3	73	0		COM	Vietnam Airlines Flight 831	Tupolev Tu-134	thlLam Luk Ka District, Thailand	APR [389]	DMK	6 km (3.7 mi)	9/9/1988
+75	4	71	0		COM	Inex-Adria Aviopromet Flight 450	McDonnell Douglas DC-9-32	czPrague, Czech Republic	APR [390]	PRG	8 km (5 mi)	10/30/1975
+75	6	69	0	†	COM	Avensa Flight 358	McDonnell Douglas DC-9-14	vematnear Maturín, Venezuela	ENR [391]			12/22/1974
+75	4	71	0	†	COM	Southern Airways Flight 932	McDonnell Douglas DC-9-31	uswescCeredo, West Virginia, US	APR [393][394]	HTS	1.6 km (1 mi)	11/14/1970
+75	8	67	0	†	INH	Air Vietnam Flight 706	Boeing 727-121C	viphnear Phan Rang, Vietnam	ICL [392]	DAD		9/15/1974
+75	5	70	0	†	MIL	Sri Lanka Air Force (CR861)	Antonov An-32B	srcLaccadive Sea, off Colombo, Sri Lanka	ENR [387]			9/12/1995
+74	4	70	0		COM	Hewa Bora Airways Flight 952	Boeing 727-022	demkisKisangani, DR Congo	LDG [395]	FKI	<0.1 km (0.06 mi)	7/8/2011
+74	5	69	0	†	COM	Austral Líneas Aéreas Flight 2553	McDonnell Douglas DC-9-32	UrNuevo Berlín, near Fray Bentos, Uruguay	ENR [396]			10/10/1997
+74	5	69	0	†	COM	Lloyd Aéreo Boliviano (CP-698)	Douglas DC-6B	bolmMt. Choquetanga, Cordillera Kimsa Cruz, Bolivia	ENR [397]			9/26/1969
+74	10	64	0	†	COM	Linea Aeropostal Venezolana Flight 253	Lockheed L-1049 Super Constellation	atunNew York Bight, Atlantic Ocean, area of Jones Beach, New York, US	ENR [398]			6/20/1956
+73	8	65	0		COM	Avianca Flight 52	Boeing 707-321B	usnewycoCove Neck, New York, US	APR [399][400]	JFK	c. 36 km (22 mi)	1/25/1990
+73	7	66	0	†	COM	Balkan Bulgarian (LZ-TUB)	Tupolev Tu-134	bugGabare, Vratsa Province, Bulgaria	ENR [402]			3/16/1978
+73	11	61	1	†	COM	Sabena Flight 548	Boeing 707-320	belgbBrussels, Belgium	APR [404]	BRU	3 km (1.9 mi)	2/15/1961
+73	9	63	1		COM	Western Airlines Flight 2605	McDonnell Douglas DC-10-10	mexmMexico City, Mexico	LDG [407]	MEX	1.5 km (0.9 mi)	10/31/1979
+73	25	48	0	†	INB	Cubana de Aviación Flight 455	Douglas DC-8-43	barAtlantic Ocean, off Christ Church Parish, Barbados	ENR [403]			10/6/1976
+73	0	0	0	†	MIL	Ethiopian Air Force	Antonov An-26	etnear Addis Ababa, Ethiopia	UNK [401]			1/14/1982
+73	0	0	0		MIL	USS *Akron*	*Akron*-class rigid airship	usnewjbAtlantic Ocean, off Barnegat Light, New Jersey, US	ENR			4/4/1933
+72	9	63	0		COM	Aeroflot Flight 892	Tupolev Tu-134A	gerbBohnsdorf, Germany	APR [406]	SXF	3.5 km (2.2 mi)	12/12/1986
+72	5	67	0	†	COM	Aeroflot Flight 2415	Tupolev Tu-104B	rudmDmitrovsky District, Moscow Oblast, Russia	ENR [410]			11/28/1976
+72	6	66	0	†	COM	Faucett (OB-R-148)	Douglas C-54A-5-DC Skymaster	pecoCordillera Blanca, Peru	ENR [411]			12/8/1967
+72	3	69	0		COM	British Midland Airways Flight (G-ALHG)	Canadair C-4 Argonaut	unestoStockport, England, UK	APR [412]	MAN	c. 9 km (5.6 mi)	6/4/1967
+72	8	64	0	†	COM	ČSA Flight 511	Ilyushin Il-18V	moboBouskoura, Morocco	ENR [413]			7/12/1961
+72	2	61	9		COM	Southern Airways Flight 242	McDonnell Douglas DC-9-31	usgegeNew Hope, Georgia, US	ENR [408][409]			4/4/1977
+71	11	60	0	†	COM	Bashkirian Airlines Flight 2937 and DHL Flight 611	Tupolev Tu-154M and Boeing 757-23APF	geruÜberlingen, Germany	ENR [414][415] [416]			7/1/2002
+71	3	68	0		COM	Cameroon Airlines Flight 3701	Boeing 737-200	camdDouala, Cameroon	APR [417]	DLA	6 km (3.7 mi)	12/3/1995
+71	9	43	19	†	COM	EgyptAir Flight 864	Boeing 707-366C	thbBangkok, Thailand	APR [418]	DMK	2 km (1.2 mi)	12/25/1976
+70	8	62	0	†	COM	Aerosvit Flight 241	Yakovlev Yak-42	grepPierian Mountains, Greece	ENR [419]			12/17/1997
+70	9	61	0	†	COM	Aeroperú Flight 603	Boeing 757-23A	pacpPacific Ocean, area of Lima, Peru	ENR [420]			10/2/1996
+70	7	63	0	†	COM	Mandala Airlines Flight 660	Vickers Viscount 816	indonaMt. Lalaboy, Ambon Island, Indonesia	APR [421]	AMQ	15 km (9.3 mi)	7/24/1992
+70	4	66	0		COM	Aeroflot Flight 6502	Tupolev Tu-134A	rukurKurumoch, Samara Oblast, Russia	LDG [423]	KUF		10/20/1986
+70	6	64	0	1*	COM	Galaxy Airlines Flight 203	Lockheed L-188 Electra	usnevrReno, Nevada, US	ICL [424][425]	RNO	3 km (1.9 mi)	1/21/1985
+70	2	68	0		COM	Eastern Air Lines Flight 212	McDonnell Douglas DC-9-31	usnornocCharlotte, North Carolina, US	APR [426][427]	CLT	5.3 km (3.3 mi)	9/11/1974
+70	5	65	0		COM	TWA Flight 128	Convair CV-880-22-1	uskeHebron, Kentucky, US	APR [428][429]	CVG	2.9 km (1.8 mi)	11/20/1967
+70	3	0	67	†	MIL	Ramstein air show disaster	Aermacchi MB-339 PAN (x3)	gerrRamstein-Miesenbach, Germany	MNV [422]	RMS		8/28/1988
+69	6	63	0	†	COM	Indian Airlines Flight 257	Boeing 737-2A8	indiiImphal, India	APR [430]	IMF	8 km (5 mi)	8/16/1991
+69	7	62	0	†	COM	Merpati Nusantara Airlines Viscount (PK-MVS)	Vickers Viscount 828	indonpMentawai Strait, off Padang, Indonesia	ENR [432]			11/10/1971
+69	9	60	0	†	COM	Fuerza Aérea Argentina (TC-48)	Douglas C-54 Skymaster	ceCentral America[nb 12]	ENR [433]			11/3/1965
+69	9	59	1		COM	Aeroflot Flight 331	Ilyushin Il-62M	cubBoyeros, Cuba	APR [431]	HAV	1 km (0.6 mi)	5/27/1977
+68	7	61	0	†	COM	Aero Caribbean Flight 883	ATR 72-212	cugGuasimal, Cuba	ENR [434]			11/4/2010
+68	4	64	0	†	COM	American Eagle Flight 4184	ATR 72-212	usininrnear Roselawn, Indiana, US	APR [436][437]	ORD	108 km (67 mi)	10/31/1994
+68	2	66	0		COM	Asiana Airlines Flight 733	Boeing 737-5L9	soumMokpo, South Korea	APR [438]	MPK	7 km (4.3 mi)	7/26/1993
+68	8	60	0	†	COM	Fuerza Aérea Venezolana (7772)	Lockheed C-130H Hercules	poralLajes, Azores, Portugal	APR [439]	TER	<1 km (0.6 mi)	9/3/1976
+68	7	61	0	†	COM	Iberia Flight 504 and Spantax Flight 400	McDonnell Douglas DC-9-32 and Convair CV-990-30A-5	fralLa Planche, France	ENR [440][441]			3/5/1973
+68	4	64	0	†	COM	Toa Domestic Airlines Flight 63	NAMC YS-11A-217	jhYokotsu Mtn., Hakodate, Japan	ENR [442]			7/3/1971
+68	9	59	0	†	COM	TWA Flight 891	Lockheed L-1649 Starliner	itbBusto Arsizio, Italy	ENR [443][444]			6/26/1959
+68	8	15	23	†	MIL	Russian Air Force (RA-82005)	Antonov An-124-100	ruirIrkutsk, Russia	ICL [435]	IKT	1.6 km (1 mi)	12/6/1997
+67	4	63	0	†	COM	Transporte Aéreo Militar (TAM-44)	Convair CV-440-12	bolcCordillera Mts., La Paz Region, Bolivia	ENR [445]			10/27/1975
+67	8	59	0	†	COM	Aeroflot Flight 25	Ilyushin Il-18	ruuraUrakhcha, Rybno-Slobodsky District, Tatarstan, Russia	ENR [446]			4/4/1963
+67	7	60	0	†	COM	Aerolíneas Argentinas Flight 644	Douglas DC-6	argcaCachari, Buenos Aires, Argentina	ENR [447]			7/19/1961
+67	10	57	0	†	MIL	US Air Force (50-0702)	Boeing C-97C-35-BO	pacjPacific Ocean	ENR [448]			3/22/1957
+66	7	59	0	†	COM	Iran Aseman Airlines Flight 746	Fokker F28 Fellowship 1000	IranNatanz, Iran	ENR [450]			10/12/1994
+66	4	62	0		COM	Turkish Airlines Flight 301	Fokker F28-1000 Fellowship	tucCumaovası, Turkey	TOF [451]	ADB		1/26/1974
+66	4	62	0		COM	Aeroflot Flight 141	Tupolev Tu-154	czPrague, Czech Republic	APR [452]	PRG	0.5 km (0.3 mi)	2/19/1973
+66	3	63	0	†	COM	United Airlines Flight 409	Douglas DC-4	uswyoMedicine Bow Peak, Wyoming, US	ENR [454][455]			10/6/1955
+66	9	57	0	†	COM	United States Navy (131612)	Douglas R6D-1 (DC-6)	ushaPali Kea Peak, Waianae Range, Oahu, Hawaii, US	APR [456]	HNL	24 km (15 mi)	3/22/1955
+66	7	59	0	†	INB	British European Airways Flight 284	de Havilland Comet 4	tudeMediterranean, near Demre, Turkey	ENR [453]			10/12/1967
+66	11	55	0	†	MIL	1955 Altensteig mid-air collision	Fairchild C-119 Flying Boxcar (x2)	geranear Altensteig, West Germany	MNV [449]			8/11/1955
+65	0	0	0		COM	Iran Aseman Airlines/Itek Air Flight 6895	Boeing 737-219	KyBishkek, Kyrgyzstan	APR [457]	FRU	c. 2 km (1.2 mi)	8/24/2008
+65	6	59	0	1*	COM	Vietnam Airlines Flight 815	Tupolev Tu-134	cambPhnom Penh, Cambodia	APR [459]	PNH	0.3 km (0.19 mi)	9/3/1997
+65	7	58	0	†	COM	Aviateca Flight 901	Boeing 737-200	elSan Vicente volcano, El Salvador	APR [460]	SAL	24 km (15 mi)	8/9/1995
+65	8	57	0	†	COM	Aeroflot Flight 1969	Antonov An-10	ukrluLutuhyne, Ukraine	APR [461]	VSG	13 km (8.1 mi)	3/31/1971
+65	2	63	0		COM	American Airlines Flight 320	Lockheed L-188 Electra	usnewyneEast River, New York, US	APR [462][463]	LGA	1.5 km (0.9 mi)	2/3/1959
+65	3	60	2		COM	LAPA Flight 3142	Boeing 737-204C	argbuPalermo, Argentina	TOF [458]	AEP		8/31/1999
+64	9	55	0	†	COM	Aeroflot Flight 7957 and Aeroflot Flight 31	Antonov An-24 and Yakovlev Yak-40	ruanaBlack Sea, near Anapa, Russia	ENR [464][465]			9/9/1976
+64	10	54	0		COM	Canadian Pacific Airlines Flight 402	Douglas DC-8-43	jtoTokyo, Japan	APR [466]	HND	0.85 km (0.53 mi)	3/4/1966
+64	3	61	0		COM	Aeroflot Flight 101	Ilyushin Il-18B	kaaAlmaty, Kazakhstan	APR [467]	ALA	0.2 km (0.12 mi)	1/4/1965
+64	11	53	0	†	COM	Aeroflot Flight 4	Tupolev Tu-104A	ruchinear Chita, Russia	ENR [468]			8/15/1958
+63	5	58	0	†	COM	Elleniki Polemikí Aeroporía (748)	Lockheed C-130H Hercules	gremMount Othrys, Greece	ENR [469]			2/5/1991
+63	5	58	0	†	COM	Aeroflot Flight 5484	Tupolev Tu-124V	rukir near Kirsanov, Russia	ENR [471]			8/29/1979
+63	8	55	0	†	COM	Aeroflot Flight 6551	Ilyushin Il-18	kamMaksut, Zharma District, Kazakhstan	ENR [472]			5/11/1973
+63	8	55	0	†	COM	British European Airways Flight 706	Vickers 951 Vanguard	belgaAarsele, Belgium	ENR [473][474]			10/2/1971
+63	11	52	0	†	COM	Air France Flight 212 (F-BLCJ)	Boeing 707-328C	guadLa Grande Soufrière volcano, Guadeloupe	APR [475]	PTP	27.5 km (17.1 mi)	3/5/1968
+63	8	55	0	†	COM	United Arab Airlines Flight 869	de Havilland Comet 4C	indimuArabian Sea, off Mumbai, India	APR [476][nb 13]	BOM	10 km (6.2 mi)	7/27/1963
+63	8	55	0	†	COM	Air France Flight 343	Lockheed L-1049G	seYoff, Senegal	APR [478]	DKR	1.6 km (1 mi)	8/29/1960
+63	6	57	0	†	COM	Northwest Orient Airlines Flight 710	Lockheed L-188C Electra	usinincCannelton, Indiana, US	ENR [479][480]			3/17/1960
+63	3	60	0		INH	Iraqi Airways Flight 163	Boeing 737-270C	saarnear Arar, Saudi Arabia	ENR [470]			12/25/1986
+62	11	51	0	†	COM	Air France Flight 212 (F-BHSZ)	Boeing 707-328B	vemaiCaribbean, off Maiquetía, Venezuela	ENR [483][484]			12/4/1969
+62	3	59	0		COM	Eastern Air Lines Flight 375	Lockheed L-188 Electra	usmamasBoston, Massachusetts, US	ICL [485][486]	BOS	c. 1 km (0.6 mi)	10/4/1960
+62	3	59	0	†	COM	Trans-Canada Air Lines Flight 810	Canadair North Star	CanBSlesse Mountain, B.C., Canada	ENR [487]			12/9/1956
+62	5	56	1	†	COM	Aeroflot Flight 2003	Tupolev Tu-124V	rukokKokoshkino, Moscow Oblast, Russia	ICL [482]	VKO	7 km (4.4 mi)	1/3/1976
+62	6	56	0	†	MIL	Sri Lanka Air Force (CR862)	Antonov An-32B	srjJaffna, Sri Lanka	APR [481]	JAF	13 km (8.1 mi)	11/22/1995
+61	11	50	0	†	COM	China Southwest Airlines Flight 4509	Tupolev Tu-154M	chinwWenzhou, Zhejiang, China	APR [488]	WNZ	1 km (0.6 mi)	2/24/1999
+61	4	57	0	†	COM	Garuda Indonesia (PK-GVE)	Fokker F28-1000 Fellowship	indon	ENR [489]			7/11/1979
+61	9	52	0		COM	Japan Airlines Flight 446	McDonnell Douglas DC-8-62	rumosMoscow, Russia	ICL [490]	SVO		11/28/1972
+61	5	56	0		COM	Royal Air Maroc (CN-CCV)	Sud Aviation SE-210 Caravelle III	mobeBerrechid, Morocco	APR [491]	CMN	5.5 km (3.4 mi)	4/1/1970
+61	4	57	0	†	COM	Aer Lingus Flight 712	Vickers Viscount 803	irestSt George's Channel, off Wexford, Ireland	ENR [492]			3/24/1968
+61	14	47	0	†	COM	Viasa Flight 897	Douglas DC-8-53	porfoAtlantic Ocean, off Fonte da Telha, Lisboa, Portugal	ENR [493]			5/30/1961
+61	11	50	0		COM	US Navy (131582) and Real Transportes Aéreos (PP-AXD)	Douglas R6D-1 (DC-6A) and Douglas DC-3	brgGuanabara Bay, Brazil	APR [494][495]	GIG	<5 km (3.1 mi)	2/25/1960
+61	9	52	0		COM	Sabena (OO-SFA)	Douglas DC-7C	mocCasablanca, Morocco	APR [496]	CAS	0.6 km (0.37 mi)	5/18/1958
+61	6	55	0	†	COM	Aerolíneas Argentinas Flight 670	Douglas DC-4	argbonear Bolívar, Argentina	ENR [497]			12/8/1957
+61	11	0	50	†	MIL	US Air Force (42-40682)	Consolidated B-24 Liberator	papPort Moresby, Papua New Guinea	UNK [6]			9/7/1943
+61	3	0	58	†	MIL	US Army Air Force (42-50291)	Consolidated B-24 Liberator	unefrFreckleton, England, UK	APR [7]	EGNO	c. 1.3 km (0.8 mi)	8/23/1944
+60	6	54	0	†	COM	Equatorial Express Airlines (3C-VQR)	Antonov An-24B	eqBaney, Equatorial Guinea	ENR [498]			7/16/2005
+60	10	50	0	†	COM	TAROM Flight 371	Airbus A310-324	RoBalotești, Romania	ENR [500]			3/31/1995
+60	10	50	0	†	COM	Malév Flight 240	Tupolev Tu-154B	lebMediterranean, off Beirut, Lebanon	APR [503]	BEY	10 km (6.2 mi)	9/30/1975
+60	5	55	0		COM	Air Inter Flight 696	Vickers Viscount 724	franoNoirétable, France	ENR [504]			10/27/1972
+60	6	49	5		COM	Alliance Air Flight 7412	Boeing 737-2A8	indipPatna, Bihar, India	APR [499]	PAT	2 km (1.2 mi)	7/17/2000
+60	3	57	0	†	EXG	Sudan Airways (ST-ADY)	Fokker F27 Friendship 400M	souznear Malakal, South Sudan	ENR [501]			8/16/1986
+60	0	0	0		INH	EgyptAir Flight 648	Boeing 737-266	maltlLuqa, Malta	STD [502]	MLA		11/24/1985
+59	6	53	0	†	COM	Fuerza Aérea del Peru (FAP-329)	de Havilland Canada DHC-5	petTarma, Peru	ENR [505]			6/21/1989
+59	0	59	0		COM	Libyan Arab Airlines (LZ-BTN)	Tupolev Tu-154	LibyaAr Rajma, Libya	LDG [507]	BEN		12/2/1977
+59	4	55	0	†	COM	SAETA Flight 232	Vickers Viscount 785D	ecchChimborazo volcano, Andes Mts., Ecuador	ENR [508]			8/15/1976
+59	4	55	0		COM	Lufthansa Flight 540	Boeing 747-130	KeNairobi, Kenya	TOF [509]	NBO	1.1 km (0.68 mi)	11/20/1974
+59	9	50	0	†	COM	Aeroflot Flight 245	Ilyushin Il-18B	ruchebChebotovka, Tarasovsky District, Russia	ENR [512]			12/17/1961
+59	4	55	0	†	COM	Lloyd Aéreo Boliviano (CP-609)	Douglas DC-4	bolaArbieto, Bolivia	ENR [513]			2/5/1960
+59	9	50	0	†	COM	US Navy (131588)	Douglas R6D-1	atpPorcupine Seabight, Atlantic Ocean	ENR [514]			10/10/1956
+59	5	54	0	†	EXG	Air Rhodesia Flight 827	Vickers Viscount 748D	Zinear Kariba, Zimbabwe	ENR [506]			2/12/1979
+59	0	0	0		MIL	US Marine Corps (149802)	Lockheed KC-130F Hercules	chinhKowloon Bay, Hong Kong, China	TOF [511]	HKG		8/24/1965
+59	4	55	0	†	MIL	US Army Air Force (44-78591)	Curtiss C-46F-1-CU	chinfFangshan, Fangshan District, China	APR [515]	NAY	25 km (15.6 mi)	10/12/1945
+59	3	12	44	†	MIL	Korean Air Force	Curtiss C-46	souynear Yeouido, South Korea	ENR [510]			4/8/1967
+58	3	55	0		COM	Aeroflot Flight 7841	Tupolev Tu-134AK	belamiMinsk, Belarus	ICL [517]	MSQ	10 km (6.3 mi)	2/1/1985
+58	1	57	0		COM	Aeroflot Flight 1691	Tupolev Tu-104B	rumosMoscow, Russia	ENR [518]			3/17/1979
+58	5	53	0		COM	American Airlines Flight 383	Boeing 727-23	uskeHebron, Kentucky, US	APR [521][522]	CVG	3 km (1.9 mi)	11/8/1965
+58	7	51	0	†	COM	Eastern Air Lines Flight 304	Douglas DC-8	uslollLake Pontchartrain, Louisiana, US	ENR [523][524]			2/25/1964
+58	9	49	0		COM	KLM Flight 844	Lockheed 1049E	indonbiBiak Island, Indonesia	ENR [525]			7/16/1957
+58	8	50	0	†	COM	Transocean Air Lines Flight 512	Douglas DC-6	pacPacific Ocean	ENR [527]			7/12/1953
+58	7	51	0	†	COM	Curtiss Reid Flying Services (CF-EDN)	Douglas C-54B-1-DC	fragrGrande Tête de l'Obiou mountain, France	ENR [528]			11/13/1950
+58	3	55	0	†	COM	Northwest Orient Airlines Flight 2501	Douglas DC-4	uslaLake Michigan, off Benton Harbor, Michigan, US	ENR [529][530]			6/23/1950
+58	2	55	1	†	COM	Pan African Airlines (N90427)	Douglas C-54B-1-DC Skymaster	nigeriagAgwa, Rivers State, Nigeria	APR [520]	PHC	1.5 km (0.9 mi)	9/28/1968
+58	7	51	0	†	EXS	El Al Israel Airlines Flight 402/26	Lockheed L-149 Constellation	bulpnear Petrich, Bulgaria	ENR [526]			7/27/1955
+58	5	53	0	†	INB	Air Vietnam (XV-NUI)	Douglas C-54D-15-DC Skymaster	vibBuôn Ma Thuột, Vietnam	APR [519]	BMV	6.5 km (4.1 mi)	3/19/1973
+58	6	52	0	†	MIL	Yemen Air Force	Antonov An-12	YeSirwah, Yemen	ENR [516]			7/14/1992
+58	5	0	53	†	MIL	Japan mid-air collision		colmtTokyo, Japan	ENR [531]			8/24/1938
+57	7	50	0	†	COM	Atlasjet Flight 4203	McDonnell Douglas MD-83	tukKeçiborlu, Turkey	APR [532]	ISE	12 km (7.5 mi)	11/30/2007
+57	5	52	0	†	COM	ASA Pesada (D2-FCG)	Antonov An-26	anluaLuanda, Angola	ENR [533]			11/15/2000
+57	5	52	0		COM	Turkish Airlines Flight 278	Boeing 737-4Y0	tuvVan, Turkey	APR [534]	VAN	4 km (2.5 mi)	12/29/1994
+57	5	52	0	†	COM	SAETA (HC-AVP)	Vickers Viscount 785D	ecpPastaza Province, Ecuador	ENR [536]			4/23/1979
+57	4	53	0	†	COM	Aeroflot Flight 2174	Antonov An-24B	ruatAtamanovka, Saratov Oblast, Russia	APR [537]	RTW	13 km (8.1 mi)	12/1/1971
+57	5	52	0	†	COM	Civil Air Transport (B-908)	Curtiss C-46D-10-CU	chintjJiaoxi, Taiwan, China	ICL [538]	RMQ	c. 8.5 km (5.3 mi)	6/20/1964
+57	7	50	0	†	MIL	Soviet Air Force (CCCP-76569)	Ilyushin Il-76MD	azsCaspian Sea off Sumqayit, Azerbaijan	ENR [535]			10/18/1989
+56	2	53	0		COM	Indian Airlines Flight 491	Boeing 737-2A8	indiauAurangabad, India	TOF [539]	IXU	1.9 km (1.2 mi)	4/26/1993
+56	2	54	0		COM	Martinair Flight 495	McDonnell Douglas DC-10-30CF	porfaFaro, Portugal	LDG [540]	FAO		12/21/1992
+56	2	54	0		COM	Aeroflot Flight A-13	Antonov An-24B	azneNeftyanyye Kamni, Azerbaijan	ENR [541]			8/18/1973
+56	4	52	0		COM	Avianca Flight 4	Douglas C-54	colcaCartagena Bay, off Cartagena, Colombia	ICL [543]	CTG	1.3 km (0.81 mi)	1/15/1966
+56	4	52	0	†	COM	Miami Airlines (N1678M)	Curtiss C-46F-1-CU	usnewjhHillside, New Jersey, US	ENR [544]			12/16/1951
+56	1	50	5		COM	Varig Flight 837	Douglas DC-8-33	libeMonrovia, Liberia	APR [542]	ROB	1.9 km (1.2 mi)	3/5/1967
+55	1	54	0		COM	China Northwest Airlines Flight 2119	British Aerospace 146	chiyYinchuan, China	TOF [547]	INC		7/23/1993
+55	5	50	0	†	COM	Partnair Flight 394	Convair CV-580	denSkagerrak, near Hirtshals, Denmark	ENR [548]			9/8/1989
+55	2	53	0		COM	British Airtours Flight 328M	Boeing 737–236	unemManchester, England, UK	TOF [549]	MAN		8/22/1985
+55	8	47	0		COM	Transbrasil Flight 303	Boeing 727-27C	brmoMorro da Virgínia, Santa Catarina, Brazil	APR [550]	FLN	24 km (15 mi)	4/12/1980
+55	4	51	0	†	COM	Aeroflot Flight H-826	Antonov An-24B	ukrpPreobrazhenka, Dnipropetrovsk, Ukraine	ENR [551]			8/3/1969
+55	7	48	0	†	COM	Air Afrique (F-BIAO)	Douglas DC-6B	cammMount Cameroon, Cameroon	ENR [552]			5/3/1963
+55	7	48	0	†	COM	TWA Flight 903	Lockheed L-749A	egwWadi Natrun, Egypt	ENR [553][554]			8/31/1950
+55	4	51	0	1*	COM	Eastern Air Lines Flight 537 and Bolivian Air Force (NX26927)	Douglas DC-4 and Lockheed P-38 Lightning	usviralAlexandria, Virginia, US	APR [555][556]	DCA	0.8 km (0.5 mi)	11/1/1949
+55	6	47	2	†	COM	China Eastern Airlines Flight 5210	Bombardier CRJ-200LR	chiniBaotou, Inner Mongolia, China	ICL [545]	BAV	2 km (1.2 mi)	11/21/2004
+55	7	48	0	†	EXG	Lionair Flight 602	Antonov An-24	srmanPalk Strait, off Mannar, Sri Lanka	ENR [546]			9/29/1998
+54	5	49	0	†	COM	Trigana Air Service Flight 267	ATR 42-300	chinthOkbape district, Papua, Indonesia	ENR [557]			8/16/2015
+54	7	47	0	†	COM	China Airlines Flight 204	Boeing 737-209	chinthChiashan Mts., Hualien City, Taiwan, China	ENR [558]			10/26/1989
+54	5	49	0	†	COM	Pakistan International Airlines (AP-BBF)	Fokker F27 Friendship 200	pakbBunji, Pakistan	ENR [559]			8/25/1989
+54	2	52	0		COM	Aeroflot Flight 2306	Tupolev Tu-134AK	rukopnear Kopsa, Komi Republic, Russia	ENR [561]			7/2/1986
+54	4	50	0	†	COM	Alia Royal Jordanian Airlines Herald (JY-ACQ)	Handley Page HPR-7 Herald 207	syaAl-Dimas, Syria	ENR [562]			4/10/1965
+54	5	49	0	†	COM	REAL Transportes Aéreos (PP-YRB)	Convair CV-340-62	brgGuanabara Bay, Brazil	APR [563]	GIG	c. 3 km (1.9 mi)	6/24/1960
+54	9	45	0		COM	TAI (F-BIAP)	Douglas DC-7C	frameMérignac, France	ICL [564]	BOD	<1 km (0.6 mi)	9/24/1959
+54	0	0	0	†	MIL	Ethiopian Air Force	Antonov An-12	ernear Asmara, Eritrea	UNK [560]			1/13/1987
+53	10	43	0	†	COM	Air France Flight 422	Boeing 727-230	colbmMonserrate Mtn., Bogotá, Colombia	ENR [565]			4/20/1998
+53	6	47	0	†	COM	Federal Airlines (ST-FAG)	Antonov An-24RV	sudkKhartoum North, Sudan	LDG [566]	[nb 14]		5/3/1996
+53	5	48	0	†	COM	Lineas Aéreas del Estado (TC-72) (1995)	Fokker F-27 Friendship 400M	argch near Champaqui, Córdoba, Argentina	ENR [567]			11/8/1995
+53	2	51	0		COM	Nigeria Airways (5N-ANF)	Fokker F28 Fellowship 2000	NigerienEnugu, Nigeria	APR [570]	ENU	3.3 km (2.1 mi)	11/28/1983
+53	5	48	0	†	COM	LOT Polish Airlines Flight 165	Antonov An-24W	polpPolica Mtn., Poland	ENR [573]			4/2/1969
+53	1	52	0		COM	Strato-Freight (NC92857)	Curtiss C-46D-5-CU	uspueAtlantic Ocean off San Juan, Puerto Rico, US	ICL [575]	SIG	10 km (6.3 mi)	6/7/1949
+53	4	49	0	†	COM	Eastern Air Lines Flight 605	Douglas DC-4	usmamabBainbridge, Maryland, US	ENR [576][577]			5/30/1947
+53	4	49	0	†	COM	Avianca (C-114)	Douglas DC-4	colmtMt. El Tablazo, Subachoque, Colombia	ENR [578]			2/15/1947
+53	4	0	49	†	COM	Aeroservicios Ecuatorianos Flight 767-103	Douglas DC-8-55F	eccoConcepción, Quito Canton, Ecuador	TOF [569]	UIO		9/18/1984
+53	0	0	0		EXG	Bakhtar Alwatana (YA-BAL)	Antonov An-26	afknear Khost, Afghanistan	ENR [568]			6/11/1987
+53	4	49	0	†	MIL	Korean Air Force (56-4391)	Fairchild C-123J	sousSeongnam, South Korea	TOF [571]	SSN		6/1/1982
+53	6	47	0	†	MIL	Korean Air Force	Fairchild C-123J	souhHallasan Vol., South Korea	ENR [572]			2/6/1982
+53	9	44	0	†	MIL	US Air Force (49-0244)	Douglas C-124A Globemaster II	atbarea of Biscay Abyssal Plain, Atlantic Ocean	ENR [574]			3/23/1951
+53	1	0	52	†	MIL	Santa Ana air show disaster	Curtiss Hawk II	colmtCampo de Marte, Bogotá, Colombia	ENR [579]			7/24/1938
+52	2	50	0		COM	Azerbaijan Airlines Flight 56	Tupolev Tu-134B	aznaNakhchivan, Azerbaijan	ICL [580]	NAJ	3.8 km (2.4 mi)	12/5/1995
+52	6	46	0	†	COM	Aeroflot Flight 1802	Antonov An-24RV	ukrcChernihiv, Ukraine	ENR [583]			5/15/1976
+52	5	47	0	†	COM	Lineas Aéreas del Estado (TC-72) (1975)	Fokker F-27 Friendship 400M	argpPilcaniyeu, Argentina	APR [584]	BRC	35 km (21.9 mi)	3/16/1975
+52	4	48	0	†	COM	Aeroflot Flight H-63	Antonov An-24B	ukrvVinnytsia, Ukraine	APR [585]	VIN	c. 2.5 km (1.6 mi)	11/12/1971
+52	12	40	0	†	COM	Aerolíneas Argentinas Flight 322	de Havilland Comet 4	brcCampinas, Brazil	ICL [587]	VCP	2 km (1.2 mi)	11/23/1961
+52	8	44	0	†	COM	ČSA Flight 511	Ilyushin Il-18	gergGräfenberg, Germany	ENR [588]			3/28/1961
+52	3	49	0		COM	Transports Aériens Intercontinentaux (F-BGOD)	Douglas DC-6B	egnnear New Cairo, Egypt	APR [590]	CAI	29 km (18.1 mi)	2/20/1956
+52	0	52	0		COM	Pan Am Flight 526A	Douglas DC-4	uspueAtlantic Ocean, off San Juan, Puerto Rico, US	ENR [592][593]			4/11/1952
+52	12	40	0	†	COM	Air France (F-BDRC)	Latécoère 631	atAtlantic Ocean	ENR [594]			8/1/1948
+52	5	47	0	†	COM	United Airlines Flight 608	Douglas DC-6	usutaBryce Canyon, Utah, US	ENR [595][596]			10/24/1947
+52	3	49	0	†	EXG	Sri Lanka Air Force (4R-HVA)	British Aerospace BAe-748-357 Srs. 2b	srjnear Jaffna, Sri Lanka	APR [581]	JAF	unknown	4/29/1995
+52	5	47	0	†	EXG	Bakhtar Afghan Airlines (YA-BAM)	Antonov An-26	afseSenjaray, Kandahar Province, Afghanistan	ENR [582]			9/4/1985
+52	6	46	0	†	INB	Canadian Pacific Air Lines Flight 21	Douglas DC-6B	Can100near 100 Mile House, BC, Canada	ENR [586]			7/8/1965
+52	11	41	0	†	MIL	US Air Force (51-0107)	Douglas C-124A-DL Globemaster II	usalsColony Glacier, Mount Gannett, Chugach Mountains, Alaska, US	ENR [591]			11/22/1952
+52	42	10	0	†	MIL	French airship *Dixmude*	Zeppelin-type rigid airship	itsMediterranean, off Sicily, Italy	ENR [4]			12/21/1923
+52	7	13	32	†	MIL	US Air Force (55-0291)	Convair C-131 Samaritan	germMunich, Germany	ENR [589]			12/17/1960
+51	5	46	0	1*	COM	Intercontinental de Aviación Flight 256	Douglas DC-9-14	colmanear María La Baja, Colombia	APR [598]	CTG	56 km (34.8 mi)	1/11/1995
+51	5	47	0	†	COM	Aeroflot Flight C-519	Yakovlev Yak-40	rudaMt. Kukurtbash, Untsukulsky District, Dagestan, Russia	APR [599]	MCX	23 km (14.4 mi)	11/7/1991
+51	6	45	0	1*	COM	Air Mali (TZ-ACT)	Antonov An-24B	MaliTimbuktu, Mali	ICL [600]	TOM	3 km (1.9 mi)	2/22/1985
+51	6	45	0	†	COM	Soviet Navy (CCCP-42332)	Tupolev Tu-104A	rupusPushkinsky District, Saint Petersburg, Russia	ENR [601]			2/7/1981
+51	6	45	0	†	COM	Aeroflot Flight 2022	Tupolev Tu-124V	rukarKaracharovo, Volokolamsky District, Russia	ENR [602]			12/16/1973
+51	9	42	0	†	COM	Pan Am Flight 217	Boeing 707-321B	vemaiAtlantic Ocean, off Maiquetía, Venezuela	APR [603]	CCS	c. 9 km (5.6 mi)	12/12/1968
+51	5	46	0	1*	COM	Austral Lineas Aéreas Flight 205	Curtiss C-46A-50-CU	argmAtlantic Ocean off Mar del Plata, Argentina	APR [604]	MDQ	1.2 km (0.8 mi)	1/16/1959
+51	7	44	0	†	COM	Panair do Brasil Flight 099	Lockheed Constellation	brsaolSão Leopoldo, Brazil	ENR [605]			7/28/1950
+51	6	45	0	†	MIL	Afghanistan Air Force	Antonov An-32	pakkKhojak Pass, Pakistan	APR [597]	UET	110 km (68.4 mi)	1/13/1998
+50	6	44	0	†	COM	Tatarstan Airlines Flight 363	Boeing 737-53A	kazKazan, Russia	LDG [606]	KZN		11/17/2013
+50	6	44	0	†	COM	Stavropolskaya Aktsionernaya Avia Flight 1023	Antonov An-24RV	rucherCherkessk, Russia	ENR [610]			3/18/1997
+50	4	46	0	†	COM	Philippine Airlines Flight 206	Hawker Siddeley HS 748-209 Srs.2	phmuMt. Ugu, Benguet, Philippines	APR [611]	BAG	19 km (12 mi)	6/26/1987
+50	12	38	0	1*	COM	Varig Flight 797	Boeing 707-320C	cotbBingerville, Côte d'Ivoire	APR [612]	ABJ	18 km (11 mi)	1/3/1987
+50	5	45	0	†	COM	Balkan Bulgarian Airlines (LZ-TUR)	Tupolev Tu-134	bulsSofia, Bulgaria	APR [613]	SOF	4 km (2.5 mi)	1/10/1984
+50	3	47	0		COM	Spantax Flight 995	McDonnell Douglas DC-10-30	spmalMálaga, Spain	TOF [614]	AGP	0.45 km (0.28 mi)	9/13/1982
+50	6	44	0	†	COM	Aeropesca Colombia Flight 221	Vickers Viscount 745D	colgGarzón, Colombia	ENR [615]			8/26/1981
+50	6	44	0	†	COM	Somali Airlines Flight 40	Fokker F27 Friendship 600	somBal'ad District, Somalia	ENR [616]			7/20/1981
+50	4	46	0	†	COM	Olympic Airways Flight 830	NAMC YS-11A-500	gresServia, Greece	APR [617]	KZI	19 km (11.9 mi)	11/23/1976
+50	6	44	0	1*	COM	Hughes Airwest Flight 706 and US Marine Corps (151458)	McDonnell Douglas DC-9-31 and McDonnell Douglas F-4 Phantom II	uscadSan Gabriel Mts., near Duarte, California, US	ENR [618][619]			6/6/1971
+50	5	45	0	†	COM	All Nippon Airways Flight 533	NAMC YS-11	jseSeto Inland Sea, off Matsuyama, Shikoku, Japan	APR [622]	MYJ	<1 km (0.6 mi)	11/13/1966
+50	5	45	0		COM	Iberia (EC-ATH)	Convair CV-440-62	motaAtlantic Ocean, off Tangier, Morocco	APR [623]	TNG	18 km (11.3 mi)	3/31/1965
+50	5	45	0		COM	TWA Flight 800	Boeing 707-331	itfFiumicino, Italy	TOF [624]	FCO		11/23/1964
+50	7	43	0	†	COM	Panair do Brasil (PP-PDE)	Lockheed L-049 Constellation	brmaarea of Manaus, Brazil	ENR [625]			12/14/1962
+50	4	46	0	†	COM	Capital Airlines Flight 20	Vickers Viscount 745D	usvirhHoldcroft, Virginia, US	ENR [626][627]			1/18/1960
+50	5	45	0	†	COM	Scottish Airlines (G-ANSY)	Avro York	maltzŻurrieq, Malta	ENR [628]			2/18/1956
+50	9	41	0	†	COM	Pan Am Flight 202	Boeing 377-10-26	brsannear Santana do Araguaia, Brazil	ENR [629][630]			4/29/1952
+50	6	44	0	†	COM	United Airlines Flight 615	Douglas DC-6B	uscauUnion City, California, US	APR [631][632]	OAK	22 km (14 mi)	8/24/1951
+50	5	45	0	†	COM	United Airlines Flight 610	Douglas DC-6	usconear Fort Collins, Colorado, US	ENR [633][634]			6/30/1951
+50	3	47	0	†	COM	Pennsylvania Central Airlines Flight 410	Douglas C-54 Skymaster	uswessShannondale, West Virginia, US	ENR [635]			6/13/1947
+50	5	44	1	†	COM	Colgan Air Flight 3407[nb 15]	Bombardier DHC8-402 Q400	usnewyclClarence Center, New York, US	APR [607][608]	BUF	10 km (6.2 mi)	2/12/2009
+50	5	43	2		COM	Ariana Afghan Airlines Flight 701	Boeing 727-113C	unefeFernhill, England, UK	APR [621]	LGW	2.5 km (1.6 mi)	1/5/1969
+50	0	0	0	†	MIL	Sudanese Air Force	Antonov An-32	suds Surayriyah, Khartoum, Sudan	ENR [609]			6/3/1999
+50	6	44	0	†	MIL	Royal Air Force (XV216)	Lockheed C-130K Hercules C.1P	itpiLigurian Sea, near Pisa, Italy	ENR [620]			11/9/1971
